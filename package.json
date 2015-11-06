@@ -1,0 +1,19 @@
+{
+  "name": "docd",
+  "version": "0.0.1",
+  "description": "Documentation platform to generate a website based on markdown",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pete Redmond <httpete-ire>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.5.0",
+    "chalk": "^1.1.1",
+    "dotenv": "^1.2.0"
+  }
+}
