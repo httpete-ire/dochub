@@ -10,6 +10,6 @@ module.exports =  function(err, req, res, next) {
   let status = err.status || 500;
 
   return res.status(status).json({
-    response: err
+    response: error
   });
 };
