@@ -5,9 +5,16 @@ const morgan = require('morgan');
 const chalk = require('chalk');
 const path = require('path');
 const bodyParser = require('body-parser');
+const hbs = require('hbs');
+const expressValidator = require('express-validator');
+
+// loader functions
+const authRouteLoader = require('./../../../routes/auth');
 const apiRouteLoader = require('./../../../routes/api');
 const pageRouteLoader = require('./../../../routes/page');
-const hbs = require('hbs');
+
+// error handling
+const errorMiddleware = require('./../../middleware/error');
 
 let app = null;
 let logger = null;
@@ -32,7 +39,8 @@ module.exports =  function(cb) {
   app.use(logger);
 
   app.use(bodyParser.urlencoded({extended: true}));
-  app.use(bodyParser.json({type: '*/*'}));
+  app.use(bodyParser.json());
+  app.use(expressValidator());
 
   // load API routes
   apiRouteLoader(app);
@@ -40,7 +48,14 @@ module.exports =  function(cb) {
   // load page routes
   pageRouteLoader(app);
 
-  app.listen(process.env.PORT || 4000);
+  // load auth routes
+  authRouteLoader(app);
+
+  express.Router().use(errorMiddleware);
+
+  console.log(chalk.blue('[SERVER] routes established'));
+
+  app.listen(process.env.NODE_PORT || 4000);
 
   console.log(chalk.blue('[SERVER] server initializied'));
   cb();

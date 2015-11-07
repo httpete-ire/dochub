@@ -16,6 +16,6 @@ async.series(startScripts, function(err) {
   if (err) {
     console.log(chalk.red('[APP] error initializing application'));
   } else {
-    console.log(chalk.blue('[APP] application initializied'));
+    console.log(chalk.blue('[APP] application initializied and listening on port' + process.env.NODE_PORT));
   }
 });
