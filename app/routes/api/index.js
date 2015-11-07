@@ -1,6 +1,6 @@
 'use strict';
 
-const routeLoader = require('./../../lib/route-loader.js');
+const routeLoader = require('./../../helpers/route-loader.js');
 const API_VERSION = ['v1'];
 
 module.exports =  function loadAPI(app) {

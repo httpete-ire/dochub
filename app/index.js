@@ -6,10 +6,10 @@ const chalk = require('chalk');
 console.log(chalk.blue('[APP] initializing application...'));
 
 const startScripts = [function initDb(cb) {
-  require('./config/initializers/database')(cb);
+  require('./helpers/initializers/database')(cb);
 },
 function initServer(cb) {
-  require('./config/initializers/server')(cb);
+  require('./helpers/initializers/server')(cb);
 }];
 
 async.series(startScripts, function(err) {

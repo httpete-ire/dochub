@@ -1,4 +1,4 @@
-const routeLoader = require('./../../lib/route-loader.js');
+const routeLoader = require('./../../helpers/route-loader.js');
 
 module.exports =  function pageRouteLoader(app) {
   routeLoader(__dirname, app, function(router) {
