@@ -56,7 +56,9 @@ module.exports =  function(cb) {
   // load auth routes
   authRouteLoader(app);
 
-  express.Router().use(errorMiddleware);
+  app.use(function(req, res) {
+    res.render('404');
+  });
 
   console.log(chalk.blue('[SERVER] routes established'));
 

@@ -7,4 +7,8 @@ module.exports =  function(router) {
     res.render('index');
   });
 
+  router.get('/app', function(req, res) {
+    res.render('app');
+  });
+
 };
