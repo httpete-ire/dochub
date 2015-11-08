@@ -13,6 +13,9 @@ const authRouteLoader = require('./../../../routes/auth');
 const apiRouteLoader = require('./../../../routes/api');
 const pageRouteLoader = require('./../../../routes/page');
 
+// load emails
+const loadEmailTemplates = require('./../../../mailer/templates').loadTemplates;
+
 // error handling
 const errorMiddleware = require('./../../middleware/error');
 
@@ -27,6 +30,8 @@ module.exports =  function(cb) {
 
   app.set('view engine', 'hbs');
   app.set('views', path.resolve(__dirname, './../../../views'));
+
+  loadEmailTemplates();
 
   app.use(express.static(path.resolve(__dirname, './../../../../public')));
 
