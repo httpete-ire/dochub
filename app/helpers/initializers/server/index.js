@@ -48,17 +48,15 @@ module.exports =  function(cb) {
   app.use(expressValidator());
 
   // load API routes
-  // apiRouteLoader(app);
+  apiRouteLoader(app);
 
-  // // load page routes
-  pageRouteLoader(app);
-  //
   // // load auth routes
   authRouteLoader(app);
 
-  app.use(function(req, res) {
-    res.render('404');
-  });
+  // // load page routes
+  pageRouteLoader(app);
+  
+  app.use(errorMiddleware);
 
   console.log(chalk.blue('[SERVER] routes established'));
 
