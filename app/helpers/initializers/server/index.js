@@ -9,15 +9,15 @@ const hbs = require('hbs');
 const expressValidator = require('express-validator');
 
 // loader functions
-const authRouteLoader = require('./../../../routes/auth');
-const apiRouteLoader = require('./../../../routes/api');
-const pageRouteLoader = require('./../../../routes/page');
+const authRouteLoader = require(__base + 'routes/auth');
+const apiRouteLoader = require(__base + 'routes/api');
+const pageRouteLoader = require(__base + 'routes/page');
 
 // load emails
-const loadEmailTemplates = require('./../../../mailer/templates').loadTemplates;
+const loadEmailTemplates = require(__base + 'mailer/templates').loadTemplates;
 
 // error handling
-const errorMiddleware = require('./../../middleware/error');
+const errorMiddleware = require(__base + 'helpers/middleware/error');
 
 let app = null;
 let logger = null;
@@ -29,11 +29,11 @@ module.exports =  function(cb) {
   app = express();
 
   app.set('view engine', 'hbs');
-  app.set('views', path.resolve(__dirname, './../../../views'));
+  app.set('views', path.resolve(__dirname, __base + 'views'));
 
   loadEmailTemplates();
 
-  app.use(express.static(path.resolve(__dirname, './../../../../public')));
+  app.use(express.static(path.resolve(__dirname, __base + 'public')));
 
   if (process.env.NODE_ENV === 'dev') {
     logger = morgan('dev');
@@ -48,12 +48,12 @@ module.exports =  function(cb) {
   app.use(expressValidator());
 
   // load API routes
-  apiRouteLoader(app);
+  // apiRouteLoader(app);
 
-  // load page routes
+  // // load page routes
   pageRouteLoader(app);
-
-  // load auth routes
+  //
+  // // load auth routes
   authRouteLoader(app);
 
   app.use(function(req, res) {

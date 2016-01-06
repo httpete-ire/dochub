@@ -3,6 +3,8 @@ require('dotenv').load();
 const async = require('async');
 const chalk = require('chalk');
 
+global.__base = __dirname + '/';
+
 console.log(chalk.blue('[APP] initializing application...'));
 
 const startScripts = [function initDb(cb) {
