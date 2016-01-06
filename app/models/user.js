@@ -47,7 +47,9 @@ UserSchema.pre('save', function(next) {
   var user = this;
 
   // if password hasnt changed skip the hashing method
-  if (!user.isModified('password')) return next();
+  if (!user.isModified('password')) {
+    return next();  
+  }
 
   bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
 
