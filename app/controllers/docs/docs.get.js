@@ -16,14 +16,7 @@ function getDoc(req, res, next) {
     let fields = req.query.fields.split(',');
     docQuery.select(fields.join(' '));
 
-    // if owner is needed populate object
-    if(_.includes(fields, 'owner')) {
-      docQuery.populate('owner', 'name email');
-    }
-
     // return all fields of a Doc, populate the owner field
-  } else {
-    docQuery.populate('owner', 'name email');
   }
 
   // execute query and return results
