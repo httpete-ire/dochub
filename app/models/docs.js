@@ -1,12 +1,15 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Chapter = require('./chapter.js');
 
-var DocsSchema = new Schema({
+let DocsSchema = new Schema({
 
   title: {
     type: String,
-    required: true
+    required: true,
+    index: true
   },
 
   desc: {
@@ -14,8 +17,7 @@ var DocsSchema = new Schema({
   },
 
   created: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
 
   updated: {
@@ -24,7 +26,8 @@ var DocsSchema = new Schema({
 
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    index: true
   },
 
   chapters: [
@@ -35,6 +38,30 @@ var DocsSchema = new Schema({
 
   ]
 
+});
+
+// ensure that a document is unique by the 'title' and 'user'
+DocsSchema.index({
+  title: 1,
+  owner: 1
+}, {
+  unique: true
+});
+
+// when the document is saved, set the updated time to be the current time
+// if the created property is undefined set it also
+DocsSchema.pre('save', function(next) {
+
+  let now = new Date();
+
+  this.updated = now;
+
+  if(!this.created) {
+    this.created = now;
+  }
+
+  // call the next middle ware function
+  next();
 });
 
 module.exports = mongoose.model('Docs', DocsSchema);
