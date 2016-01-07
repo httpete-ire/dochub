@@ -4,7 +4,7 @@ var jwt = require('jwt-simple');
 
 module.exports =  function(user, date) {
   let payload = {
-    user: user,
+    user: user._id,
     iat: new Date().getTime(),
     ex: expires(date || 7)
   };
