@@ -1,13 +1,18 @@
 'use strict';
 
-const docController = require(__base + '/controllers/docs');
+const docController = require(__base + '/controllers/doc');
+const docsController = require(__base + '/controllers/docs');
 const authMiddleWare = require(__base + '/helpers/middleware/auth');
 
 module.exports =  function(router) {
 
   router
   .route('/docs')
-  .post(authMiddleWare, docController.post)
-  .get(authMiddleWare, docController.get);
+  .post(authMiddleWare, docsController.post)
+  .get(authMiddleWare, docsController.get);
+
+  router
+  .route('/docs/:docid')
+  .delete(authMiddleWare, docController.delete);
 
 };
