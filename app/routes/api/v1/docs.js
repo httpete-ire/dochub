@@ -13,6 +13,7 @@ module.exports =  function(router) {
 
   router
   .route('/docs/:docid')
-  .delete(authMiddleWare, docController.delete);
+  .delete(authMiddleWare, docController.delete)
+  .put(authMiddleWare, docController.update);
 
 };
