@@ -7,6 +7,7 @@ module.exports =  function(router) {
 
   router
   .route('/docs')
-  .post(authMiddleWare, docController.post);
+  .post(authMiddleWare, docController.post)
+  .get(authMiddleWare, docController.get);
 
 };
