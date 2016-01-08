@@ -14,6 +14,7 @@ module.exports =  function(router) {
   router
   .route('/docs/:docid')
   .delete(authMiddleWare, docController.delete)
-  .put(authMiddleWare, docController.update);
+  .put(authMiddleWare, docController.update)
+  .get(docController.get);
 
 };
