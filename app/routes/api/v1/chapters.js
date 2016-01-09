@@ -12,6 +12,7 @@ module.exports =  function(router) {
 
   router
   .route('/docs/:docid/chapters/:chapterid')
-  .delete(authMiddleWare, chapterController.delete);
+  .delete(authMiddleWare, chapterController.delete)
+  .get(chapterController.get);
 
 };

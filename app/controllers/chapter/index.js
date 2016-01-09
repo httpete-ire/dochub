@@ -1,3 +1,4 @@
 module.exports = {
-  delete: require('./chapter.delete.js')
+  delete: require('./chapter.delete.js'),
+  get: require('./chapter.get.js')
 };
