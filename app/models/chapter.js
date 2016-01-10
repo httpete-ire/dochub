@@ -48,6 +48,11 @@ var ChapterSchema = new Schema({
       default: false
     },
 
+    message: {
+      type: String,
+      default: null
+    },
+
     content: {
 
       markdown: {
