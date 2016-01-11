@@ -45,20 +45,19 @@ function getChapter(req, res, next) {
 
     }
 
-
-
+  } else {
     query = Doc.findOneAndUpdate(where, update, {
       new: true
     });
-
   }
 
-  // select which properites to return
-  query.select('-chapters.pullrequest.content');
+  if(!where.owner) {
+    query.select('-chapters.pullrequest.content');
+  }
 
   // execute the query
   query.exec(function(err, doc) {
-
+    
     if(doc && doc.chapters) {
       let chapter = doc.chapters.id(req.params.chapterid);
       return res.send(chapter);
