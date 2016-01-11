@@ -1,8 +1,10 @@
 'use strict';
 
 const authMiddleWare = require(__base + 'helpers/middleware/auth');
+
 const chaptersController = require(__base + 'controllers/chapters');
 const chapterController = require(__base + 'controllers/chapter');
+const pullrequestController = require(__base + 'controllers/pullrequest');
 
 module.exports =  function(router) {
 
@@ -14,5 +16,11 @@ module.exports =  function(router) {
   .route('/docs/:docid/chapters/:chapterid')
   .delete(authMiddleWare, chapterController.delete)
   .get(chapterController.get);
+
+  router
+  .route('/docs/:docid/chapters/:chapterid/pullrequest')
+  .post(pullrequestController.post)
+  .delete(authMiddleWare, pullrequestController.delete)
+  .put(authMiddleWare, pullrequestController.update);
 
 };
