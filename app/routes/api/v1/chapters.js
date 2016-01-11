@@ -15,7 +15,8 @@ module.exports =  function(router) {
   router
   .route('/docs/:docid/chapters/:chapterid')
   .delete(authMiddleWare, chapterController.delete)
-  .get(chapterController.get);
+  .get(chapterController.get)
+  .put(authMiddleWare, chapterController.update);
 
   router
   .route('/docs/:docid/chapters/:chapterid/pullrequest')
