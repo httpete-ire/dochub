@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
+const Q = require('Q');
 
 const SALT_FACTOR = 10;
 
@@ -80,15 +81,18 @@ UserSchema.pre('save', function(next) {
   });
 });
 
-// compare hash values
-UserSchema.methods.comparePasswords = function comparePasswords(password, cb) {
+UserSchema.methods.comparePasswords = function(password) {
+  let deferred = Q.defer();
+
   bcrypt.compare(password, this.password, function(err, match) {
     if (err) {
-      return cb(err);
+      deferred.reject(err);
+    } else {
+      deferred.resolve(match);
     }
-
-    cb(null, match);
   });
+
+  return deferred.promise;
 };
 
 UserSchema.plugin(uniqueValidator);

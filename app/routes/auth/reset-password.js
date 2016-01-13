@@ -2,6 +2,9 @@
 
 const User = require('./../../models/user.js');
 
+const ValidationError = require('./../../helpers/errors/validation-error');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
+
 // '/' render the marketing website
 module.exports =  function(router) {
 
@@ -15,7 +18,9 @@ module.exports =  function(router) {
     }).then(function(user) {
 
       if (!user) {
-        return res.redirect('/');
+        return res.render('forgot', {
+          error: 'Invalid token'
+        });
       }
 
       return res.render('reset');
@@ -39,23 +44,24 @@ module.exports =  function(router) {
       resetPasswordExpires: {
         $gt: Date.now()
       }
-    }).then(function(user) {
+    })
+    .then(function(user) {
 
       if (!user) {
-        return next({
-          status: 404,
-          message: 'reset token is invalid or has expired'
-        });
+        throw new NotFoundError('reset token is invalid or has expired');
       }
 
       user.password = req.body.password;
-
-      user.resetPasswordToken = undefined;
-      user.resetPasswordExpires = undefined;
+      user.resetPasswordToken = null;
+      user.resetPasswordExpires = null;
 
       return user.save();
-    }).then(function(user) {
+    })
+    .then(function(user) {
       return res.redirect('/app');
+    })
+    .catch(function(err) {
+      return next(err);
     });
 
   });

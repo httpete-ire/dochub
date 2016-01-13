@@ -2,6 +2,7 @@
 
 const User = require('./../../models/user.js');
 const ValidationError = require('./../../helpers/errors/validation-error');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
 const createToken = require('./../../helpers/auth/auth-token');
 
 // '/' render the marketing website
@@ -19,39 +20,42 @@ module.exports =  function(router) {
       return next(err);
     }
 
-    User.findOne({email: req.body.email}, function(err, user) {
+    let u = null;
 
-      if (err) {
-        return next(err);
-      }
+    User.findOne({email: req.body.email})
+    .exec()
+    .then(function(user) {
 
       if (!user) {
-        return next({
-          message: 'no user found with the email ' + req.body.email,
-          status: 404
-        });
+        throw new NotFoundError('no user found with the email ' + req.body.email);
       }
 
-      user.comparePasswords(req.body.password, function(err, match) {
+      u = user;
 
-        if (!match) {
-          return next({
-            message: 'INvalid email and/or password',
-            status: 422
-          });
+      return user.comparePasswords(req.body.password);
+
+    })
+    .then(function(match) {
+      if(!match) {
+        let err = new Error();
+        err.message = 'Invalid email and/or password';
+        err.status = 422;
+        throw err;
+      }
+
+      let token = createToken(u);
+
+      return res.json({
+        token: token,
+        user: {
+          _id: u._id,
+          name: u.name
         }
-
-        let token = createToken(user);
-
-        return res.json({
-          token: token,
-          user: {
-            _id: user._id,
-            name: user.name
-          }
-        });
       });
 
+    })
+    .catch(function(err) {
+      return next(err);
     });
 
   });
