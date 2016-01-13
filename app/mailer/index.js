@@ -10,32 +10,13 @@ const options = {
     api_user: process.env.SENDGRID_USER,
     api_key: process.env.SENDGRID_KEY
   }
-}
+};
 
 // create object that can send emails using nodemailer and sendgrid
 function Mailer(opts) {
   this.options = opts || options;
   this.client = nodemailer.createTransport(sgTransport(this.options));
 }
-
-Mailer.prototype.sendResetLink = function(data) {
-
-  let emailData = {
-    token: data.token,
-    url: data.url,
-    host: data.host,
-    email: data.email
-  };
-
-  let email = {
-    from: 'donotreply@docd.com',
-    to: (process.env.NODE_ENV === 'dev') ? 'redmondp@gmail.com': emailData.email,
-    subject: 'password reset',
-    html: compileTemplate('forgot', emailData)
-  };
-
-  return this.send(email);
-};
 
 Mailer.prototype.send = function(email) {
   let deferred = Q.defer();
@@ -53,4 +34,41 @@ Mailer.prototype.send = function(email) {
   return deferred.promise;
 };
 
-module.exports =  Mailer;
+// create one instance of the mailer so the app can use it
+const mailer = new Mailer();
+
+function sendResetLink(data) {
+
+  let emailData = {
+    token: data.token,
+    url: data.url,
+    host: data.host,
+    email: data.email
+  };
+
+  let email = {
+    from: 'donotreply@docd.com',
+    to: (process.env.NODE_ENV === 'dev') ? 'redmondp@gmail.com': emailData.email,
+    subject: 'password reset',
+    html: compileTemplate('forgot', emailData)
+  };
+
+  return mailer.send(email);
+}
+
+function sendPullrequest(data) {
+
+  let email = {
+    from: 'donotreply@docd.com',
+    to: (process.env.NODE_ENV === 'dev') ? 'redmondp@gmail.com': data.email,
+    subject: 'password reset',
+    html: compileTemplate('pullrequest', data)
+  };
+
+  return mailer.send(email);
+}
+
+module.exports = {
+  sendResetLink: sendResetLink,
+  sendPullrequest: sendPullrequest
+};
