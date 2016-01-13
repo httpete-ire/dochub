@@ -7,8 +7,6 @@ function getDoc(req, res, next) {
 
   let docId = req.params.docid;
 
-  console.log(docId);
-
   let query = Doc.find().where({
     _id: docId
   });

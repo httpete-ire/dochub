@@ -11,8 +11,6 @@ function deletePullrequest(req, res, next) {
   .exec()
   .then(function(doc) {
 
-    doc.title = 'pete';
-
     let chapter = doc.chapters.id(req.params.chapterid);
 
     if(!chapter) {
