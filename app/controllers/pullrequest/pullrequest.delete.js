@@ -1,6 +1,7 @@
 'use strict';
 
 const Doc = require(__base + 'models/docs');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
 
 function deletePullrequest(req, res, next) {
 
@@ -14,14 +15,14 @@ function deletePullrequest(req, res, next) {
     let chapter = doc.chapters.id(req.params.chapterid);
 
     if(!chapter) {
-      return next({
-        status: 404
-      });
+      throw new NotFoundError('no chapter found with that id');
     }
 
     // no pull request exists so return 'not modified' status
     if(!chapter.pullrequest.set) {
-      return res.sendStatus(304);
+      let error = new Error();
+      error.status = 304;
+      throw error;
     }
 
     chapter.pullrequest = {
@@ -37,7 +38,8 @@ function deletePullrequest(req, res, next) {
   })
   .then(function(doc) {
     return res.sendStatus(200);
-  }, function(err) {
+  })
+  .catch(function(err) {
     return next(err);
   });
 

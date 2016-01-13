@@ -51,13 +51,17 @@ function updateChapters(req, res, next) {
   },
   updateOptions);
 
-  query.exec().then(function(value) {
+  query.exec()
+  .then(function(value) {
 
     if(value.nModified === 0) {
       return res.sendStatus(400);
     }
 
     return res.sendStatus(200);
+  })
+  .catch(function(err) {
+    return next(err);
   });
 }
 

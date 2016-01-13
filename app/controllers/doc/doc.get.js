@@ -20,8 +20,12 @@ function getDoc(req, res, next) {
     // return all fields of a Doc, populate the owner field
   }
 
-  query.exec().then(function(doc) {
+  query.exec()
+  .then(function(doc) {
     return res.send(doc);
+  })
+  .catch(function(err) {
+    return next(err);
   });
 }
 

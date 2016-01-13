@@ -1,6 +1,8 @@
 'use strict';
 
 const Doc = require(__base + 'models/docs');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
+
 
 function updatePullrequest(req, res, next) {
 
@@ -8,25 +10,23 @@ function updatePullrequest(req, res, next) {
     _id: req.params.docid,
     owner: req.user
   })
-  .exec(function(err, doc) {
+  .exec()
+  .then(function(doc) {
 
     if(!doc) {
-      return next({
-        status: 404
-      });
+      throw new NotFoundError('no document resource found with that id');
     }
 
     let chapter = doc.chapters.id(req.params.chapterid);
 
     if(!chapter) {
-      return next({
-        status: 404
-      });
+      throw new NotFoundError('no chapter resource found with that id');
     }
 
-    // no pull request exists so return 'not modified' status
     if(!chapter.pullrequest.set) {
-      return res.sendStatus(304);
+      let error = new Error();
+      error.status = 304;
+      throw error;
     }
 
     chapter.content = chapter.pullrequest.content;
@@ -40,14 +40,13 @@ function updatePullrequest(req, res, next) {
       }
     };
 
-    doc.save(function(err, doc) {
-
-      if(err) {
-        return next(err);
-      }
-
-      return res.sendStatus(200);
-    });
+    return doc.save();
+  })
+  .then(function() {
+    return res.sendStatus(200);
+  })
+  .catch(function(err) {
+    return next(err);
   });
 
 }

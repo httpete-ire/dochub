@@ -30,7 +30,8 @@ function deleteChapter(req, res, next) {
     }
 
     return res.sendStatus(200);
-  }, function(err) {
+  })
+  .catch(function(err) {
     return next(err);
   });
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const ValidationError = require(__base + 'helpers/errors/validation-error');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
 
 const Doc = require(__base + 'models/docs');
 
@@ -27,19 +28,13 @@ function updateChapter(req, res, next) {
   .then(function(doc) {
 
     if(!doc) {
-      return next({
-        status: 404,
-        message: 'no document found with that id'
-      });
+      throw new NotFoundError('no document found with that id');
     }
 
     let chapter = doc.chapters.id(req.params.chapterid);
 
     if(!chapter) {
-      return next({
-        status: 404,
-        message: 'no chapter found with that id'
-      });
+      throw new NotFoundError('no chapter found with that id');
     }
 
     chapter.title = req.body.title;

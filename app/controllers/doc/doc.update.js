@@ -1,6 +1,7 @@
 'use strict';
 
 const ValidationError = require(__base + 'helpers/errors/validation-error');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
 const Doc = require(__base + 'models/docs');
 
 const updateOptions = {
@@ -36,20 +37,21 @@ function updateDoc(req, res, next) {
         owner: req.user
       }
     ]
-  }, 
+  },
   updateValues,
   updateOptions);
 
-  query.exec().then(function(doc) {
+  query.exec()
+  .then(function(doc) {
     // no document found so return 404 error
     if(!doc) {
-      return next({
-        message: 'no document resource found with that id',
-        status: 404
-      });
+      throw new NotFoundError('no document resource found with that id');
     }
 
     return res.sendStatus(200);
+  })
+  .catch(function(err) {
+    return next(err);
   });
 
 }

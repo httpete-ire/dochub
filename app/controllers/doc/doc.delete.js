@@ -1,6 +1,8 @@
 'use strict';
 
 const Doc = require(__base + '/models/docs');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
+
 
 function deleteDoc(req, res, next) {
 
@@ -23,13 +25,13 @@ function deleteDoc(req, res, next) {
 
     // no document found so return 404 error
     if(!doc) {
-      return next({
-        message: 'no document resource found with that id',
-        status: 404
-      });
+      throw new NotFoundError('no document resource found with that id');
     }
 
     return res.sendStatus(200);
+  })
+  .catch(function(err) {
+    return next(err);
   });
 }
 

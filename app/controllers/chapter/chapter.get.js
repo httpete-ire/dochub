@@ -2,6 +2,8 @@
 
 const Doc = require(__base + 'models/docs');
 var jwt = require('jwt-simple');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
+
 
 const update = {
   $inc: {
@@ -55,20 +57,17 @@ function getChapter(req, res, next) {
     query.select('-chapters.pullrequest.content');
   }
 
-  // execute the query
-  query.exec(function(err, doc) {
-    
+  query.exec().then(function(doc) {
+
     if(doc && doc.chapters) {
       let chapter = doc.chapters.id(req.params.chapterid);
       return res.send(chapter);
     } else {
-
-      return next({
-        message: 'no chapter resource found with that id',
-        status: 404
-      });
+      throw new NotFoundError('no chapter resource found with that id');
     }
 
+  }).catch(function(err) {
+    next(err);
   });
 
 }
