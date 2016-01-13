@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+</head>
+<body>
+  <h1>Document page</h1>
+
+  <p>{{chapter._id}}</p>
+
+  <p>{{chapter.title}}</p>
+
+  <code>
+    <pre>{{chapter.content.markdown}}</pre>
+  </code>
+
+  {{{chapter.content.html}}}
+
+  <code>
+    {{chapter.pullrequest.set}}
+  </code>
+
+  <hr />
+
+  {{#each links}}
+    <a href="{{this.href}}">{{this.title}}</a>
+  {{/each}}
+
+</body>
+</html>
