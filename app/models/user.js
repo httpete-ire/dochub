@@ -32,11 +32,22 @@ var UserSchema = new Schema({
   },
 
   resetPasswordToken: {
-    type: String
+    type: String,
+    default: null
   },
 
   resetPasswordExpires: {
-    type: Date
+    type: Date,
+    default: null
+  },
+
+  settings: {
+
+    notifications: {
+      type: Boolean,
+      default: true
+    }
+
   }
 
 });
@@ -48,7 +59,7 @@ UserSchema.pre('save', function(next) {
 
   // if password hasnt changed skip the hashing method
   if (!user.isModified('password')) {
-    return next();  
+    return next();
   }
 
   bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
