@@ -33,7 +33,7 @@ module.exports =  function(cb) {
 
   loadEmailTemplates();
 
-  app.use(express.static(path.resolve(__dirname, __base + 'public')));
+  app.use(express.static(path.resolve(__dirname, __base + './../public')));
 
   if (process.env.NODE_ENV === 'dev') {
     logger = morgan('dev');
@@ -55,7 +55,7 @@ module.exports =  function(cb) {
 
   // // load page routes
   pageRouteLoader(app);
-  
+
   app.use(errorMiddleware);
 
   console.log(chalk.blue('[SERVER] routes established'));
