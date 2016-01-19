@@ -1,0 +1,17 @@
+.sort-btn {
+  border: 2px solid $table-border;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 30px;
+  cursor: pointer;
+
+  .caret {
+    color: darken($table-border, 20);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-left: 4px solid rgba(0, 0, 0, 0);
+  }
+}
+
+.page__btn {
+  margin-top: 21px;
+}
