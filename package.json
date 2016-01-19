@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass  ./public/sass/ -o ./public/css/",
+    "watch-sass": "node-sass  -w ./public/sass/ -o ./public/css/"
   },
   "author": "Pete Redmond <httpete-ire>",
   "license": "MIT",
