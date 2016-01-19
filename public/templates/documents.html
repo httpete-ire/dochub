@@ -1,0 +1,82 @@
+<div class="container">
+
+  <div class="row">
+    <h1 class="page__title">Documents</h1>
+    <button href="#" class="btn btn-success pull-right page__btn">New Document</button>
+
+    <table class="full-table">
+
+      <thead>
+
+        <tr class="table__header">
+
+          <th class="table__first-row">Title</th>
+          <th>Status</th>
+          <th>Updated</th>
+          <th>Chapters</th>
+          <th></th>
+          <th class="table__padding--right">
+
+            <div class="sort-container pull-right" uib-dropdown>
+
+              <span class="sort-btn" uib-dropdown-toggle>
+                {{docCtrl.sort}} <span class="caret"></span>
+              </span>
+
+              <ul uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="#" ng-click="docCtrl.setSort('title')">Title</a>
+                </li>
+                <li role="menuitem">
+                  <a href="#" ng-click="docCtrl.setSort('status')">Status</a>
+                </li>
+                <li role="menuitem">
+                  <a href="#" ng-click="docCtrl.setSort('updated')">Updated</a>
+                </li>
+                <li class="divider"></li>
+                <li role="menuitem">
+                  <a href="#" ng-click="docCtrl.setSort('')">Cancel</a>
+                </li>
+              </ul>
+
+            </div>
+
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr class="table__row">
+          <td class="table__first-row">
+            <a href="#">Docd documentation</a>
+          </td>
+          <td>Draft</td>
+          <td>15.05.15</td>
+          <td>12</td>
+          <td>bell</td>
+          <td class="table__padding--right table__last-row">dots</td>
+        </tr>
+
+        <tr class="table__row">
+          <td class="table__first-row">
+            <a href="#">Getting started with Redux</a>
+          </td>
+          <td>Published</td>
+          <td>15.05.15</td>
+          <td>8</td>
+          <td>bell</td>
+          <td class="table__padding--right table__last-row">dots</td>
+        </tr>
+
+
+      </tbody>
+
+
+    </table>
+
+  </div>
+
+</div>
