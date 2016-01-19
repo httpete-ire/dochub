@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="docd">
 <head>
   <meta charset="UTF-8" />
   <title>Document</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/app.css">
+
 </head>
 <body>
-  <h1>App file</h1>
+
+  <!-- header -->
+  <div ng-include="'templates/header.html'"></div>
+
+  <a ui-sref="documents">State 1</a>
+  <a ui-sref="chapters({docid: 1})">State 2</a>
+
+  <div ui-view></div>
+
+  <!-- app dependencies  -->
+  <script src="js/lib/angular.min.js"></script>
+  <script src="js/lib/router.min.js"></script>
+  <script src="js/lib/ui-bootstrap.min.js"></script>
+  <script src="js/lib/ace.min.js"></script>
+  <script src="js/lib/ui-ace.min.js"></script>
+  <!-- /app dependencies  -->
+
+  <script src="js/app/app.js"></script>
+
+  <script src="js/app/header/header.controller.js"></script>
+
+  <script src="js/app/documents/documents.controller.js"></script>
 
 </body>
 </html>
