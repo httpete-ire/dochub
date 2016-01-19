@@ -8,6 +8,11 @@ var ChapterSchema = new Schema({
     required: true
   },
 
+  chapterNumber: {
+    type: Number,
+    required: true
+  },
+
   created: {
     type: Date,
     default: Date.now
