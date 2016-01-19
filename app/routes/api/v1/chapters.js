@@ -10,7 +10,9 @@ module.exports =  function(router) {
 
   router
   .route('/docs/:docid/chapters')
-  .post(authMiddleWare, chaptersController.post);
+  .post(authMiddleWare, chaptersController.post)
+  .put(authMiddleWare, chaptersController.put)
+  .get(authMiddleWare, chaptersController.get);
 
   router
   .route('/docs/:docid/chapters/:chapterid')
