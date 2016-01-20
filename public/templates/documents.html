@@ -2,7 +2,7 @@
 
   <div class="row">
     <h1 class="page__title">Documents</h1>
-    <button href="#" class="btn btn-success pull-right page__btn">New Document</button>
+    <button modal template="new-document" size="sm" class="btn btn-success pull-right page__btn">New Document</button>
 
     <table class="full-table">
 
@@ -20,22 +20,18 @@
             <div class="sort-container pull-right" uib-dropdown>
 
               <span class="sort-btn" uib-dropdown-toggle>
-                {{docCtrl.sort}} <span class="caret"></span>
+                {{docCtrl.sortDisplay}} <span class="caret"></span>
               </span>
 
               <ul uib-dropdown-menu role="menu">
                 <li role="menuitem">
-                  <a href="#" ng-click="docCtrl.setSort('title')">Title</a>
+                  <a href="#" ng-click="docCtrl.setSort('title', 'Title')">Title</a>
                 </li>
                 <li role="menuitem">
-                  <a href="#" ng-click="docCtrl.setSort('status')">Status</a>
+                  <a href="#" ng-click="docCtrl.setSort('status', 'Status')">Status</a>
                 </li>
                 <li role="menuitem">
-                  <a href="#" ng-click="docCtrl.setSort('updated')">Updated</a>
-                </li>
-                <li class="divider"></li>
-                <li role="menuitem">
-                  <a href="#" ng-click="docCtrl.setSort('')">Cancel</a>
+                  <a href="#" ng-click="docCtrl.setSort('-updated', 'Updated')">Updated</a>
                 </li>
               </ul>
 
@@ -49,31 +45,34 @@
 
       <tbody>
 
-        <tr class="table__row">
+        <tr class="table__row" ng-repeat="doc in docCtrl.docs | orderBy: docCtrl.sort">
           <td class="table__first-row">
-            <a href="#">Docd documentation</a>
+            <a ui-sref="chapters({docid: '{{doc._id}}'})">{{doc.title}}</a>
           </td>
           <td>Draft</td>
-          <td>15.05.15</td>
-          <td>12</td>
+          <td>{{doc.updated | date:'dd-MM-yyyy'}}</td>
+          <td>{{doc.chapters.length}}</td>
           <td>bell</td>
-          <td class="table__padding--right table__last-row">dots</td>
-        </tr>
+          <td class="table__padding--right table__last-row" >
+            <div class="table-dropdown" uib-dropdown>
+              <span uib-dropdown-toggle>dots</span>
 
-        <tr class="table__row">
-          <td class="table__first-row">
-            <a href="#">Getting started with Redux</a>
+              <ul uib-dropdown-menu role="menu">
+                <li role="menuitem">
+                  <a href="#" modal template="new-document" size="sm" id="{{doc._id}}">Edit document</a>
+                </li>
+                <li role="menuitem">
+                  <a href="#" modal template="new-document" size="sm" id="{{doc._id}}">Delete document</a>
+                </li>
+              </ul>
+
+            </div>
+
           </td>
-          <td>Published</td>
-          <td>15.05.15</td>
-          <td>8</td>
-          <td>bell</td>
-          <td class="table__padding--right table__last-row">dots</td>
-        </tr>
 
+        </tr>
 
       </tbody>
-
 
     </table>
 
