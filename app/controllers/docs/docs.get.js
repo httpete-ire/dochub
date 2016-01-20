@@ -22,9 +22,7 @@ function getDoc(req, res, next) {
   // execute query and return results
   docQuery.exec()
   .then(function(docs) {
-    setTimeout(function() {
-      return res.send(docs);
-    }, 3000);
+    return res.send(docs);
   })
   .catch(function(err) {
     return next(err);
