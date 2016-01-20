@@ -5,14 +5,26 @@
   angular.module('docd')
   .controller('HeaderController', HeaderController);
 
-  function HeaderController() {
+  function HeaderController(AuthFactory, TokenFactory, $state, $rootScope) {
     var vm = this;
+    var user = AuthFactory.getUser();
 
     vm.user = {
-      name: 'Pete',
-      img: 'https://pbs.twimg.com/profile_images/591601666920701953/oTI-Or1l.jpg'
+      name: user,
+    };
+
+    vm.logout = function() {
+      // remove users credentials and redirect user
+      AuthFactory.setUser();
+      TokenFactory.setToken();
+      $state.go('login');
+
+
+      $rootScope.loggedIn = false;
     };
 
   }
+
+  HeaderController.$inject = ['AuthFactory', 'TokenFactory', '$state', '$rootScope'];
 
 })();
