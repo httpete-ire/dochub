@@ -2,7 +2,7 @@
 
   <div class="row">
     <h1 class="page__title">Documents</h1>
-    <button modal template="new-document" size="sm" class="btn btn-success pull-right page__btn">New Document</button>
+    <button modal template="new-document" controller="DocumentModalController" action="docCtrl.update()" size="sm" class="btn btn-success pull-right page__btn">New Document</button>
 
     <table class="full-table">
 
@@ -59,10 +59,10 @@
 
               <ul uib-dropdown-menu role="menu">
                 <li role="menuitem">
-                  <a href="#" modal template="new-document" size="sm" id="{{doc._id}}">Edit document</a>
+                  <a href="#" modal template="new-document" size="sm" id="{{doc._id}}" edit="true" controller="DocumentModalController" action="docCtrl.update()">Edit document</a>
                 </li>
                 <li role="menuitem">
-                  <a href="#" modal template="new-document" size="sm" id="{{doc._id}}">Delete document</a>
+                  <a href="#" modal template="delete-document" controller="DocumentModalController" size="sm" id="{{doc._id}}" action="docCtrl.update()">Delete document</a>
                 </li>
               </ul>
 

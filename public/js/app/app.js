@@ -20,8 +20,8 @@
       controllerAs: 'docCtrl',
       auth: true,
       resolve: {
-        docs: function(dataService) {
-          return dataService.get('/api/v1/docs');
+        docs: function(documentService) {
+          return documentService.getDocuments();
         }
       }
     })

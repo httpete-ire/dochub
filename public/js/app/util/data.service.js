@@ -2,6 +2,7 @@
   'use strict';
 
   angular.module('docd')
+  .constant('API_PATH', '/api/v1/')
   .factory('dataService', dataService);
 
   function dataService($http,  $q) {
