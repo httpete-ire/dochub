@@ -5,7 +5,8 @@
   angular.module('docd', [
     'ui.router',
     'ui.bootstrap',
-    'ui.ace'
+    'ui.ace',
+    'as.sortable'
   ])
   .config(routeConfig)
   .run(appRun);
@@ -20,10 +21,17 @@
       controllerAs: 'docCtrl',
       auth: true,
       resolve: {
-        docs: function(documentService) {
+        docs: ['documentService', function(documentService) {
           return documentService.getDocuments();
-        }
+        }]
       }
+    })
+    .state('editor', {
+      url: '/editor',
+      templateUrl: 'templates/editor.html',
+      controller: 'EditorController',
+      controllerAs: 'editorCtrl',
+      auth: false,
     })
     .state('login', {
       url: '/login',
@@ -34,7 +42,15 @@
     })
     .state('chapters', {
       url: '/documents/:docid',
-      templateUrl: 'templates/chapters.html'
+      templateUrl: 'templates/chapters.html',
+      controller: 'ChaptersController',
+      controllerAs: 'chapCtrl',
+      auth: true,
+      resolve: {
+        chapters: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
+          return chapterService.getChapters($stateParams.docid);
+        }]
+      }
     });
 
     $httpProvider.interceptors.push('TokenInterceptor');

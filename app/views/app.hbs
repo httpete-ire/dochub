@@ -13,10 +13,11 @@
   <!-- header -->
   <div ng-include="'templates/header.html'"></div>
 
-  <a ui-sref="documents">State 1</a>
-  <a ui-sref="chapters({docid: 1})">State 2</a>
-
-  <div ui-view></div>
+  <a ui-sref="login">Login</a>
+  <a ui-sref="documents">Documents</a>
+  <a ui-sref="editor">Editor</a>
+  <!-- <div ng-if="!stateIsLoading" class="loader">Loading...</div> -->
+  <div ng-if="!stateIsLoading" ui-view></div>
 
   <!-- app dependencies  -->
   <script src="js/lib/angular.min.js"></script>
@@ -24,13 +25,38 @@
   <script src="js/lib/ui-bootstrap.min.js"></script>
   <script src="js/lib/ace.min.js"></script>
   <script src="js/lib/ui-ace.min.js"></script>
+  <script src="js/lib/parser.min.js"></script>
+  <script src="js/lib/ng-sortable.min.js"></script>
   <!-- /app dependencies  -->
 
+  <!-- util -->
   <script src="js/app/app.js"></script>
+  <script src="js/app/util/data.service.js"></script>
+
+  <!-- directives -->
+  <script src="js/app/directives/modal.directive.js"></script>
+  <script src="js/app/directives/toggle.directive.js"></script>
 
   <script src="js/app/header/header.controller.js"></script>
 
+  <!-- docs -->
   <script src="js/app/documents/documents.controller.js"></script>
+  <script src="js/app/documents/document.modal.controller.js"></script>
+  <script src="js/app/documents/documents.service.js"></script>
+
+  <!--  chapters -->
+  <script src="js/app/chapters/chapters.controller.js"></script>
+  <script src="js/app/chapters/chapters.service.js"></script>
+
+  <!-- editor -->
+  <script src="js/app/editor/editor.controller.js"></script>
+
+  <!-- auth -->
+  <script src="js/app/auth/auth.factory.js"></script>
+  <script src="js/app/auth/auth.service.js"></script>
+  <script src="js/app/auth/token.factory.js"></script>
+  <script src="js/app/auth/login.controller.js"></script>
+  <script src="js/app/auth/token.interceptor.js"></script>
 
 </body>
 </html>

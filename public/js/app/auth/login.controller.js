@@ -13,6 +13,7 @@
         password: password
       })
       .then(function(data) {
+        console.log(data);
         AuthFactory.setUser(data.user.name);
         TokenFactory.setToken(data.token);
         $state.go('documents');
