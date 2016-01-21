@@ -1,0 +1,52 @@
+.editor__header {
+  padding: 0 40px;
+  border-bottom: 2px solid $table-border;
+}
+
+.editor__input {
+  border: none;
+  background: $main-bg;
+  width: 50%;
+  height: 50px;
+  outline: none;
+}
+
+.editor__btn {
+  margin-left: 50px;
+}
+
+.editor__settings {
+  position: relative;
+}
+
+.editor__toggle-label {
+  position: absolute;
+  left: -90px;
+  top: 7px;
+}
+
+.ace_editor, .editor__preview {
+  float: left;
+  height: calc(100vh - 177px);
+}
+
+.ace_editor {
+  border-right: 2px solid $table-border;
+}
+
+.editor__preview-open .ace_editor,
+.editor__preview-open .editor__preview {
+  width: 50%;
+}
+
+.ace_editor {
+  width: 100%;
+  border-left: 1px solid #676895;
+  transition: all 0.5s ease;
+}
+
+.editor__preview-closed .editor__preview {
+  width: 0;
+  opacity: 0;
+  transition: width 0.2s ease opacity 0.2s ease;
+}

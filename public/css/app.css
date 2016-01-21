@@ -4849,8 +4849,11 @@ button.close {
     right: 0;
     bottom: 0;
     border-radius: 40px; }
-  .toggle__container--last {
-    margin-top: 15px; }
+  .toggle__container {
+    display: inline-block;
+    margin-top: 3px; }
+    .toggle__container--last {
+      margin-top: 15px; }
   .toggle__label {
     float: left;
     font-size: 14px;
@@ -4858,7 +4861,7 @@ button.close {
     color: #9d9d9d; }
 
 .toggle__checkbox:checked ~ .toggle__track {
-  box-shadow: inset 0 0 0 20px #00a651; }
+  box-shadow: inset 0 0 0 20px #5cb85c; }
 
 .toggle__checkbox:checked ~ .toggle__switch {
   right: 2px;
@@ -4866,6 +4869,49 @@ button.close {
   transition: 0.35s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   transition-property: left, right;
   transition-delay: .05s, 0s; }
+
+.editor__header {
+  padding: 0 40px;
+  border-bottom: 2px solid #eaeaee; }
+
+.editor__input {
+  border: none;
+  background: #f6f8f8;
+  width: 50%;
+  height: 50px;
+  outline: none; }
+
+.editor__btn {
+  margin-left: 50px; }
+
+.editor__settings {
+  position: relative; }
+
+.editor__toggle-label {
+  position: absolute;
+  left: -90px;
+  top: 7px; }
+
+.ace_editor, .editor__preview {
+  float: left;
+  height: calc(100vh - 177px); }
+
+.ace_editor {
+  border-right: 2px solid #eaeaee; }
+
+.editor__preview-open .ace_editor,
+.editor__preview-open .editor__preview {
+  width: 50%; }
+
+.ace_editor {
+  width: 100%;
+  border-left: 1px solid #676895;
+  transition: all 0.5s ease; }
+
+.editor__preview-closed .editor__preview {
+  width: 0;
+  opacity: 0;
+  transition: width 0.2s ease opacity 0.2s ease; }
 
 body {
   background-color: #f6f8f8; }

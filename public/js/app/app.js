@@ -27,7 +27,7 @@
       }
     })
     .state('editor', {
-      url: '/editor',
+      url: '/documents/:docid/editor',
       templateUrl: 'templates/editor.html',
       controller: 'EditorController',
       controllerAs: 'editorCtrl',

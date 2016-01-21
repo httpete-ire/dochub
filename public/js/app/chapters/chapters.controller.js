@@ -5,8 +5,10 @@
   angular.module('docd')
   .controller('ChaptersController', ChaptersController);
 
-  function ChaptersController(chapters) {
+  function ChaptersController(chapters, $stateParams) {
     var vm = this;
+
+    vm.docid = $stateParams.docid;
 
     vm.state = {
       toggle: true,
@@ -33,6 +35,6 @@
 
   }
 
-  ChaptersController.$injext = ['chapters'];
+  ChaptersController.$injext = ['chapters', '$stateParams'];
 
 })();
