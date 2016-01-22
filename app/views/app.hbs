@@ -13,10 +13,13 @@
   <!-- header -->
   <div ng-include="'templates/header.html'"></div>
 
+  <!--  remove -->
   <a ui-sref="login">Login</a>
   <a ui-sref="documents">Documents</a>
   <a ui-sref="editor">Editor</a>
-  <!-- <div ng-if="!stateIsLoading" class="loader">Loading...</div> -->
+  <!--  /remove -->
+
+  <div ng-if="stateIsLoading" class="loader">Loading...</div>
   <div ng-if="!stateIsLoading" ui-view></div>
 
   <!-- app dependencies  -->
@@ -32,6 +35,7 @@
   <!-- util -->
   <script src="js/app/app.js"></script>
   <script src="js/app/util/data.service.js"></script>
+  <script src="js/app/util/html.filter.js"></script>
 
   <!-- directives -->
   <script src="js/app/directives/modal.directive.js"></script>

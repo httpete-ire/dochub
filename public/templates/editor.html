@@ -5,7 +5,7 @@
     <input type="text" placeholder="Insert chapter title" class="editor__input input-md" ng-model="editorCtrl.chapter.title">
 
     <div class="pull-right editor__settings">
-      <span class="btn btn-success pull-right editor__btn" ng-click="editorCtrl.save(editorCtrl.chapter)">Save chapter</span>
+      <span class="btn btn-success pull-right editor__btn" ng-click="editorCtrl.action(editorCtrl.chapter)">{{editorCtrl.actionText()}}</span>
       <span class="editor__toggle-label">Live preview</span>
       <toggle toggle-model="editorCtrl.state.preview" change="editorCtrl.togglePreview()"></toggle>
     </div>
@@ -25,7 +25,7 @@
       <p>Preview</p>
     </div>
 
-    <div class="editor__review-panel" ng-bind-html="editorCtrl.html"></div>
+    <div class="editor__review-panel" ng-bind-html="editorCtrl.chapter.html | html"></div>
 
   </div>
 

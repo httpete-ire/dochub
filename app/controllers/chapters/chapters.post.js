@@ -27,6 +27,8 @@ function updateChapters(req, res, next) {
   chapter.content.markdown = req.body.markdown;
   chapter.content.html = req.body.html;
 
+  console.log(chapter);
+
   let docId = req.params.docid;
 
   let query = Doc.update({
@@ -58,7 +60,10 @@ function updateChapters(req, res, next) {
       return res.sendStatus(400);
     }
 
-    return res.sendStatus(200);
+    return res.json({
+      id: chapter._id
+    });
+
   })
   .catch(function(err) {
     return next(err);

@@ -31,7 +31,24 @@
       templateUrl: 'templates/editor.html',
       controller: 'EditorController',
       controllerAs: 'editorCtrl',
+      auth: true,
+      resolve: {
+        chapter: function() {
+          return null;
+        }
+      }
+    })
+    .state('edit-chapter', {
+      url: '/documents/:docid/chapters/:chapterid',
+      templateUrl: 'templates/editor.html',
+      controller: 'EditorController',
+      controllerAs: 'editorCtrl',
       auth: false,
+      resolve: {
+        chapter: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
+          return chapterService.getChapter($stateParams.docid, $stateParams.chapterid);
+        }]
+      }
     })
     .state('login', {
       url: '/login',

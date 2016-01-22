@@ -7,13 +7,24 @@
 
 
   function chapterService(dataService, API_PATH) {
+
     return {
       getChapters: getChapters,
-      newChapter: newChapter
+      newChapter: newChapter,
+      getChapter: getChapter,
+      updateChapter: updateChapter
     };
 
+    function updateChapter(obj) {
+      return dataService.put(API_PATH + 'docs/' + obj.docid + '/chapters/' + obj.id, obj);
+    }
+
+    function getChapter(docid, chapterid) {
+      return dataService.get(API_PATH + 'docs/' + docid + '/chapters/' + chapterid);
+    }
+
     function newChapter(obj) {
-      return dataService.post(API_PATH + 'docs/' + obj.id + '/chapters', obj);
+      return dataService.post(API_PATH + 'docs/' + obj.docid + '/chapters', obj);
     }
 
     function getChapters(id) {

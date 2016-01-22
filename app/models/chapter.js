@@ -9,8 +9,7 @@ var ChapterSchema = new Schema({
   },
 
   chapterNumber: {
-    type: Number,
-    required: true
+    type: Number
   },
 
   created: {
