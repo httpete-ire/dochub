@@ -11,7 +11,7 @@
     vm.docid = $stateParams.docid;
 
     vm.state = {
-      toggle: true,
+      toggle: false,
       sorted: false
     };
 
@@ -21,7 +21,6 @@
 
       if(vm.state.sorted) {
         vm.state.sorted = false;
-        alert('sorted');
       }
 
     };

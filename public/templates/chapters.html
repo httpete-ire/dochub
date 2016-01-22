@@ -16,8 +16,10 @@
           <th>Updated</th>
           <th>Pull request</th>
           <th class="table__padding--right">
-            <span>Sort chapters</span>
-            <toggle toggle-model="chapCtrl.state.toggle" change="chapCtrl.toggleSort()"></toggle>
+            <div ng-if="chapCtrl.chapters.length > 1">
+              <span>Sort chapters</span>
+              <toggle toggle-model="chapCtrl.state.toggle" change="chapCtrl.toggleSort()"></toggle>
+            </div>
           </th>
 
         </tr>
