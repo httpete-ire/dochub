@@ -44,7 +44,7 @@
 
           <td>
             <span ng-if="!chapter.pullrequest.set">none</span>
-            <a ng-if="chapter.pullrequest.set" href="#">waiting to merge</a>
+            <a ng-if="chapter.pullrequest.set" ui-sref="pull-request({docid: '{{chapCtrl.docid}}', chapterid: '{{chapter._id}}'})">waiting to merge</a>
           </td>
 
           <td class="table__padding--right table__last-row" >

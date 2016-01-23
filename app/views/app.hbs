@@ -13,12 +13,6 @@
   <!-- header -->
   <div ng-include="'templates/header.html'"></div>
 
-  <!--  remove -->
-  <a ui-sref="login">Login</a>
-  <a ui-sref="documents">Documents</a>
-  <a ui-sref="editor">Editor</a>
-  <!--  /remove -->
-
   <div ng-if="stateIsLoading" class="loader">Loading...</div>
   <div ng-if="!stateIsLoading" ui-view></div>
 
@@ -26,15 +20,18 @@
   <script src="js/lib/angular.min.js"></script>
   <script src="js/lib/router.min.js"></script>
   <script src="js/lib/ui-bootstrap.min.js"></script>
-  <script src="js/lib/ace.min.js"></script>
-  <script src="js/lib/ui-ace.min.js"></script>
+  <script src="js/lib/codemirror.js"></script>
+  <script src="js/lib/ui-codemirror.min.js"></script>
   <script src="js/lib/parser.min.js"></script>
   <script src="js/lib/ng-sortable.min.js"></script>
+  <script src="js/lib/diff_match_patch.js"></script>
+  <script src="js/lib/merge.js"></script>
   <!-- /app dependencies  -->
 
   <!-- util -->
   <script src="js/app/app.js"></script>
   <script src="js/app/util/data.service.js"></script>
+  <script src="js/app/util/parser.service.js"></script>
   <script src="js/app/util/html.filter.js"></script>
 
   <!-- directives -->
@@ -51,6 +48,10 @@
   <!--  chapters -->
   <script src="js/app/chapters/chapters.controller.js"></script>
   <script src="js/app/chapters/chapters.service.js"></script>
+
+  <!--  pullrequest -->
+  <script src="js/app/pull-request/pullrequest.service.js"></script>
+  <script src="js/app/pull-request/pullrequest.controller.js"></script>
 
   <!-- editor -->
   <script src="js/app/editor/editor.controller.js"></script>

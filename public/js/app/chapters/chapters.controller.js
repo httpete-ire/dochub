@@ -5,7 +5,7 @@
   angular.module('docd')
   .controller('ChaptersController', ChaptersController);
 
-  function ChaptersController(chapters, $stateParams) {
+  function ChaptersController(chapters, $stateParams, chapterService) {
     var vm = this;
 
     vm.docid = $stateParams.docid;
@@ -21,6 +21,25 @@
 
       if(vm.state.sorted) {
         vm.state.sorted = false;
+
+        var ids = [];
+
+        angular.forEach(vm.chapters, function(chapter) {
+          console.log(chapter);
+          ids.push(chapter._id);
+        });
+
+        chapterService
+        .updateChapters({
+          docid: vm.docid,
+          chapters: ids
+        })
+        .then(function(data) {
+          console.log(data);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
       }
 
     };
@@ -34,6 +53,6 @@
 
   }
 
-  ChaptersController.$injext = ['chapters', '$stateParams'];
+  ChaptersController.$injext = ['chapters', '$stateParams', 'chapterService'];
 
 })();

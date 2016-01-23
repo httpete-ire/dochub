@@ -12,8 +12,13 @@
       getChapters: getChapters,
       newChapter: newChapter,
       getChapter: getChapter,
-      updateChapter: updateChapter
+      updateChapter: updateChapter,
+      updateChapters: updateChapters
     };
+
+    function updateChapters(obj) {
+      return dataService.put(API_PATH + 'docs/' + obj.docid + '/chapters/', obj);
+    }
 
     function updateChapter(obj) {
       return dataService.put(API_PATH + 'docs/' + obj.docid + '/chapters/' + obj.id, obj);
@@ -33,6 +38,6 @@
 
   }
 
-  chapterService.$injext = ['dataService', 'API_PATH'];
+  chapterService.$inject = ['dataService', 'API_PATH'];
 
 })();
