@@ -68,41 +68,44 @@
       return (vm.state.new) ? 'Save chapter' : 'Update chapter';
     };
 
+    vm.editorOptions = {
+      lineWrapping : true,
+      lineNumbers: true,
+      allowDropFileTypes: ['text/markdown'],
+      onLoad: codemirrorLoaded,
+      // theme: 'material'
+    };
+
     //
     // ACE EDITOR SETUP
     //
-    vm.aceLoaded = function(_editor) {
-      var _session = _editor.getSession();
+    function codemirrorLoaded(_editor) {
 
-      if(!vm.state.new) {
-        _session.getDocument().setValue(vm.chapter.markdown);
-      }
+      var _doc = _editor.getDoc();
 
-      _editor.setOption('showPrintMargin', false);
-
-      // create a debounced function that compiles and sets the markdown
       var compile = $$debounce(function() {
-        vm.chapter.markdown = _session.getDocument().getValue();
+        vm.chapter.markdown = _editor.getValue();
         vm.chapter.html = parser.render(vm.chapter.markdown);
       }, 500);
 
-      // when the editor changes
-      _session.on('change', compile);
+      if(!vm.state.new) {
+        _editor.setValue(vm.chapter.markdown);
+      }
 
-      // set toggle when ace editor loaded
+      _editor.on('change', compile);
+
       vm.togglePreview = function() {
 
-        // when preview is reopened compile markdown for changes made when preview closed
         if(vm.state.preview) {
-          vm.chapter.html = parser.render(_session.getDocument().getValue());
-          _session.on('change', compile);
+          vm.chapter.html = parser.render(_editor.getValue());
+          _editor.on('change', compile);
         } else {
-          _session.off('change', compile);
+          _editor.off('change', compile);
         }
 
       };
 
-    };
+    }
     //
     // ACE EDITOR SETUP
     //

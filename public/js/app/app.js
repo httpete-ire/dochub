@@ -5,7 +5,7 @@
   angular.module('docd', [
     'ui.router',
     'ui.bootstrap',
-    'ui.ace',
+    'ui.codemirror',
     'as.sortable'
   ])
   .config(routeConfig)
@@ -57,6 +57,18 @@
       controllerAs: 'vm',
       auth: false
     })
+    .state('pull-request', {
+      url: '/documents/:docid/chapters/:chapterid/pull-request',
+      templateUrl: 'templates/pull-request.html',
+      controller: 'PullRequestController',
+      controllerAs: 'prCtrl',
+      auth: true,
+      resolve: {
+        pr: ['pullRequestService', '$stateParams', function(pullRequestService, $stateParams) {
+          return pullRequestService.getPullRequest($stateParams.docid, $stateParams.chapterid);
+        }]
+      }
+    })
     .state('chapters', {
       url: '/documents/:docid',
       templateUrl: 'templates/chapters.html',
@@ -86,6 +98,7 @@
       if(toState.auth && !TokenFactory.isSet()) {
         e.preventDefault();
         $rootScope.loggedIn = false;
+        $rootScope.stateIsLoading = false;
         $state.go('login');
       }
 
@@ -94,6 +107,10 @@
     $rootScope.$on('$stateChangeSuccess', function (event, nextRoute, currentRoute){
       $rootScope.stateIsLoading = false;
       logged();
+    });
+
+    $rootScope.$on('$stateChangeError', function (event, nextRoute, currentRoute){
+      console.log('error');
     });
 
     function logged() {

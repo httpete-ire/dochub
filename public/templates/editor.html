@@ -16,9 +16,12 @@
 
 <div class="editor__body" ng-class="editorCtrl.state.preview ? 'editor__preview-open' : 'editor__preview-closed'">
 
-  <div ui-ace="{
+  <ui-codemirror ui-codemirror-opts="editorCtrl.editorOptions">
+  </ui-codemirror>
+
+  <!-- <div ui-ace="{
     onLoad: editorCtrl.aceLoaded
-  }"></div>
+  }"></div> -->
 
   <div class="editor__preview">
     <div class="editor__preview-header">
