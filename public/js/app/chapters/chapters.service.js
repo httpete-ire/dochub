@@ -38,6 +38,6 @@
 
   }
 
-  chapterService.$injext = ['dataService', 'API_PATH'];
+  chapterService.$inject = ['dataService', 'API_PATH'];
 
 })();

@@ -1,6 +1,6 @@
 .editor__header {
   padding: 0 40px;
-  border-bottom: 2px solid $table-border;
+  border-bottom: 1px solid $table-border;
 }
 
 .editor__input {
@@ -17,6 +17,7 @@
 
 .editor__settings {
   position: relative;
+  margin-top: 8px;
 }
 
 .editor__toggle-label {
@@ -30,23 +31,49 @@
   height: calc(100vh - 177px);
 }
 
-.ace_editor {
+.editor,
+.editor__preview {
+  width: 50%;
+  float: left;
+  transition: width 0.35s ease;
+}
+
+.editor__preview-closed {
+
+  .editor {
+    width: 100%;
+  }
+
+  .editor__preview {
+    width: 0%;
+    opacity: 0;
+  }
+
+}
+
+.editor__preview-body {
+  padding: 0 25px;
+}
+
+.editor__preview-body {
+  overflow-y: scroll;
+  height: $editor-height;
+}
+
+.editor__preview-header {
+  padding: 10px 25px;
+  border-bottom: 1px solid $table-border;
+}
+
+.editor__preview-header--border {
   border-right: 2px solid $table-border;
 }
 
-.editor__preview-open .ace_editor,
-.editor__preview-open .editor__preview {
+.editor__header--pullrequest {
+  padding: 20px 40px;
+}
+
+.pullrequest__message {
+  display: inline-block;
   width: 50%;
-}
-
-.ace_editor {
-  width: 100%;
-  border-left: 1px solid #676895;
-  transition: all 0.5s ease;
-}
-
-.editor__preview-closed .editor__preview {
-  width: 0;
-  opacity: 0;
-  transition: width 0.2s ease opacity 0.2s ease;
 }

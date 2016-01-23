@@ -64,7 +64,7 @@
       controllerAs: 'prCtrl',
       auth: true,
       resolve: {
-        pr: ['pullRequestService', '$stateParams', function(pullRequestService, $stateParams) {
+        pullRequest: ['pullRequestService', '$stateParams', function(pullRequestService, $stateParams) {
           return pullRequestService.getPullRequest($stateParams.docid, $stateParams.chapterid);
         }]
       }

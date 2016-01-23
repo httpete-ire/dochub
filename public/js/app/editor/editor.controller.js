@@ -7,7 +7,7 @@
   angular.module('docd')
   .controller('EditorController', EditorController);
 
-  function EditorController($$debounce, chapterService, $stateParams, chapter) {
+  function EditorController($$debounce, chapterService, $stateParams, chapter, dataService) {
 
     var vm = this;
 
@@ -53,13 +53,20 @@
           console.error(e);
         });
       } else {
-        chapterService.updateChapter(obj)
+        obj.message = 'from editor page';
+
+        dataService.post('docs/56a36e01929868795882be0f/chapters/56a38a7009e3c244810dcf0b/pullrequest', obj)
         .then(function(data) {
           console.log(data);
-        })
-        .catch(function(e) {
-          console.error(e);
         });
+
+        // chapterService.updateChapter(obj)
+        // .then(function(data) {
+        //   console.log(data);
+        // })
+        // .catch(function(e) {
+        //   console.error(e);
+        // });
       }
 
     };

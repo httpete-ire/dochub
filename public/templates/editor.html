@@ -16,19 +16,30 @@
 
 <div class="editor__body" ng-class="editorCtrl.state.preview ? 'editor__preview-open' : 'editor__preview-closed'">
 
-  <ui-codemirror ui-codemirror-opts="editorCtrl.editorOptions">
-  </ui-codemirror>
+  <div class="editor">
 
-  <!-- <div ui-ace="{
-    onLoad: editorCtrl.aceLoaded
-  }"></div> -->
+    <div class="editor__preview-header editor__preview-header--border">
 
-  <div class="editor__preview">
-    <div class="editor__preview-header">
-      <p>Preview</p>
+      <img src="/images/markdown.svg" width="25">
+
     </div>
 
-    <div class="editor__review-panel" ng-bind-html="editorCtrl.chapter.html | html"></div>
+    <ui-codemirror ui-codemirror-opts="editorCtrl.editorOptions">
+    </ui-codemirror>
+
+  </div>
+
+  <div class="editor__preview">
+
+    <div class="editor__preview-header">
+      <span>Preview</span>
+    </div>
+
+
+    <div class="editor__preview-body">
+      <div class="editor__review-panel" ng-bind-html="editorCtrl.chapter.html | html"></div>
+    </div>
+
 
   </div>
 
