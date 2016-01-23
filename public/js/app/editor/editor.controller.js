@@ -7,13 +7,15 @@
   angular.module('docd')
   .controller('EditorController', EditorController);
 
-  function EditorController($$debounce, chapterService, $stateParams, chapter, dataService) {
+  function EditorController($$debounce, chapterService, $stateParams, chapter, dataService, parser) {
 
     var vm = this;
 
     vm.state = {
       preview: true
     };
+
+    console.log(chapter);
 
     if(!chapter) {
 
@@ -38,8 +40,6 @@
 
     }
 
-    var parser = new window.DocdParser();
-
     vm.action = function(obj) {
       obj.docid = $stateParams.docid;
 
@@ -53,20 +53,13 @@
           console.error(e);
         });
       } else {
-        obj.message = 'from editor page';
-
-        dataService.post('docs/56a36e01929868795882be0f/chapters/56a38a7009e3c244810dcf0b/pullrequest', obj)
+        chapterService.updateChapter(obj)
         .then(function(data) {
           console.log(data);
+        })
+        .catch(function(e) {
+          console.error(e);
         });
-
-        // chapterService.updateChapter(obj)
-        // .then(function(data) {
-        //   console.log(data);
-        // })
-        // .catch(function(e) {
-        //   console.error(e);
-        // });
       }
 
     };
@@ -119,6 +112,6 @@
 
   }
 
-  EditorController.$injext = ['$$debounce', 'chapterService', 'chapter'];
+  EditorController.$injext = ['$$debounce', 'chapterService', 'chapter', 'parser'];
 
 })();

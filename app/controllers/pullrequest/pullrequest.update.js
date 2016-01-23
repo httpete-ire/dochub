@@ -2,9 +2,19 @@
 
 const Doc = require(__base + 'models/docs');
 const NotFoundError = require(__base + 'helpers/errors/not-found');
-
+const ValidationError = require(__base + 'helpers/errors/validation-error');
 
 function updatePullrequest(req, res, next) {
+
+  req.checkBody('markdown', 'The pull request must contain markdown').notEmpty();
+  req.checkBody('html', 'The pull request must contain html').notEmpty();
+
+  let errors = req.validationErrors();
+
+  if (errors) {
+    let err = new ValidationError(errors);
+    return next(err);
+  }
 
   Doc.findOne({
     _id: req.params.docid,
@@ -29,7 +39,10 @@ function updatePullrequest(req, res, next) {
       throw error;
     }
 
-    chapter.content = chapter.pullrequest.content;
+    chapter.content = {
+      markdown: req.body.markdown,
+      html: req.body.html
+    };
 
     chapter.pullrequest = {
       set: false,
