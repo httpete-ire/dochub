@@ -2,14 +2,21 @@
 
 const Doc = require(__base + 'models/docs');
 const _ = require('lodash');
-
-const obj = {
-  '56957e4cd3d04c8516fd5591': 'pete'
-};
+const NotFoundError = require(__base + 'helpers/errors/not-found');
+const ValidationError = require(__base + 'helpers/errors/validation-error');
 
 function updateChapters(req, res, next) {
 
-  console.log(req.body);
+  // required title, md, html
+  req.checkBody('chapters', 'An array of chapters id is required').notEmpty();
+
+  let errors = req.validationErrors();
+
+  if (errors) {
+    let err = new ValidationError(errors);
+    return next(err);
+  }
+
 
   let query = Doc.findOne({
     _id: req.params.docid,
@@ -17,20 +24,34 @@ function updateChapters(req, res, next) {
   });
 
   query
-  .select('chapters.title chapters._id')
+  .select('chapters')
   .exec()
   .then(function(doc) {
 
-    _.each(doc.chapters, function(chapter, index) {
-      console.log(chapter);
-      // console.log(req.body.chapters[chapter._id]);
-      // chapter.title = req.body.chapters[chapter._id];
+    if(!doc) {
+      throw new NotFoundError('no document resource found');
+    }
+
+    let newChapters = [];
+
+    _.each(req.body.chapters, function(chapterId) {
+      let chapter = doc.chapters.id(chapterId);
+
+      if(!chapter) {
+        throw new NotFoundError('no chapter with the id : ' + chapterId + ' , the update action was abandoned');
+      }
+      
+      newChapters.push(chapter);
     });
 
-    console.log(doc);
+    doc.chapters = newChapters;
 
-    return res.send(doc);
-  }).catch(function(err) {
+    return doc.save();
+  })
+  .then(function() {
+    return res.sendStatus(200);
+  })
+  .catch(function(err) {
     return next(err);
   });
 }
