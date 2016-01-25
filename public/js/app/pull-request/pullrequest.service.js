@@ -11,8 +11,13 @@
     return {
       getPullRequest: getPullRequest,
       closePullRequest: closePullRequest,
-      mergePullRequest: mergePullRequest
+      mergePullRequest: mergePullRequest,
+      createPullrequest: createPullrequest
     };
+
+    function createPullrequest(docid, chapterid, obj) {
+      return dataService.post('docs/' + docid + '/chapters/' + chapterid + '/pullrequest', obj);
+    }
 
     function mergePullRequest(docid, chapterid, obj) {
       return dataService.put('docs/' + docid + '/chapters/' + chapterid + '/pullrequest', obj);

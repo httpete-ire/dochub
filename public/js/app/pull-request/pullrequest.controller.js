@@ -2,75 +2,77 @@
 
   'use strict';
 
-  angular.module('docd')
-  .controller('PullRequestController', PullRequestController);
+  var defaultSort = 'title';
 
-  function PullRequestController(pullRequest, $stateParams, pullRequestService, $$debounce, $timeout, $state, parser) {
+  angular.module('docd')
+  .controller('PullrequestController', PullrequestController);
+
+  function PullrequestController($$debounce, pullRequestService, $stateParams, chapter, parser) {
+
     var vm = this;
-    vm.pr = pullRequest;
 
     vm.state = {
-      merge: false
+      preview: true
+    };
+
+    vm.chapter = {
+      id: chapter._id,
+      markdown: chapter.content.markdown,
+      html: chapter.content.html
     };
 
     vm.editorOptions = {
-      value: vm.pr.content.markdown,
-      orig: vm.pr.pullrequest.content.markdown,
       lineWrapping : true,
       lineNumbers: true,
-      drag: false,
-      onLoad: codemirrorLoaded,
-      readOnly: true
+      allowDropFileTypes: ['text/markdown'],
+      onLoad: codemirrorLoaded
     };
 
-    vm.closeRequest = function() {
-      pullRequestService.closePullRequest($stateParams.docid, $stateParams.chapterid)
-      .then(handleResponse);
+    vm.pull = function() {
+
+      pullRequestService.createPullrequest($stateParams.docid, $stateParams.chapterid, {
+        message: 'test',
+        markdown: vm.chapter.markdown,
+        html: vm.chapter.html
+      }).then(function(data) {
+        console.log(data);
+      }).catch();
+
     };
 
-    function handleResponse() {
-      $state.go('chapters', {
-        docid: $stateParams.docid
-      });
-    }
+
 
     //
-    // EDITOR SETTINGS
+    // ACE EDITOR SETUP
     //
     function codemirrorLoaded(_editor) {
 
-      var leftEditor = _editor.edit.doc;
+      var _doc = _editor.getDoc();
 
-      leftEditor.on('change', onChange);
+      var compile = $$debounce(function() {
+        vm.chapter.markdown = _editor.getValue();
+        vm.chapter.html = parser.render(vm.chapter.markdown);
+      }, 500);
 
-      vm.mergeRequest = function() {
-        var md = leftEditor.getValue();
-        var html = parser.render(md);
+      _editor.setValue(vm.chapter.markdown);
 
-        pullRequestService.mergePullRequest($stateParams.docid, $stateParams.chapterid, {
-          markdown: md,
-          html: html
-        })
-        .then(handleResponse);
+      _editor.on('change', compile);
+
+      vm.togglePreview = function() {
+
+        if(vm.state.preview) {
+          vm.chapter.html = parser.render(_editor.getValue());
+          _editor.on('change', compile);
+        } else {
+          _editor.off('change', compile);
+        }
+
       };
-
-      function onChange() {
-
-        console.log();
-
-        // wrap the function in a timeout to force a
-        // digest cycle within angular
-        $timeout(function() {
-          vm.state.merge = true;
-          leftEditor.off('change', onChange);
-        }, 0);
-
-      }
 
     }
 
   }
 
-  PullRequestController.$injext = ['pullRequest', '$stateParams', 'pullRequestService',
-                                    '$$debounce', '$timeout', '$state', 'parser'];
+  PullrequestController.$injext = ['$$debounce', 'pullRequestService', '$stateParams', 'chapter', 'parser'];
+
 })();
