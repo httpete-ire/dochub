@@ -2,7 +2,7 @@
 
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
-const Q = require('Q');
+const Q = require('q');
 const compileTemplate = require('./templates').compileTemplate;
 
 const options = {
