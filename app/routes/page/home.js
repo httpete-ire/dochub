@@ -43,7 +43,10 @@ module.exports =  function(router) {
         });
       });
 
+      console.log(doc.chapters[chapter].pullrequest);
+
       return res.render('doc', {
+        docid: doc._id,
         links: links,
         chapter: doc.chapters[chapter]
       });

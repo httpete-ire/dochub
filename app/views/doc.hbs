@@ -7,21 +7,11 @@
 <body>
   <h1>Document page</h1>
 
-  <p>{{chapter._id}}</p>
-
-  <p>{{chapter.title}}</p>
-
-  <code>
-    <pre>{{chapter.content.markdown}}</pre>
-  </code>
+  {{#unless chapter.pullrequest.set}}
+    <a href="/app#/documents/{{docid}}/chapters/{{chapter._id}}/pullrequest" target="_blank">Make Pull request</a>
+  {{/unless}}
 
   {{{chapter.content.html}}}
-
-  <code>
-    {{chapter.pullrequest.set}}
-  </code>
-
-  <hr />
 
   {{#each links}}
     <a href="{{this.href}}">{{this.title}}</a>
