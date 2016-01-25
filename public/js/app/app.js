@@ -57,15 +57,34 @@
       controllerAs: 'vm',
       auth: false
     })
-    .state('pull-request', {
-      url: '/documents/:docid/chapters/:chapterid/pull-request',
-      templateUrl: 'templates/pull-request.html',
-      controller: 'PullRequestController',
-      controllerAs: 'prCtrl',
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+      controller: 'RegisterController',
+      controllerAs: 'regCtrl',
+      auth: false
+    })
+    .state('merge', {
+      url: '/documents/:docid/chapters/:chapterid/merge',
+      templateUrl: 'templates/merge.html',
+      controller: 'MergeController',
+      controllerAs: 'mergeCtrl',
       auth: true,
       resolve: {
         pullRequest: ['pullRequestService', '$stateParams', function(pullRequestService, $stateParams) {
           return pullRequestService.getPullRequest($stateParams.docid, $stateParams.chapterid);
+        }]
+      }
+    })
+    .state('pull-request', {
+      url: '/documents/:docid/chapters/:chapterid/pullrequest',
+      templateUrl: 'templates/pullrequest.html',
+      controller: 'PullrequestController',
+      controllerAs: 'prCtrl',
+      auth: false,
+      resolve: {
+        chapter: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
+          return chapterService.getChapter($stateParams.docid, $stateParams.chapterid);
         }]
       }
     })
