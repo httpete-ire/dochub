@@ -11,7 +11,7 @@ const updateOptions = {
 function updateDoc(req, res, next) {
 
   req.checkBody('title', 'The document title is required').notEmpty();
-  req.checkBody('desc', 'The document description is required').notEmpty();
+  req.checkBody('published', 'The documents publish status is required').isBoolean();
 
   let errors = req.validationErrors();
 
@@ -24,8 +24,9 @@ function updateDoc(req, res, next) {
 
   let updateValues = {
       title: req.body.title,
-      desc: req.body.desc,
-      updated: new Date()
+      desc: req.body.desc || '',
+      updated: new Date(),
+      published: req.body.published
   };
 
   let query = Doc.findOneAndUpdate({

@@ -11,7 +11,7 @@
         <tr class="table__header">
 
           <th class="table__first-row">Title</th>
-          <th>Status</th>
+          <th>Published</th>
           <th>Updated</th>
           <th>Chapters</th>
           <th></th>
@@ -49,7 +49,9 @@
           <td class="table__first-row">
             <a ui-sref="chapters({docid: '{{doc._id}}'})">{{doc.title}}</a>
           </td>
-          <td>Draft</td>
+          <td>
+            <toggle toggle-model="doc.published" change="docCtrl.publish(doc)"></toggle>
+          </td>
           <td>{{doc.updated | date:'dd-MM-yyyy'}}</td>
           <td>{{doc.chapters.length}}</td>
           <td>bell</td>

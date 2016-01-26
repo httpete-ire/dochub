@@ -34,9 +34,10 @@ let DocsSchema = new Schema({
     Chapter.schema
   ],
 
-  notifications: [
-
-  ]
+  published: {
+    type: Boolean,
+    default: false
+  }
 
 });
 

@@ -12,7 +12,9 @@
 
     this.sort = defaultSort;
     this.sortDisplay = 'Title';
-    
+
+    console.log(docs);
+
     this.docs = docs;
 
     this.setSort = function(value, display) {
@@ -24,6 +26,12 @@
       documentService.getDocuments()
       .then(function(data) {
         vm.docs = data;
+      });
+    };
+
+    vm.publish = function(doc) {
+      documentService.editDocument(doc).then(function() {
+        console.log('working');
       });
     };
 

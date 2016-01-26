@@ -28,7 +28,7 @@
     }
 
     function getDocuments() {
-      return dataService.get(API_PATH + 'docs?fields=title,updated,chapters.title');
+      return dataService.get(API_PATH + 'docs?fields=title,updated,published,chapters.title');
     }
 
     function getDocument(id) {
