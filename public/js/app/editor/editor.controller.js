@@ -86,10 +86,12 @@
       var compile = $$debounce(function() {
         vm.chapter.markdown = _editor.getValue();
         vm.chapter.html = parser.render(vm.chapter.markdown);
-      }, 500);
+      }, 150);
 
       if(!vm.state.new) {
         _editor.setValue(vm.chapter.markdown);
+      } else {
+        _editor.setValue('');
       }
 
       _editor.on('change', compile);
