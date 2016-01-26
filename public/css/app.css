@@ -4636,6 +4636,9 @@ button.close {
     color: #666666;
     font-weight: normal; }
 
+.table__body {
+  background: #ffffff; }
+
 .table__header {
   height: 50px;
   background: #f5f5f5;
@@ -5486,7 +5489,9 @@ span.CodeMirror-selectedtext {
 
 .editor__preview-body {
   overflow-y: scroll;
-  height: calc(100vh - 200px); }
+  height: calc(100vh - 200px);
+  background: #ffffff;
+  border-left: 1px solid #ddd; }
 
 .editor__preview-header {
   padding: 10px 25px;

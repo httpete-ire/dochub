@@ -18,7 +18,8 @@ module.exports =  function(router) {
     let docId = req.params.id;
 
     let query = Doc.findOne().where({
-      _id: docId
+      _id: docId,
+      published: true
     });
 
     // select certain fields of data
@@ -42,8 +43,6 @@ module.exports =  function(router) {
           href: req.hostname + ':4000/doc/' + doc._id + '/' + index
         });
       });
-
-      console.log(doc.chapters[chapter].pullrequest);
 
       return res.render('doc', {
         docid: doc._id,

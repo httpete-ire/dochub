@@ -11,6 +11,10 @@
 
 .table {
 
+  &__body {
+    background: $table-body;
+  }
+
   &__header {
     height: 50px;
     background: $table-header;

@@ -58,6 +58,8 @@
 .editor__preview-body {
   overflow-y: scroll;
   height: $editor-height;
+  background: $white;
+  border-left: 1px solid $toggle-grey;
 }
 
 .editor__preview-header {

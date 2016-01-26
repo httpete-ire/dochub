@@ -82,6 +82,7 @@
     function codemirrorLoaded(_editor) {
 
       var _doc = _editor.getDoc();
+      var previewWindow = document.querySelector('.editor__preview-body');
 
       var compile = $$debounce(function() {
         vm.chapter.markdown = _editor.getValue();
@@ -95,6 +96,10 @@
       }
 
       _editor.on('change', compile);
+
+      _editor.on('scroll', function(e) {
+        previewWindow.scrollTop = e.doc.scrollTop;
+      });
 
       vm.togglePreview = function() {
 
