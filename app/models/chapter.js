@@ -1,7 +1,16 @@
+const shortid = require('shortid');
 const mongoose = require('mongoose');
+const Version = require('./version.js');
 const Schema = mongoose.Schema;
 
 var ChapterSchema = new Schema({
+
+  _id: {
+    type: String,
+    unique: true,
+    default: shortid.generate,
+    index: false
+  },
 
   title: {
     type: String,
@@ -22,11 +31,6 @@ var ChapterSchema = new Schema({
     default: 0
   },
 
-  likes: {
-    type: Number,
-    default: 0
-  },
-
   content: {
 
     markdown: {
@@ -40,6 +44,8 @@ var ChapterSchema = new Schema({
     }
 
   },
+
+  versions: [Version.schema],
 
   pullrequest: {
 
