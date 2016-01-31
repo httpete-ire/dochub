@@ -1,0 +1,53 @@
+.full-table {
+  width: 100%;
+  border: 1px solid $table-border;
+  border-radius: 10px;
+
+  th {
+    color: #666666;
+    font-weight: normal;
+  }
+}
+
+.table {
+
+  &__body {
+    background: $table-body;
+  }
+
+  &__header {
+    height: 50px;
+    background: $table-header;
+    border-bottom: 2px solid $table-border;
+  }
+
+  &__first-row {
+    padding-left: 50px;
+    text-align: left;
+    width: 30%;
+  }
+
+  &__last-row {
+    width: 12%;
+    text-align: right;
+  }
+
+  &__padding--right {
+    padding-right: 50px;
+    width: 13%;
+  }
+
+  &__row {
+    height: 90px;
+  }
+
+  &__row {
+    border-bottom: 2px solid $table-border;
+  }
+
+}
+
+.version__date {
+  font-size: 11px;
+  margin-top: 2px;
+}

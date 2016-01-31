@@ -7,6 +7,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const hbs = require('hbs');
 const expressValidator = require('express-validator');
+const cors = require('cors');
 
 // loader functions
 const authRouteLoader = require(__base + 'routes/auth');
@@ -42,6 +43,7 @@ module.exports =  function(cb) {
   }
 
   app.use(logger);
+  app.use(cors());
 
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
