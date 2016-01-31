@@ -468,6 +468,16 @@ span.CodeMirror-selectedtext { background: none; }
   background-repeat: repeat-x;
 }
 
+.version__editor .CodeMirror-merge-r-inserted,
+.version__editor .CodeMirror-merge-l-inserted {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAGUlEQVQI12MwuCXy3+CWyH8GBgYGJgYkAABZbAQ9ELXurwAAAABJRU5ErkJggg==);
+}
+
+.version__editor .CodeMirror-merge-r-deleted,
+.version__editor .CodeMirror-merge-l-deleted {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAGUlEQVQI12M4Kyb2/6yY2H8GBgYGJgYkAABURgPz6Ks7wQAAAABJRU5ErkJggg==);
+}
+
 .CodeMirror-merge-r-deleted, .CodeMirror-merge-l-deleted {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAGUlEQVQI12MwuCXy3+CWyH8GBgYGJgYkAABZbAQ9ELXurwAAAABJRU5ErkJggg==);
   background-position: bottom left;

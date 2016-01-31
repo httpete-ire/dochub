@@ -25,7 +25,6 @@
         var ids = [];
 
         angular.forEach(vm.chapters, function(chapter) {
-          console.log(chapter);
           ids.push(chapter._id);
         });
 

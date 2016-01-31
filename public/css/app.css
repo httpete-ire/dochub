@@ -4663,6 +4663,10 @@ button.close {
 .table__row {
   border-bottom: 2px solid #eaeaee; }
 
+.version__date {
+  font-size: 11px;
+  margin-top: 2px; }
+
 .sort-btn {
   border: 2px solid #eaeaee;
   display: block;
@@ -5328,6 +5332,14 @@ span.CodeMirror-selectedtext {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAGUlEQVQI12M4Kyb2/6yY2H8GBgYGJgYkAABURgPz6Ks7wQAAAABJRU5ErkJggg==);
   background-position: bottom left;
   background-repeat: repeat-x; }
+
+.version__editor .CodeMirror-merge-r-inserted,
+.version__editor .CodeMirror-merge-l-inserted {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAGUlEQVQI12MwuCXy3+CWyH8GBgYGJgYkAABZbAQ9ELXurwAAAABJRU5ErkJggg==); }
+
+.version__editor .CodeMirror-merge-r-deleted,
+.version__editor .CodeMirror-merge-l-deleted {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAGUlEQVQI12M4Kyb2/6yY2H8GBgYGJgYkAABURgPz6Ks7wQAAAABJRU5ErkJggg==); }
 
 .CodeMirror-merge-r-deleted, .CodeMirror-merge-l-deleted {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAGUlEQVQI12MwuCXy3+CWyH8GBgYGJgYkAABZbAQ9ELXurwAAAABJRU5ErkJggg==);

@@ -15,8 +15,6 @@
       preview: true
     };
 
-    console.log(chapter);
-
     if(!chapter) {
 
       vm.state.new = true;

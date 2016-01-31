@@ -52,7 +52,7 @@
           <td>
             <toggle toggle-model="doc.published" change="docCtrl.publish(doc)"></toggle>
           </td>
-          <td>{{doc.updated | date:'dd-MM-yyyy'}}</td>
+          <td>{{doc.updated | relativeDate}}</td>
           <td>{{doc.chapters.length}}</td>
           <td>bell</td>
           <td class="table__padding--right table__last-row" >

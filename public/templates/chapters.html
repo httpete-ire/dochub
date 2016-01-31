@@ -14,6 +14,7 @@
           <th class="table__first-row">Title</th>
           <th>Views</th>
           <th>Updated</th>
+          <th>Versions</th>
           <th>Pull request</th>
           <th class="table__padding--right">
             <div ng-if="chapCtrl.chapters.length > 1">
@@ -39,7 +40,29 @@
           </td>
 
           <td>
-            {{chapter.created | date:'dd-MM-yyyy'}}
+            {{chapter.updated | relativeDate}}
+          </td>
+
+          <td>
+
+            <span ng-if="chapter.versions.length === 0">0</span>
+
+            <div class="table-dropdown" uib-dropdown ng-if="chapter.versions.length > 0">
+              <span uib-dropdown-toggle>{{chapter.versions.length}}</span>
+
+              <ul uib-dropdown-menu role="menu">
+
+                <li role="menuitem" ng-repeat="version in chapter.versions.slice().reverse()">
+
+                  <a ui-sref="versions({docid: '{{chapCtrl.docid}}',
+                  chapterid: '{{chapter._id}}',
+                  versionid: '{{version._id}}'})">v.{{version.versionNumber}} <span class="pull-right version__date">{{version.created | relativeDate}}</span></a>
+                </li>
+
+              </ul>
+
+            </div>
+
           </td>
 
           <td>
