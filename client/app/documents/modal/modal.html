@@ -1,0 +1,28 @@
+<div class="modal-body">
+
+  <form class="form-horizontal" ng-submit="modalCtrl.submit(modalCtrl.document)">
+    <fieldset>
+
+      <!-- Form Name -->
+      <legend>{{modalCtrl.title}}</legend>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <input id="textinput" name="textinput" type="text" placeholder="Document title" class="form-control input-md" ng-model="modalCtrl.document.title">
+        <!-- <span class="help-block">help</span> -->
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <input id="textinput" name="textinput" type="text" placeholder="Document desc" class="form-control input-md" ng-model="modalCtrl.document.desc">
+        <!-- <span class="help-block">help</span> -->
+      </div>
+
+      <div class="form-group">
+          <button id="submit" name="submit" class="btn btn-success btn-block">New button</button>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>

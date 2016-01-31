@@ -6,7 +6,8 @@
     'ui.router',
     'ui.bootstrap',
     'ui.codemirror',
-    'as.sortable'
+    'as.sortable',
+    'relativeDate'
   ])
   .config(routeConfig)
   .run(appRun);
@@ -99,6 +100,18 @@
           return chapterService.getChapters($stateParams.docid);
         }]
       }
+    })
+    .state('versions', {
+      url: '/documents/:docid/chapters/:chapterid/versions/:versionid',
+      templateUrl: 'templates/versions.html',
+      controller: 'VerionController',
+      controllerAs: 'versionCtrl',
+      resolve: {
+        data: ['versionService', '$stateParams', function(versionService, $stateParams) {
+          return versionService.getVersion($stateParams.docid, $stateParams.chapterid, $stateParams.versionid);
+        }]
+      },
+      auth: true
     });
 
     $httpProvider.interceptors.push('TokenInterceptor');

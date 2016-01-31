@@ -22,7 +22,7 @@ function getDoc(req, res, next) {
 
   query.exec()
   .then(function(doc) {
-    return res.send(doc);
+    return res.send(doc[0]);
   })
   .catch(function(err) {
     return next(err);

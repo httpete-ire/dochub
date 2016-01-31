@@ -1,10 +1,18 @@
 'use strict';
 
+const shortid = require('shortid');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Chapter = require('./chapter.js');
 
 let DocsSchema = new Schema({
+
+  _id: {
+    type: String,
+    unique: true,
+    default: shortid.generate,
+    index: true
+  },
 
   title: {
     type: String,
