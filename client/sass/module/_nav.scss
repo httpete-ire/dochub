@@ -1,0 +1,26 @@
+.nav {
+  margin-right: 50px;
+  display: inline-block;
+
+  > a {
+    color: $white;
+  }
+}
+
+.nav__login {
+  margin-top: 10px;
+}
+
+.btn__login {
+  border: 1px solid darken($white, 30);
+  color: darken($white, 30);
+
+  &:hover {
+    color: $white;
+  }
+
+  &:first-child {
+    margin-right: 15px;
+  }
+
+}

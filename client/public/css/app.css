@@ -4681,6 +4681,9 @@ button.close {
 .page__btn {
   margin-top: 21px; }
 
+.profile__btn {
+  border: 2px solid #797993; }
+
 .as-sortable-item, .as-sortable-placeholder {
   display: table-row; }
 
@@ -5455,6 +5458,23 @@ span.CodeMirror-selectedtext {
   transition: 0.35s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   transition-property: left, right;
   transition-delay: .05s, 0s; }
+
+.nav {
+  margin-right: 50px;
+  display: inline-block; }
+  .nav > a {
+    color: #ffffff; }
+
+.nav__login {
+  margin-top: 10px; }
+
+.btn__login {
+  border: 1px solid #b3b3b3;
+  color: #b3b3b3; }
+  .btn__login:hover {
+    color: #ffffff; }
+  .btn__login:first-child {
+    margin-right: 15px; }
 
 .editor__header {
   padding: 0 40px;

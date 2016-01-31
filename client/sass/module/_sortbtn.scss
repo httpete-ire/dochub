@@ -16,6 +16,10 @@
   margin-top: 21px;
 }
 
+.profile__btn {
+  border: 2px solid darken($table-border, 40);
+}
+
 .as-sortable-item, .as-sortable-placeholder {
     display: table-row;
 }

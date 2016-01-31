@@ -3,6 +3,6 @@
 module.exports = function(module) {
 
   module
-  .factory('RegisterController', require('./register.controller.js'));
+  .controller('RegisterController', require('./register.controller.js'));
 
 };
