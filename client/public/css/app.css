@@ -4162,7 +4162,7 @@ button.close {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
   .modal-sm {
-    width: 300px; } }
+    width: 350px; } }
 
 @media (min-width: 992px) {
   .modal-lg {
@@ -5475,6 +5475,28 @@ span.CodeMirror-selectedtext {
     color: #ffffff; }
   .btn__login:first-child {
     margin-right: 15px; }
+
+.delete-modal__btn {
+  width: 50%;
+  display: inline-block;
+  line-height: 50px;
+  color: #ffffff;
+  cursor: pointer;
+  float: left;
+  text-align: center;
+  font-size: 18px; }
+  .delete-modal__btn--confirm {
+    background: #e74c3c; }
+  .delete-modal__btn--cancel {
+    background: #bdc3c7; }
+
+.delete-modal__body {
+  padding: 0; }
+
+.delete-modal__title {
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 15px; }
 
 .editor__header {
   padding: 0 40px;
