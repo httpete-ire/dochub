@@ -8,7 +8,7 @@ function versionService(dataService, API_PATH) {
   };
 
   function getVersion(docid, chapterid, versionid) {
-    return dataService.get('docs/' + docid + '/chapters/' + chapterid + '/versions/' + versionid);
+    return dataService.get(API_PATH + 'docs/' + docid + '/chapters/' + chapterid + '/versions/' + versionid);
   }
 
 }

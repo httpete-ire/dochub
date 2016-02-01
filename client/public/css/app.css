@@ -5494,6 +5494,15 @@ span.CodeMirror-selectedtext {
   position: relative;
   margin-top: 8px; }
 
+.editor__toggle {
+  display: inline-block;
+  margin-left: 125px;
+  position: relative; }
+
+.editor__link {
+  position: relative;
+  top: -10px; }
+
 .editor__toggle-label {
   position: absolute;
   left: -90px;

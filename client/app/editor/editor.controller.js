@@ -7,6 +7,8 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
 
   var vm = this;
 
+  vm.docid = $stateParams.docid;
+
   vm.state = {
     preview: true
   };

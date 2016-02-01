@@ -5,9 +5,17 @@
     <input type="text" placeholder="Insert chapter title" class="editor__input input-md" ng-model="editorCtrl.chapter.title">
 
     <div class="pull-right editor__settings">
+
       <span class="btn btn-success pull-right editor__btn" ng-click="editorCtrl.action(editorCtrl.chapter)">{{editorCtrl.actionText()}}</span>
-      <span class="editor__toggle-label">Live preview</span>
-      <toggle toggle-model="editorCtrl.state.preview" change="editorCtrl.togglePreview()"></toggle>
+
+
+      <a ui-sref="chapters({docid: '{{editorCtrl.docid}}'})" class="editor__link">back to chapter list</a>
+
+      <div class="editor__toggle">
+        <span class="editor__toggle-label">Live preview</span>
+        <toggle toggle-model="editorCtrl.state.preview" change="editorCtrl.togglePreview()"></toggle>
+      </div>
+
     </div>
 
   </div>

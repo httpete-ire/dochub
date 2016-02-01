@@ -6,8 +6,7 @@ module.exports = {
   entry: './app.js',
   output: {
     path: path.resolve(__dirname + '/client/public'),
-    filename: './js/app.js',
-    publicPath: '/'
+    filename: './js/app.js'
   },
   plugins: [
     new NGAnnotatePlugin({

@@ -11,19 +11,19 @@
     };
 
     function createPullrequest(docid, chapterid, obj) {
-      return dataService.post('docs/' + docid + '/chapters/' + chapterid + '/pullrequest', obj);
+      return dataService.post(API_PATH + 'docs/' + docid + '/chapters/' + chapterid + '/pullrequest', obj);
     }
 
     function mergePullRequest(docid, chapterid, obj) {
-      return dataService.put('docs/' + docid + '/chapters/' + chapterid + '/pullrequest', obj);
+      return dataService.put(API_PATH + 'docs/' + docid + '/chapters/' + chapterid + '/pullrequest', obj);
     }
 
     function getPullRequest(docid, chapterid) {
-      return dataService.get('docs/' + docid + '/chapters/' + chapterid + '?fields=chapters.content.markdown,chapters.pullrequest.message,chapters.pullrequest.content.markdown');
+      return dataService.get(API_PATH + 'docs/' + docid + '/chapters/' + chapterid + '?fields=chapters.content.markdown,chapters.pullrequest.message,chapters.pullrequest.content.markdown');
     }
 
     function closePullRequest(docid, chapterid) {
-      return dataService.delete('docs/' + docid + '/chapters/' + chapterid + '/pullrequest');
+      return dataService.delete(API_PATH + 'docs/' + docid + '/chapters/' + chapterid + '/pullrequest');
     }
 
   }

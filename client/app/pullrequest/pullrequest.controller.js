@@ -1,4 +1,5 @@
 'use strict';
+
 /**@ngInject*/
 function PullrequestController($$debounce, pullRequestService, $stateParams, chapter, parser) {
 
