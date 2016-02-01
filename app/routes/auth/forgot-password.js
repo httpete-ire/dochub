@@ -3,6 +3,7 @@
 const User = require('./../../models/user.js');
 const ValidationError = require('./../../helpers/errors/validation-error');
 const resetToken = require('./../../helpers/auth/reset-token.js');
+const NotFoundError = require(__base + 'helpers/errors/not-found');
 const mailer = require('./../../mailer');
 
 // '/' render the marketing website

@@ -56,6 +56,13 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       controllerAs: 'regCtrl',
       auth: false
     })
+    .state('password', {
+      url: '/reset-password',
+      template: require('./../password/password.html'),
+      controller: 'PasswordController',
+      controllerAs: 'passwordCtrl',
+      auth: false
+    })
     .state('merge', {
       url: '/documents/:docid/chapters/:chapterid/merge',
       template: require('./../merge/merge.html'),

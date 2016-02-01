@@ -6,7 +6,6 @@ require('expose?CodeMirror!codemirror');
 require('codemirror/addon/merge/merge.js');
 require('angular-relative-date');
 require('angular-ui-codemirror');
-require('angular-modal-service');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('angular-messages');
@@ -24,7 +23,6 @@ var app = angular.module('dochub', [
   'ui.bootstrap',
   'ui.codemirror',
   'relativeDate',
-  'angularModalService',
   'ngMessages'
 ])
 .config(require('./config/routes'))
@@ -44,3 +42,4 @@ require('./versions')(app);
 require('./directives')(app);
 require('./pullrequest')(app);
 require('./alert')(app);
+require('./password')(app);
