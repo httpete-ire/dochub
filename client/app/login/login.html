@@ -2,13 +2,47 @@
 
   <div class="row">
 
-    <h1>Login</h1>
+    <div class="login__wrapper center-block">
 
-    <form ng-submit="vm.login(vm.email, vm.password)">
-      <input type="text" ng-model="vm.email">
-      <input type="password" ng-model="vm.password">
-      <button type="submit">Login</button>
-    </form>
+      <dochub-alert></dochub-alert>
+
+      <div class="login__container">
+
+        <h1 class="login__title">Login</h1>
+
+        <form name="login"  ng-submit="vm.login(vm.email, vm.password, this.login)" novalidate>
+
+          <div class="form-group">
+            <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="Email" required>
+
+            <div ng-messages="login.email.$error" ng-if="login.email.$touched" class="login__error">
+              <span ng-message="required">An email is required</span>
+              <span ng-message="email">Must be a valid email</span>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <input type="password" name="password" ng-model="vm.password" class="form-control" placeholder="Password" required>
+
+            <div ng-messages="login.password.$error" ng-if="login.password.$touched" class="login__error">
+              <span ng-message="required">A password is required</span>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block" ng-disabled="login.$invalid || vm.submitted">{{vm.loginText}}</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <span class="login__redirect">register an account <a ui-sref="register">here</a></span>
+      <a  class="pull-right login__forgot">forgot password?</a>
+
+    </div>
 
   </div>
 

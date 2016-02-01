@@ -9,6 +9,7 @@ require('angular-ui-codemirror');
 require('angular-modal-service');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
+require('angular-messages');
 
 // expose these for codemirror merge
 window.DIFF_DELETE = -1;
@@ -23,7 +24,8 @@ var app = angular.module('dochub', [
   'ui.bootstrap',
   'ui.codemirror',
   'relativeDate',
-  'angularModalService'
+  'angularModalService',
+  'ngMessages'
 ])
 .config(require('./config/routes'))
 .run(require('./config/run'));
@@ -41,3 +43,4 @@ require('./header')(app);
 require('./versions')(app);
 require('./directives')(app);
 require('./pullrequest')(app);
+require('./alert')(app);

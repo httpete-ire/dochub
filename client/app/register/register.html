@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
   <div class="row">
 
@@ -13,6 +13,59 @@
       <button type="submit">Register</button>
 
     </form>
+
+  </div>
+
+</div> -->
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="login__wrapper center-block">
+
+      <dochub-alert></dochub-alert>
+
+      <div class="login__container">
+
+        <h1 class="login__title">Register</h1>
+
+        <form name="register"  ng-submit="regCtrl.register(regCtrl.user, this.register)" novalidate>
+
+          <div class="form-group">
+            <input type="text" name="name" ng-model="regCtrl.user.name" class="form-control" placeholder="Username" required>
+            <div ng-messages="register.name.$error" ng-if="register.name.$touched" class="login__error">
+              <span ng-message="required">A username is required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="email" name="email" ng-model="regCtrl.user.email" class="form-control" placeholder="Email" required>
+            <div ng-messages="register.email.$error" ng-if="register.email.$touched" class="login__error">
+              <span ng-message="required">An email is required</span>
+              <span ng-message="email">Must be a valid email</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" name="password" ng-model="regCtrl.user.password" class="form-control" placeholder="Password" required>
+            <div ng-messages="register.password.$error" ng-if="register.password.$touched" class="login__error">
+              <span ng-message="required">A password is required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block" ng-disabled="register.$invalid || regCtrl.submitted">{{regCtrl.btnText}}</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <span class="login__redirect">register an account <a ui-sref="register">here</a></span>
+      <a  class="pull-right login__forgot">forgot password?</a>
+
+    </div>
 
   </div>
 

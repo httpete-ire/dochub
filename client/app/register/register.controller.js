@@ -1,16 +1,37 @@
 'use strict';
 
 /*@ngInject*/
-function RegisterController(AuthService, $state) {
+function RegisterController(AuthService, $state, alertService) {
   var vm = this;
 
   vm.user = {};
 
-  vm.register = function(obj) {
+  vm.btnText = 'Register';
+  vm.submitted = false;
 
-    return AuthService.register(obj).then(function() {
+  vm.register = function(obj, form) {
+    vm.submitted = true;
+
+    AuthService.register(obj)
+    .then(function() {
       $state.go('login');
-    }).catch();
+    }).catch(function(err) {
+
+      var message = err.response.message.email.value + ' is already taken, try another email';
+
+      alertService.setAlert({
+        message: message,
+        type: 'danger'
+      });
+
+      vm.user = {};
+      vm.submitted = false;
+      vm.btnText = 'Register';
+      form.$setValidity();
+      form.$setPristine();
+      form.$setUntouched();
+
+    });
   };
 
 }
