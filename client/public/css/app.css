@@ -4667,6 +4667,9 @@ button.close {
   font-size: 11px;
   margin-top: 2px; }
 
+.dropdown-toggle {
+  cursor: pointer; }
+
 .sort-btn {
   border: 2px solid #eaeaee;
   display: block;

@@ -4,11 +4,10 @@ const jwt = require('jwt-simple');
 const AuthError = require(__base + '/helpers/errors/auth-error');
 
 module.exports = function(req, res, next) {
-  
-  if(req.headers.auth) {
 
-    // seperate the token from the bearer
-    let token = req.headers.auth.split(' ')[1];
+  if(req.headers.auth || req.query.token) {
+
+    let token = (req.query.token) ? req.query.token : req.headers.auth.split(' ')[1];
 
     try {
 

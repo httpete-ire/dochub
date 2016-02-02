@@ -1,10 +1,13 @@
 'use strict';
 
 /*@ngInject*/
-function ChaptersController(chapters, $stateParams, chapterService) {
+function ChaptersController(chapters, $stateParams, chapterService, TokenFactory) {
   var vm = this;
 
   vm.docid = $stateParams.docid;
+  vm.token = TokenFactory.getToken();
+
+  console.log(vm.token);
 
   vm.state = {
     toggle: false,

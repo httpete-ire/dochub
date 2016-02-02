@@ -15,7 +15,6 @@
           <th>Published</th>
           <th>Updated</th>
           <th>Chapters</th>
-          <th></th>
           <th class="table__padding--right">
 
             <div class="sort-container pull-right" uib-dropdown>
@@ -55,10 +54,19 @@
           </td>
           <td>{{doc.updated | relativeDate}}</td>
           <td>{{doc.chapters.length}}</td>
-          <td>bell</td>
           <td class="table__padding--right table__last-row" >
             <div class="table-dropdown" uib-dropdown>
-              <span uib-dropdown-toggle>dots</span>
+              <span uib-dropdown-toggle>
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                	 width="30px" height="15px" viewBox="0 0 30 15" enable-background="new 0 0 30 15" xml:space="preserve">
+                <g>
+                	<circle fill="none" stroke="#414042" stroke-miterlimit="10" cx="5.19" cy="10" r="2.891"/>
+                	<circle fill="none" stroke="#414042" stroke-miterlimit="10" cx="15" cy="10" r="2.891"/>
+                	<circle fill="none" stroke="#414042" stroke-miterlimit="10" cx="24.81" cy="10" r="2.891"/>
+                </g>
+                </svg>
+
+              </span>
 
               <ul uib-dropdown-menu role="menu">
                 <li role="menuitem">

@@ -16,6 +16,10 @@ module.exports =  function(router) {
   .get(authMiddleWare, chaptersController.get);
 
   router
+  .route('/docs/:docid/chapters/:chapterid/download')
+  .get(authMiddleWare, chapterController.download);
+
+  router
   .route('/docs/:docid/chapters/:chapterid')
   .delete(authMiddleWare, chapterController.delete)
   .get(chapterController.get)

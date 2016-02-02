@@ -15,6 +15,8 @@ module.exports =  function(router) {
 
   router.get('/doc/:id', function(req, res, next) {
 
+    console.log('working');
+
     let docId = req.params.id;
 
     let query = Doc.findOne().where({
@@ -35,18 +37,10 @@ module.exports =  function(router) {
       let chapter = (req.query.chapter) ? req.query.chapter : 0;
       let links = [];
 
-      console.log(req.hostname);
-
-      _.each(doc.chapters, function(docChapter, index) {
-        links.push({
-          title: docChapter.title,
-          href: req.hostname + ':4000/doc/' + doc._id + '/' + index
-        });
-      });
+      console.log(doc);
 
       return res.render('doc', {
         docid: doc._id,
-        links: links,
         chapter: doc.chapters[chapter]
       });
     });

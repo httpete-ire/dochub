@@ -3,6 +3,8 @@
 const Doc = require(__base + 'models/docs');
 const NotFoundError = require(__base + 'helpers/errors/not-found');
 const ValidationError = require(__base + 'helpers/errors/validation-error');
+const Version = require(__base + 'models/version');
+
 
 function updatePullrequest(req, res, next) {
 
@@ -38,6 +40,18 @@ function updatePullrequest(req, res, next) {
       error.status = 304;
       throw error;
     }
+
+    let version = new Version();
+
+    version.markdown = chapter.content.markdown;
+    version.versionNumber = (!chapter.versions.length) ? 1 : chapter.versions[chapter.versions.length - 1].versionNumber + 1;
+
+    // ensure there can only be 5 versions
+    if(chapter.versions.length === 5) {
+      chapter.versions.shift();
+    }
+
+    chapter.versions.push(version);
 
     chapter.content = {
       markdown: req.body.markdown,

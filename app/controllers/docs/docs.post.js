@@ -7,7 +7,6 @@ const Doc = require(__base + 'models/docs');
 function docsPost(req, res, next) {
 
   req.checkBody('title', 'The document title is required').notEmpty();
-  req.checkBody('desc', 'The document description is required').notEmpty();
 
   let errors = req.validationErrors();
 
@@ -19,7 +18,7 @@ function docsPost(req, res, next) {
   let doc = new Doc();
 
   doc.title = req.body.title;
-  doc.desc = req.body.desc;
+  doc.desc = req.body.desc || '';
   doc.owner = req.user;
 
   doc.save(function(error) {
