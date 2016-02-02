@@ -13,9 +13,7 @@ module.exports =  function(router) {
     res.render('app');
   });
 
-  router.get('/doc/:id', function(req, res, next) {
-
-    console.log('working');
+  router.get('/:id', function(req, res, next) {
 
     let docId = req.params.id;
 
@@ -36,8 +34,6 @@ module.exports =  function(router) {
     query.exec().then(function(doc) {
       let chapter = (req.query.chapter) ? req.query.chapter : 0;
       let links = [];
-
-      console.log(doc);
 
       return res.render('doc', {
         docid: doc._id,
