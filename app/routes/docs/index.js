@@ -1,3 +1,5 @@
+'use strict';
+
 const routeLoader = require(__base + 'helpers/route-loader.js');
 const subdomain = require('express-subdomain');
 

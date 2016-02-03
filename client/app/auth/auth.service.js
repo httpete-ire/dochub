@@ -10,17 +10,17 @@ function AuthService(dataService) {
   };
 
   function resetPassword(email) {
-    return dataService.post('http://localhost:4000/forgot', {
+    return dataService.post('http://dochub.co/forgot', {
       email: email
     });
   }
 
   function login(user) {
-    return dataService.post('http://localhost:4000/login', user);
+    return dataService.post('http://dochub.co/login', user);
   }
 
   function register(user) {
-    return dataService.post('http://localhost:4000/register', user);
+    return dataService.post('http://dochub.co/register', user);
   }
 
 }

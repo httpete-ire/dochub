@@ -24,7 +24,7 @@
   &__first-row {
     padding-left: 50px;
     text-align: left;
-    width: 30%;
+    width: 25%;
   }
 
   &__last-row {
@@ -35,6 +35,10 @@
   &__padding--right {
     padding-right: 50px;
     width: 13%;
+  }
+
+  &__padding--right-chapter {
+    width: 17%;
   }
 
   &__row {
@@ -54,4 +58,10 @@
 
 .dropdown-toggle {
   cursor: pointer;
+}
+
+.table__sort {
+  position: relative;
+  top: 9px;
+  left: 17px;
 }

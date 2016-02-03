@@ -9,6 +9,7 @@ require('angular-ui-codemirror');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('angular-messages');
+require('ng-sortable');
 
 // expose these for codemirror merge
 window.DIFF_DELETE = -1;
@@ -23,7 +24,8 @@ var app = angular.module('dochub', [
   'ui.bootstrap',
   'ui.codemirror',
   'relativeDate',
-  'ngMessages'
+  'ngMessages',
+  'as.sortable'
 ])
 .config(require('./config/routes'))
 .run(require('./config/run'));

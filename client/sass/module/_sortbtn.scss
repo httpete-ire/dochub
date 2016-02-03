@@ -20,13 +20,11 @@
   border: 2px solid darken($table-border, 40);
 }
 
-.as-sortable-item, .as-sortable-placeholder {
-    display: table-row;
+.as-sortable-item,
+.as-sortable-placeholder {
+    display: table-row !important;
 }
 
-.as-sortable-placeholder {
-  background: green;
-}
 
 .as-sortable-item {
     -ms-touch-action: none;
@@ -43,10 +41,16 @@
     position: absolute;
     pointer-events: none;
     z-index: 9999;
+    border: 3px solid $table-border;
+}
+
+.as-sortable-drag  td:not(:first-child) {
+  width: inherit !important;
+  display: none !important;
 }
 
 .as-sortable-hidden {
-    display: none !important;
+    display: block !important;
 }
 
 .as-sortable-un-selectable {

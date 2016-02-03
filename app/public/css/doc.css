@@ -1,0 +1,75 @@
+.dochub__nav {
+    position: fixed;
+    left: -15.625em; /*or width of your navigation panel*/
+    width: 15.625em; /*should match the above value*/
+    background: #2d3037;
+    overflow: scroll;
+}
+
+.dochub__nav-logo {
+  padding: 25px;
+  border-bottom: 1px solid #3D3D3D;
+}
+
+.dochub__nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dochub__nav-link {
+  display: block;
+  padding: 12px 25px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #3D3D3D;
+}
+
+.menu-link {
+  font-size: 26px;
+  text-decoration: none;
+  color: #2d3037;
+}
+
+/*
+    Demo Specific Styles
+    ====================
+*/
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #101820;
+    line-height: 1.5;
+}
+
+.wrap {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.panel {
+    background: #101820;
+}
+
+.panel a {
+    color: #fff;
+}
+
+.dochub__document-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #2d3037;
+  margin-bottom: 50px;
+}
+
+.document__title {
+  margin-left: 25px;
+  font-size: 24px;
+  text-align: center;
+  display: inline-block;
+}
+
+.chapter__title {
+  text-align: right;
+  font-size: 18pxpx;
+}

@@ -12,7 +12,7 @@ const cors = require('cors');
 // loader functions
 const authRouteLoader = require(__base + 'routes/auth');
 const apiRouteLoader = require(__base + 'routes/api');
-const pageRouteLoader = require(__base + 'routes/page');
+const docsRouteLoader = require(__base + 'routes/docs');
 
 // load emails
 const loadEmailTemplates = require(__base + 'mailer/templates').loadTemplates;
@@ -34,7 +34,7 @@ module.exports =  function(cb) {
 
   loadEmailTemplates();
 
-  app.use(express.static(path.resolve(__dirname, __base + './../public')));
+  app.use(express.static(path.resolve(__dirname, __base + './public')));
 
   if (process.env.NODE_ENV === 'dev') {
     logger = morgan('dev');
@@ -51,12 +51,8 @@ module.exports =  function(cb) {
 
   // load API routes
   apiRouteLoader(app);
-
-  // // load auth routes
   authRouteLoader(app);
-
-  // // load page routes
-  pageRouteLoader(app);
+  docsRouteLoader(app);
 
   app.use(errorMiddleware);
 

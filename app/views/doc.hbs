@@ -2,20 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Document</title>
+  <title>{{chapter.title}}</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://docs.dochub.co:4000/css/doc.css ">
+
 </head>
 <body>
-  <h1>Document page</h1>
 
-  {{#unless chapter.pullrequest.set}}
-    <a href="/app#/documents/{{docid}}/chapters/{{chapter._id}}/pullrequest" target="_blank">Make Pull request</a>
-  {{/unless}}
+  <nav id="menu" class="dochub__nav" role="navigation">
 
-  {{{chapter.content.html}}}
+    <div class="dochub__nav-logo">
+      <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97100&w=150&h=80" alt="">
+    </div>
 
-  {{#each links}}
-    <a href="{{this.href}}">{{this.title}}</a>
-  {{/each}}
+    <ul class="dochub__nav-list">
+
+        {{#each links}}
+          <li class="dochub__nav-item">
+            <a href="http://{{this.href}}" class="dochub__nav-link">{{this.title}}</a>
+          </li>
+        {{/each}}
+
+    </ul>
+
+  </nav>
+
+
+  <div class="container wrap push">
+
+    <div class="dochub__document-header clearifx">
+
+      <a href="#menu" class="menu-link">&#9776;</a>
+      <span class="document__title">{{chapter.title}}</span>
+
+      <div class="pull-right">
+        <span class="chapter__title">{{doc.title}}</span>
+        <!-- <span>{{chapter.updated}}</span> -->
+      </div>
+
+    </div>
+
+    <div class="dochub__document-body">
+      {{{chapter.content.html}}}
+    </div>
+
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://docs.dochub.co:4000/js/bigSlide.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.menu-link').bigSlide({
+              easyClose: true
+            });
+        });
+    </script>
 
 </body>
 </html>

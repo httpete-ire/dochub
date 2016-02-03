@@ -25,6 +25,8 @@ function docsPost(req, res, next) {
 
     if(error) {
 
+      console.log(error);
+
       // if the error is due to a duplicate property
       if(error.code === 11000) {
         error = new ConflictError({
