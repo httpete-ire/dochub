@@ -3,6 +3,7 @@
 const ValidationError = require(__base + 'helpers/errors/validation-error');
 const NotFoundError = require(__base + 'helpers/errors/not-found');
 const Version = require(__base + 'models/version');
+const _ = require('lodash');
 
 const Doc = require(__base + 'models/docs');
 
@@ -37,6 +38,16 @@ function updateChapter(req, res, next) {
     if(!chapter) {
       throw new NotFoundError('no chapter found with that id');
     }
+
+    _.each(doc.chapters, function(docChapter) {
+
+      if(docChapter.title === req.body.title && docChapter._id !== req.params.chapterid) {
+        let err = new Error('A chapter with that title already exists');
+        err.status = 409;
+        throw err;
+      }
+
+    });
 
     let version = new Version();
 

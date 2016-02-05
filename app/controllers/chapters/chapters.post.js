@@ -57,7 +57,7 @@ function updateChapters(req, res, next) {
   .then(function(value) {
 
     if(value.nModified === 0) {
-      return res.sendStatus(400);
+      return res.sendStatus(409);
     }
 
     return res.json({
