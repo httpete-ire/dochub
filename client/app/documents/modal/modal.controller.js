@@ -3,6 +3,7 @@
 /*@ngInject*/
 function DocumentModalController($uibModalInstance, document, submit, title, alertService) {
   var vm = this;
+  vm.submitted = false;
 
   vm.close = function() {
     $uibModalInstance.close(false);
@@ -14,7 +15,13 @@ function DocumentModalController($uibModalInstance, document, submit, title, ale
 
   vm.title = title;
 
-  vm.submit = function(obj) {
+  vm.submit = function(obj, form) {
+
+    vm.submitted = true;
+
+    if(form && form.$invalid) {
+      return false;
+    }
 
     submit(obj)
     .then(function() {
@@ -24,8 +31,11 @@ function DocumentModalController($uibModalInstance, document, submit, title, ale
       alertService.setAlert({
         message: err.response.message
       });
+
+      vm.submitted = false;
+      form.$setPristine();
     });
-    
+
   };
 
 }

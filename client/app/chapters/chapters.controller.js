@@ -57,7 +57,7 @@ function ChaptersController(chapters, $stateParams, chapterService, TokenFactory
           return chapterService.deleteChpater;
         }],
         title: function() {
-          return 'Delete chapter';
+          return 'Are you sure you want to delete this chapter';
         }
       }
     });

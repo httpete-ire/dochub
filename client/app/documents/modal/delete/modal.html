@@ -1,6 +1,6 @@
 <div class="modal-body delete-modal__body clearfix">
 
-  <p class="delete-modal__title">Are you sure you want to delete this document</p>
+  <p class="delete-modal__title">{{modalCtrl.title}}</p>
 
   <span ng-click="modalCtrl.submit(modalCtrl.document)" class="delete-modal__btn delete-modal__btn--confirm">Yes</span>
   <span ng-click="modalCtrl.close()" class="delete-modal__btn delete-modal__btn--cancel">No</span>

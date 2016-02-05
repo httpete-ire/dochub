@@ -1,6 +1,6 @@
 'use strict';
 
-/*ngInject*/
+/*@ngInject*/
 function HeaderController(AuthFactory, TokenFactory, $state, $rootScope) {
   var vm = this;
   var user = AuthFactory.getUser();

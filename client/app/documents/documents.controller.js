@@ -34,9 +34,9 @@ function DocumentsController(docs, documentService, $uibModal) {
         document: function() {
           return null;
         },
-        submit: function(documentService) {
+        submit: ['documentService', function(documentService) {
           return documentService.addDocument;
-        },
+        }],
         title: function() {
           return 'New document';
         }
@@ -54,12 +54,12 @@ function DocumentsController(docs, documentService, $uibModal) {
       controllerAs: 'modalCtrl',
       size: 'sm',
       resolve: {
-        document: function(documentService) {
+        document: ['documentService', function(documentService) {
           return documentService.getDocument(id);
-        },
-        submit: function(documentService) {
+        }],
+        submit: ['documentService', function(documentService) {
           return documentService.editDocument;
-        },
+        }],
         title: function() {
           return 'Edit document';
         }
@@ -79,11 +79,11 @@ function DocumentsController(docs, documentService, $uibModal) {
         document: function() {
           return _id;
         },
-        submit: function(documentService) {
+        submit: ['documentService', function(documentService) {
           return documentService.deleteDocument;
-        },
+        }],
         title: function() {
-          return 'Delete document';
+          return 'Are you sure you want to delete this document';
         }
       }
     });

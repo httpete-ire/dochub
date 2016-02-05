@@ -10,7 +10,9 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
   vm.docid = $stateParams.docid;
 
   vm.state = {
-    preview: true
+    preview: true,
+    submitted: false,
+    titleConflictError: false
   };
 
   if(!chapter) {
@@ -36,26 +38,39 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
 
   }
 
-  vm.action = function(obj) {
+  vm.action = function(obj, form) {
     obj.docid = $stateParams.docid;
+
+    vm.state.submitted = true;
+    vm.state.titleConflictError = false;
+
+    if(form.$invalid || !vm.chapter.markdown) {
+      return false;
+    }
+
+    form.$setPristine();
 
     if(vm.state.new) {
       chapterService.newChapter(obj)
       .then(function(data) {
         vm.state.new = false;
         vm.chapter.id = data.id;
+        vm.state.submitted = true;
       })
-      .catch(function(e) {
-        console.error(e);
-      });
+      .catch(handleErr);
     } else {
       chapterService.updateChapter(obj)
       .then(function(data) {
-        console.log(data);
+        vm.state.submitted = true;
       })
-      .catch(function(e) {
-        console.error(e);
-      });
+      .catch(handleErr);
+    }
+
+    function handleErr(err) {
+      console.log(err);
+      if(err.response.status === 409) {
+        vm.state.titleConflictError = true;
+      }
     }
 
   };
@@ -73,7 +88,7 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
   };
 
   //
-  // ACE EDITOR SETUP
+  // EDITOR SETUP
   //
   function codemirrorLoaded(_editor) {
 
@@ -109,9 +124,6 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
     };
 
   }
-  //
-  // ACE EDITOR SETUP
-  //
 
 }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-/*@ngINject*/
+/*@ngInject*/
 function dataService($http,  $q) {
   var service = {};
 

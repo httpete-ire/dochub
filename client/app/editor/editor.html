@@ -2,21 +2,34 @@
 
   <div class="editor__title-container">
 
-    <input type="text" placeholder="Insert chapter title" class="editor__input input-md" ng-model="editorCtrl.chapter.title">
+    <form name="editorForm" ng-submit="editorCtrl.action(editorCtrl.chapter, this.editorForm)" novalidate>
 
-    <div class="pull-right editor__settings">
+      <div class="editor__input-container">
 
-      <span class="btn btn-success pull-right editor__btn" ng-click="editorCtrl.action(editorCtrl.chapter)">{{editorCtrl.actionText()}}</span>
+        <input type="text" name="title" placeholder="Insert chapter title" class="editor__input input-md" ng-model="editorCtrl.chapter.title" required>
 
+        <div ng-messages="editorForm.title.$error" ng-if="editorCtrl.state.submitted" class="login__error">
+          <span class="editor__input-error" ng-message="required">A title is required</span>
+        </div>
 
-      <a ui-sref="chapters({docid: '{{editorCtrl.docid}}'})" class="editor__link">back to chapter list</a>
+        <span class="editor__input-error" ng-if="editorCtrl.state.titleConflictError && editorForm.title.$pristine">That title is already in use</span>
 
-      <div class="editor__toggle">
-        <span class="editor__toggle-label">Live preview</span>
-        <toggle toggle-model="editorCtrl.state.preview" change="editorCtrl.togglePreview()"></toggle>
       </div>
 
-    </div>
+      <div class="pull-right editor__settings">
+
+        <button type="submit" class="btn btn-success pull-right editor__btn">{{editorCtrl.actionText()}}</button>
+
+        <a ui-sref="chapters({docid: '{{editorCtrl.docid}}'})" class="editor__link">back to chapter list</a>
+
+        <div class="editor__toggle">
+          <span class="editor__toggle-label">Live preview</span>
+          <toggle toggle-model="editorCtrl.state.preview" change="editorCtrl.togglePreview()"></toggle>
+        </div>
+
+      </div>
+
+    </form>
 
   </div>
 
@@ -28,7 +41,9 @@
 
     <div class="editor__preview-header editor__preview-header--border">
 
-      <img src="/images/markdown.svg" width="25">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/2000px-Markdown-mark.svg.png" width="25">
+
+      <span class="editor__input-error editor__input-error--header" ng-if="editorCtrl.state.submitted && !editorCtrl.chapter.markdown">Required</span>
 
     </div>
 
