@@ -2,14 +2,21 @@
 'use strict';
 
 /*@ngInject*/
-function LoginController(AuthService, TokenFactory, AuthFactory, $state, $timeout, alertService, $rootScope) {
+function LoginController(AuthService, TokenFactory, AuthFactory, $state, alertService, $rootScope) {
   var vm = this;
   vm.submitted = false;
+  vm.submitting = false;
   vm.loginText = 'Login';
 
   vm.login = function(email, password, form) {
 
     vm.submitted = true;
+
+    if(form.$invalid) {
+      return false;
+    }
+
+    vm.submitting = true;
     vm.loginText = 'Logging in...';
 
     AuthService.login({
@@ -24,8 +31,10 @@ function LoginController(AuthService, TokenFactory, AuthFactory, $state, $timeou
     })
     .catch(function(err) {
 
+      var errMessage = (angular.isArray(err.response.message)) ? err.response.message[0].msg : err.response.message;
+
       alertService.setAlert({
-        message: err.response.message,
+        message: errMessage,
         type: 'danger'
       });
 
@@ -34,9 +43,8 @@ function LoginController(AuthService, TokenFactory, AuthFactory, $state, $timeou
       vm.loginText = 'Login';
       vm.email = '';
       vm.password = '';
-      form.$setValidity();
+      vm.submitting = false;
       form.$setPristine();
-      form.$setUntouched();
 
     });
 

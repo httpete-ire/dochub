@@ -8,28 +8,41 @@ function RegisterController(AuthService, $state, alertService) {
 
   vm.btnText = 'Register';
   vm.submitted = false;
+  vm.submitting = false;
 
   vm.register = function(obj, form) {
     vm.submitted = true;
+
+    if(form.$invalid) {
+      return false;
+    }
+
+    vm.submitting = true;
 
     AuthService.register(obj)
     .then(function() {
       $state.go('login');
     }).catch(function(err) {
 
-      var message = err.response.message.email.value + ' is already taken, try another email';
+      var errMessage = '';
+
+      if(err.response.status === 409) {
+        errMessage = err.response.message.email.value + ' is already taken, try another email';
+      } else {
+        errMessage = err.response.message[0].msg;
+      }
 
       alertService.setAlert({
-        message: message,
+        message: errMessage,
         type: 'danger'
       });
 
       vm.user = {};
       vm.submitted = false;
+      vm.submitting = false;
       vm.btnText = 'Register';
-      form.$setValidity();
       form.$setPristine();
-      form.$setUntouched();
+
 
     });
   };

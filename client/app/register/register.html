@@ -1,23 +1,3 @@
-<!-- <div class="container">
-
-  <div class="row">
-
-    <h1>Register</h1>
-
-    <form ng-submit="regCtrl.register(regCtrl.user)">
-
-      <input type="text" ng-model="regCtrl.user.name">
-      <input type="text" ng-model="regCtrl.user.email">
-      <input type="password" ng-model="regCtrl.user.password">
-
-      <button type="submit">Register</button>
-
-    </form>
-
-  </div>
-
-</div> -->
-
 <div class="container">
 
   <div class="row">
@@ -34,14 +14,14 @@
 
           <div class="form-group">
             <input type="text" name="name" ng-model="regCtrl.user.name" class="form-control" placeholder="Username" required>
-            <div ng-messages="register.name.$error" ng-if="register.name.$touched" class="login__error">
+            <div ng-messages="register.name.$error" ng-if="regCtrl.submitted" class="login__error">
               <span ng-message="required">A username is required</span>
             </div>
           </div>
 
           <div class="form-group">
-            <input type="email" name="email" ng-model="regCtrl.user.email" class="form-control" placeholder="Email" required>
-            <div ng-messages="register.email.$error" ng-if="register.email.$touched" class="login__error">
+            <input type="email" name="email" ng-model="regCtrl.user.email" class="form-control" placeholder="Email" required >
+            <div ng-messages="register.email.$error" ng-if="regCtrl.submitted" class="login__error">
               <span ng-message="required">An email is required</span>
               <span ng-message="email">Must be a valid email</span>
             </div>
@@ -49,13 +29,13 @@
 
           <div class="form-group">
             <input type="password" name="password" ng-model="regCtrl.user.password" class="form-control" placeholder="Password" required>
-            <div ng-messages="register.password.$error" ng-if="register.password.$touched" class="login__error">
+            <div ng-messages="register.password.$error" ng-if="regCtrl.submitted" class="login__error">
               <span ng-message="required">A password is required</span>
             </div>
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block" ng-disabled="register.$invalid || regCtrl.submitted">{{regCtrl.btnText}}</button>
+            <button type="submit" class="btn btn-success btn-block" ng-disabled="regCtrl.submitting">{{regCtrl.btnText}}</button>
           </div>
 
         </form>
