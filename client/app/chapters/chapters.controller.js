@@ -1,13 +1,11 @@
 'use strict';
 
 /*@ngInject*/
-function ChaptersController(chapters, $stateParams, chapterService, TokenFactory) {
+function ChaptersController(chapters, $stateParams, chapterService, TokenFactory, $uibModal) {
   var vm = this;
 
   vm.docid = $stateParams.docid;
   vm.token = TokenFactory.getToken();
-
-  console.log(vm.token);
 
   vm.state = {
     toggle: false,
@@ -42,9 +40,40 @@ function ChaptersController(chapters, $stateParams, chapterService, TokenFactory
 
   };
 
+  vm.delete = function(id) {
+    var modal = $uibModal.open({
+      template: require('./modal/chapter.modal.html'),
+      controller: require('./../documents/modal/modal.controller.js'),
+      controllerAs: 'modalCtrl',
+      size: 'sm',
+      resolve: {
+        document: function() {
+          return {
+            docid: vm.docid,
+            chapterid: id
+          };
+        },
+        submit: ['chapterService', function(chapterService) {
+          return chapterService.deleteChpater;
+        }],
+        title: function() {
+          return 'Delete chapter';
+        }
+      }
+    });
+
+    modal.result.then(function(update) {
+      chapterService
+      .getChapters(vm.docid)
+      .then(function(data) {
+        vm.chapters = data;
+      });
+    });
+
+  };
+
   vm.dragControlListeners = {
     orderChanged: function() {
-      // set the state to sorted
       vm.state.sorted = true;
     }
   };

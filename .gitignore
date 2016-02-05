@@ -1,4 +1,7 @@
 node_modules/
 .env
 
-public/lib
+client/public/css/app.css
+client/public/js/app.js
+
+default

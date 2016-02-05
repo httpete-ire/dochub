@@ -8,8 +8,13 @@ function chapterService(dataService, API_PATH) {
     newChapter: newChapter,
     getChapter: getChapter,
     updateChapter: updateChapter,
-    updateChapters: updateChapters
+    updateChapters: updateChapters,
+    deleteChpater: deleteChapter
   };
+
+  function deleteChapter(obj) {
+    return dataService.delete(API_PATH + 'docs/' + obj.docid +'/chapters/' + obj.chapterid);
+  }
 
   function updateChapters(obj) {
     return dataService.put(API_PATH + 'docs/' + obj.docid + '/chapters/', obj);
