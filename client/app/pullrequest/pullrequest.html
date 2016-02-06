@@ -2,16 +2,30 @@
 
   <div class="editor__title-container">
 
-    <input type="text" placeholder="Pull request message" class="editor__input input-md" ng-model="editorCtrl.chapter.title">
+    <form name="pullRequest" ng-submit="prCtrl.pull(prCtrl.chapter, this.pullRequest)" novalidate>
 
-    <div class="pull-right editor__settings">
+      <div class="editor__input-container">
 
-      <span class="btn btn-success pull-right editor__btn" ng-click="prCtrl.pull()">Make pull request</span>
+        <input type="text" name="message" placeholder="Pull request message" class="editor__input input-md" ng-model="prCtrl.chapter.message" required>
 
-      <span class="editor__toggle-label">Live preview</span>
-      <toggle toggle-model="prCtrl.state.preview" change="prCtrl.togglePreview()"></toggle>
+        <div ng-messages="pullRequest.message.$error" ng-if="prCtrl.state.submitted" class="login__error">
+          <span class="editor__input-error" ng-message="required">A commit message is required</span>
+        </div>
 
-    </div>
+      </div>
+
+      <div class="pull-right editor__settings">
+
+        <button type="submit" class="btn btn-success pull-right editor__btn">Make pull request</button>
+
+        <div class="editor__toggle">
+          <span class="editor__toggle-label">Live preview</span>
+          <toggle toggle-model="prCtrl.state.preview" change="prCtrl.togglePreview()"></toggle>
+        </div>
+
+      </div>
+
+    </form>
 
   </div>
 
@@ -24,6 +38,8 @@
     <div class="editor__preview-header editor__preview-header--border">
 
       <img src="/images/markdown.svg" width="25">
+
+      <span class="editor__input-error editor__input-error--header" ng-if="prCtrl.state.submitted && !prCtrl.chapter.markdown">Required</span>
 
     </div>
 

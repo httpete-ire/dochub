@@ -6,7 +6,8 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
   var vm = this;
 
   vm.state = {
-    preview: true
+    preview: true,
+    submitted: false
   };
 
   vm.chapter = {
@@ -22,14 +23,23 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
     onLoad: codemirrorLoaded
   };
 
-  vm.pull = function() {
+  vm.pull = function(pr, form) {
 
-    pullRequestService.createPullrequest($stateParams.docid, $stateParams.chapterid, {
-      message: 'test',
-      markdown: vm.chapter.markdown,
-      html: vm.chapter.html
-    }).then(function(data) {
-      console.log(data);
+    vm.state.submitted = true;
+
+    console.log(pr);
+
+    if(form.$invalid || !vm.chapter.markdown) {
+      return false;
+    }
+
+    pullRequestService.createPullrequest($stateParams.docid, $stateParams.chapterid, pr)
+    .then(function(data) {
+
+      vm.state.submitted = false;
+
+      // pull request made
+      // show something to user
     }).catch();
 
   };

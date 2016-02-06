@@ -1,5 +1,12 @@
 var angular = require('angular');
 
+
+// ui bootstrap
+// modal
+// dropdown
+// alert
+// debounce
+
 // dependencies
 require('expose?diff_match_patch!diff-match-patch');
 require('expose?CodeMirror!codemirror');
@@ -21,11 +28,15 @@ window.DIFF_EQUAL = 0;
 
 var app = angular.module('dochub', [
   'ui.router',
-  'ui.bootstrap',
   'ui.codemirror',
   'relativeDate',
   'ngMessages',
-  'as.sortable'
+  'as.sortable',
+  require('angular-ui-bootstrap')
+  // require('angular-ui-bootstrap/src/modal'),
+  // require('angular-ui-bootstrap/src/debounce'),
+  // require('angular-ui-bootstrap/src/alert'),
+  // require('angular-ui-bootstrap/src/dropdown')
 ])
 .config(require('./config/routes'))
 .run(require('./config/run'));
