@@ -1,0 +1,21 @@
+.version__header {
+  display: inline-block;
+  padding: 15px 20px 15px 29px;
+}
+
+.version__header--current {
+  width: 53%;
+}
+
+.version__header--old {
+  width: 46%;
+}
+
+.version__date {
+  font-size: 12px;
+}
+
+.version__link {
+  position: relative;
+  left: -20px;
+}

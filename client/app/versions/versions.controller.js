@@ -1,9 +1,10 @@
 'use strict';
 
 /*@ngInject*/
-function VerionController(data, $timeout, parser, chapterService, $stateParams) {
+function VerionController(data, $timeout, parser, chapterService, $stateParams, $state) {
   var vm = this;
   vm.data = data;
+  vm.docid = $stateParams.docid;
 
   vm.state = {
     changes: false
@@ -36,7 +37,9 @@ function VerionController(data, $timeout, parser, chapterService, $stateParams) 
         html: html
       })
       .then(function(data) {
-        console.log(data);
+        $state.go('chapters', {
+          docid: $stateParams.docid
+        });
       })
       .catch(function(e) {
         console.error(e);
