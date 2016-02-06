@@ -27,7 +27,7 @@
 
       </thead>
 
-      <tbody as-sortable="chapCtrl.dragControlListeners" ng-model="chapCtrl.chapters" class="table__body">
+      <tbody as-sortable="chapCtrl.dragControlListeners" ng-model="chapCtrl.chapters" class="table__body" ng-if="chapCtrl.chapters.length > 0">
 
         <tr class="table__row" ng-repeat="chapter in chapCtrl.chapters" as-sortable-item>
 
@@ -161,6 +161,16 @@
       </tbody>
 
     </table>
+
+    <div ng-if="chapCtrl.chapters.length === 0" class="empty-state">
+
+      <img src="images/empty-chapter.png">
+
+      <h4 class="empty-state__title">Looks like you dont have any chapters yet</h4>
+
+      <a ui-sref="editor({docid: '{{chapCtrl.docid}}'})" class="btn btn-success">Create Chapter</a>
+
+    </div>
 
   </div>
 
