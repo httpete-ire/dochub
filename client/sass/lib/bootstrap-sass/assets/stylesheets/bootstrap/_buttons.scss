@@ -21,22 +21,18 @@
   @include user-select(none);
 
   &,
-  &:active,
   &.active {
-    &:focus,
     &.focus {
       @include tab-focus;
     }
   }
 
   &:hover,
-  &:focus,
   &.focus {
     color: $btn-default-color;
     text-decoration: none;
   }
 
-  &:active,
   &.active {
     outline: 0;
     background-image: none;

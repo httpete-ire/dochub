@@ -1,0 +1,38 @@
+$btn-loader-size: 16px;
+
+.btn {
+  position: relative;
+}
+
+.btn__loading {
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0) !important;
+
+  &::after {
+    content: '';
+    width: $btn-loader-size;
+    height: $btn-loader-size;
+    border-radius: 50%;
+    border: 2px solid $white;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -($btn-loader-size/2);
+    margin-left: -($btn-loader-size/2);
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #FFF #FFF !important;
+    animation: spin-around 500ms infinite linear;
+  }
+
+}
+
+@keyframes spin-around {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+
+}

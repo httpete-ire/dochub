@@ -6,7 +6,6 @@
 
 .profile {
   display: inline-block;
-  margin-top: 25px;
 
   &__name {
     cursor: pointer;
@@ -21,4 +20,9 @@
     margin-left: 15px;
   }
 
+}
+
+
+.header__logo {
+  margin-top: 6px;
 }

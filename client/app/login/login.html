@@ -8,6 +8,8 @@
 
       <div class="login__container">
 
+        <img src="images/mark.svg" alt="Dochub logo" width="60px;" class="header__logo">
+
         <h1 class="login__title">Login</h1>
 
         <form name="login"  ng-submit="vm.login(vm.email, vm.password, this.login)" novalidate>
@@ -32,7 +34,7 @@
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block" ng-disabled="vm.submitting">{{vm.loginText}}</button>
+            <button type="submit" class="btn btn-success btn-block" ng-class="{'btn__loading' : vm.submitting}">{{vm.loginText}}</button>
           </div>
 
         </form>
