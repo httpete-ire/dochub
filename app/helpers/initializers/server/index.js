@@ -51,7 +51,7 @@ module.exports =  function(cb) {
 
   // load API routes
   apiRouteLoader(app);
-  authRouteLoader(app);
+  // authRouteLoader(app);
   docsRouteLoader(app);
 
   app.use(errorMiddleware);

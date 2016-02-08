@@ -1,7 +1,7 @@
 'use strict';
 
 /*@ngInject*/
-function AuthService(dataService) {
+function AuthService(dataService, API_PATH) {
 
   return {
     login : login,
@@ -10,17 +10,17 @@ function AuthService(dataService) {
   };
 
   function resetPassword(email) {
-    return dataService.post('http://dochub.co:4000/forgot', {
+    return dataService.post(API_PATH + 'forgot', {
       email: email
     });
   }
 
   function login(user) {
-    return dataService.post('http://dochub.co:4000/login', user);
+    return dataService.post(API_PATH + 'login', user);
   }
 
   function register(user) {
-    return dataService.post('http://dochub.co:4000/register', user);
+    return dataService.post(API_PATH + 'register', user);
   }
 
 }
