@@ -5,6 +5,8 @@ const sgTransport = require('nodemailer-sendgrid-transport');
 const Q = require('q');
 const compileTemplate = require('./templates').compileTemplate;
 
+const DOCHUB_EMAIL = 'donotreply@dochub.co';
+
 const options = {
   auth: {
     api_user: process.env.SENDGRID_USER,
@@ -47,7 +49,7 @@ function sendResetLink(data) {
   };
 
   let email = {
-    from: 'donotreply@docd.com',
+    from: DOCHUB_EMAIL,
     to: (process.env.NODE_ENV === 'dev') ? 'redmondp@gmail.com': emailData.email,
     subject: 'password reset',
     html: compileTemplate('forgot', emailData)
@@ -59,9 +61,9 @@ function sendResetLink(data) {
 function sendPullrequest(data) {
 
   let email = {
-    from: 'donotreply@docd.com',
+    from: DOCHUB_EMAIL,
     to: (process.env.NODE_ENV === 'dev') ? 'redmondp@gmail.com': data.email,
-    subject: 'password reset',
+    subject: 'pull request made',
     html: compileTemplate('pullrequest', data)
   };
 

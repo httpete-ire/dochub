@@ -5,7 +5,11 @@
   <title>{{chapter.title}}</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://docs.dochub.co:4000/css/doc.css ">
+  <link rel="stylesheet" href="https://docs.dochub.co/css/doc.css ">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
 
 </head>
 <body>
@@ -13,7 +17,7 @@
   <nav id="menu" class="dochub__nav" role="navigation">
 
     <div class="dochub__nav-logo">
-      <img src="https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97100&w=150&h=80" alt="">
+      <img src="https://docs.dochub.co/images/dochub-logo.png" alt="Dochub logo">
     </div>
 
     <ul class="dochub__nav-list">
@@ -43,6 +47,8 @@
 
     </div>
 
+    <a href="https://app.dochub.co/#/documents/{{doc._id}}/chapters/{{chapter._id}}/pullrequest" target="_blank" class="btn btn-default">Suggest a change</a>
+
     <div class="dochub__document-body">
       {{{chapter.content.html}}}
     </div>
@@ -51,12 +57,20 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://docs.dochub.co:4000/js/bigSlide.min.js"></script>
+    <script src="https://docs.dochub.co/js/bigSlide.min.js"></script>
     <script>
         $(document).ready(function() {
+
+
             $('.menu-link').bigSlide({
               easyClose: true
             });
+
+            $('pre code').each(function(i, block) {
+              hljs.highlightBlock(block);
+            });
+
+
         });
     </script>
 

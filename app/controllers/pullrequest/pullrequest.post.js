@@ -55,8 +55,11 @@ function pullrequestPost(req, res, next) {
 
     if(doc.owner.settings.notifications) {
 
+      let chapter = doc.chapters.id(req.params.chapterid);
+
       // send pull request email
       mailer.sendPullrequest({
+        title: chapter.title,
         message: req.body.message
       })
       .then(function() {

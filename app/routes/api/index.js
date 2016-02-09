@@ -10,6 +10,7 @@ module.exports =  function loadAPI(app) {
 
     routeLoader(__dirname + '/' + version, app, function(router) {
       app.use(subdomain('api', router));
+      // app.use(router);
     });
 
   });
