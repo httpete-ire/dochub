@@ -12,7 +12,8 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
   vm.state = {
     preview: true,
     submitted: false,
-    titleConflictError: false
+    titleConflictError: false,
+    submitting: false
   };
 
   if(!chapter) {
@@ -48,6 +49,8 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
       return false;
     }
 
+    vm.state.submitting = true;
+
     form.$setPristine();
 
     if(vm.state.new) {
@@ -56,12 +59,14 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
         vm.state.new = false;
         vm.chapter.id = data.id;
         vm.state.submitted = true;
+        vm.state.submitting = false;
       })
       .catch(handleErr);
     } else {
       chapterService.updateChapter(obj)
       .then(function(data) {
         vm.state.submitted = true;
+        vm.state.submitting = false;
       })
       .catch(handleErr);
     }
@@ -70,21 +75,21 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
       console.log(err);
       if(err.response.status === 409) {
         vm.state.titleConflictError = true;
+        vm.state.submitting = false;
       }
     }
 
   };
 
   vm.actionText = function() {
-    return (vm.state.new) ? 'Save chapter' : 'Update chapter';
+    return (vm.state.new) ? 'Create chapter' : 'Save chapter';
   };
 
   vm.editorOptions = {
     lineWrapping : true,
     lineNumbers: true,
     allowDropFileTypes: ['text/markdown'],
-    onLoad: codemirrorLoaded,
-    // theme: 'material'
+    onLoad: codemirrorLoaded
   };
 
   //

@@ -18,7 +18,7 @@
 
       <div class="pull-right editor__settings">
 
-        <button type="submit" class="btn btn-success pull-right editor__btn">{{editorCtrl.actionText()}}</button>
+        <button type="submit" class="btn btn-success pull-right editor__btn" ng-class="{'btn__loading' : editorCtrl.state.submitting}">{{editorCtrl.actionText()}}</button>
 
         <a ui-sref="chapters({docid: '{{editorCtrl.docid}}'})" class="editor__link">back to chapter list</a>
 

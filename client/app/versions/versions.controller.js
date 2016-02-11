@@ -7,7 +7,8 @@ function VerionController(data, $timeout, parser, chapterService, $stateParams, 
   vm.docid = $stateParams.docid;
 
   vm.state = {
-    changes: false
+    changes: false,
+    submitted: false
   };
 
   vm.editorOptions = {
@@ -26,6 +27,8 @@ function VerionController(data, $timeout, parser, chapterService, $stateParams, 
     var leftEditor = _editor.edit.doc;
 
     vm.updateChapter = function() {
+      vm.state.submitted = true;
+
       var md = leftEditor.getValue();
       var html = parser.render(md);
 
@@ -37,16 +40,15 @@ function VerionController(data, $timeout, parser, chapterService, $stateParams, 
         html: html
       })
       .then(function(data) {
+        vm.state.submitted = false;
         $state.go('chapters', {
           docid: $stateParams.docid
         });
       })
       .catch(function(e) {
+        vm.state.submitted = false;
         console.error(e);
       });
-
-      // update chapter (chapterService)
-      // then go back to chapter list (state.go)
 
     };
 

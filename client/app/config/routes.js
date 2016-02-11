@@ -82,8 +82,8 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       controllerAs: 'prCtrl',
       auth: false,
       resolve: {
-        chapter: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
-          return chapterService.getChapter($stateParams.docid, $stateParams.chapterid);
+        chapter: ['pullRequestService', '$stateParams', function(pullRequestService, $stateParams) {
+          return pullRequestService.getPullRequest($stateParams.docid, $stateParams.chapterid);
         }]
       }
     })

@@ -2,6 +2,8 @@
 
 const ValidationError = require(__base + 'helpers/errors/validation-error');
 const NotFoundError = require(__base + 'helpers/errors/not-found');
+const ConflictError = require(__base + 'helpers/errors/conflict-error');
+
 
 const mailer = require(__base + 'mailer');
 
@@ -35,9 +37,9 @@ function pullrequestPost(req, res, next) {
     }
 
     if(chapter.pullrequest.set) {
-      let err = new Error();
-      err.status = 304;
-      throw err;
+      throw new ConflictError({
+        message: 'A pull request is already set'
+      });
     }
 
     chapter.pullrequest = {
@@ -72,6 +74,7 @@ function pullrequestPost(req, res, next) {
 
   })
   .catch(function(err) {
+    console.log(err);
     return next(err);
   });
 

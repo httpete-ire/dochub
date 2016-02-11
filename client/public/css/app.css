@@ -5536,6 +5536,9 @@ span.CodeMirror-selectedtext {
   position: relative;
   margin-top: 8px; }
 
+.editor__settings--pr {
+  margin-top: 15px; }
+
 .editor__toggle {
   display: inline-block;
   margin-left: 125px;

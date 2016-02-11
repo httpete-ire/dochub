@@ -1,13 +1,18 @@
 'use strict';
 
 /**@ngInject*/
-function PullrequestController($$debounce, pullRequestService, $stateParams, chapter, parser) {
+function PullrequestController($$debounce, pullRequestService, $stateParams, chapter, parser, $timeout) {
+
+  console.log(chapter.pullrequest.set);
 
   var vm = this;
 
   vm.state = {
     preview: true,
-    submitted: false
+    submitted: false,
+    requestMade: false,
+    error: null,
+    submitting: false
   };
 
   vm.chapter = {
@@ -25,31 +30,45 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
 
   vm.pull = function(pr, form) {
 
-    vm.state.submitted = true;
-
-    console.log(pr);
-
     if(form.$invalid || !vm.chapter.markdown) {
       return false;
     }
 
-    pullRequestService.createPullrequest($stateParams.docid, $stateParams.chapterid, pr)
+    vm.state.submitted = true;
+    vm.state.submitting = true;
+
+    pullRequestService
+    .createPullrequest($stateParams.docid, $stateParams.chapterid, pr)
     .then(function(data) {
 
+      vm.state.requestMade = true;
       vm.state.submitted = false;
+      vm.state.submitting = false;
 
       // pull request made
       // show something to user
-    }).catch();
+    }).catch(function(err) {
+      vm.state.submitted = false;
+      vm.state.submitting = false;
+
+      if(err.response.status === 409) {
+        vm.state.requestMade = true;
+        vm.state.error = err.response.message;
+      }
+
+
+    });
 
   };
+
 
   //
   // ACE EDITOR SETUP
   //
   function codemirrorLoaded(_editor) {
 
-    var _doc = _editor.getDoc();
+    // expose editor to controller
+    vm.editor = _editor;
 
     var compile = $$debounce(function() {
       vm.chapter.markdown = _editor.getValue();
@@ -70,7 +89,6 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
       }
 
     };
-
   }
 
 }

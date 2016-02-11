@@ -14,9 +14,22 @@
 
       </div>
 
-      <div class="pull-right editor__settings">
+      <div class="pull-right editor__settings editor__settings--pr" ng-if="prCtrl.state.requestMade && !prCtrl.state.error">
+        <span>
+          <strong>Thanks for making a suggestion, it has been sent to the author.
+          </strong>
+        </span>
+      </div>
 
-        <button type="submit" class="btn btn-success pull-right editor__btn">Make pull request</button>
+      <div class="pull-right editor__settings editor__settings--pr" ng-if="prCtrl.chapter.pullrequest.set || (prCtrl.state.requestMade && prCtrl.state.error)">
+        <span>
+          <strong>This chapter is locked for editing until the author accepts the current changes</strong>
+        </span>
+      </div>
+
+      <div class="pull-right editor__settings" ng-if="!prCtrl.state.requestMade">
+
+        <button type="submit" class="btn btn-success pull-right editor__btn" ng-class="{'btn__loading' : prCtrl.state.submitting}">Make pull request</button>
 
         <div class="editor__toggle">
           <span class="editor__toggle-label">Live preview</span>

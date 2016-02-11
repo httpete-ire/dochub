@@ -5,7 +5,7 @@
     <div class="pull-right">
       <a ui-sref="chapters({docid: '{{versionCtrl.docid}}'})" class="version__link">back to chapter list</a>
 
-      <span class="btn btn-success" ng-disabled="!versionCtrl.state.changes" ng-click="versionCtrl.updateChapter()">Revert changes</span>
+      <span class="btn btn-success" ng-class="{'btn__loading' : versionCtrl.state.submitted}" ng-disabled="!versionCtrl.state.changes" ng-click="versionCtrl.updateChapter()">Revert changes</span>
     </div>
 
   </div>

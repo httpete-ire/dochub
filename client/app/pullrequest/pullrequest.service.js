@@ -19,7 +19,7 @@
     }
 
     function getPullRequest(docid, chapterid) {
-      return dataService.get(API_PATH + 'docs/' + docid + '/chapters/' + chapterid + '?fields=chapters.content.markdown,chapters.pullrequest.message,chapters.pullrequest.content.markdown');
+      return dataService.get(API_PATH + 'docs/' + docid + '/chapters/' + chapterid + '?fields=chapters.content.markdown,chapters.pullrequest.message,chapters.pullrequest.content.markdown,chapters.pullrequest.set');
     }
 
     function closePullRequest(docid, chapterid) {
