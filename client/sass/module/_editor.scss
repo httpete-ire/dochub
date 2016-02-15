@@ -396,7 +396,7 @@ span.CodeMirror-selectedtext { background: none; }
 }
 
 .CodeMirror-merge, .CodeMirror-merge .CodeMirror {
-  height: $editor-height;
+  height: $merge-height;
 }
 
 .CodeMirror-merge-2pane .CodeMirror-merge-pane { width: 47%; }

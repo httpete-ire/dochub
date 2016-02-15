@@ -17,6 +17,7 @@ require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('angular-messages');
 require('ng-sortable');
+require('angular-toastr');
 
 // expose these for codemirror merge
 window.DIFF_DELETE = -1;
@@ -32,6 +33,7 @@ var app = angular.module('dochub', [
   'relativeDate',
   'ngMessages',
   'as.sortable',
+  'toastr',
   require('angular-ui-bootstrap')
   // require('angular-ui-bootstrap/src/modal'),
   // require('angular-ui-bootstrap/src/debounce'),

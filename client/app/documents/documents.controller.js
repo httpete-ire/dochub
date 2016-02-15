@@ -4,7 +4,7 @@
 var defaultSort = 'title';
 
 /*@ngInject*/
-function DocumentsController(docs, documentService, $uibModal) {
+function DocumentsController(docs, documentService, $uibModal, toastr, $window) {
   var vm = this;
 
   this.sort = defaultSort;
@@ -93,8 +93,28 @@ function DocumentsController(docs, documentService, $uibModal) {
 
 
   this.publish = function(doc) {
+
+    if(doc.chapters.length < 1) {
+      doc.published = false;
+      toastr.warning('A document must contain at least one chapter before you can publish it', 'Warning');
+      return false;
+    }
+
     documentService.editDocument(doc).then(function() {
-      console.log('working');
+
+      if(doc.published) {
+
+          var link = 'https://docs.dochub.co/' + doc._id;
+
+
+          toastr.success('click to open', 'Published: ' + link, {
+            onTap: function() {
+              $window.open('https://docs.dochub.co/' + doc._id);
+            }
+          });
+
+      }
+
     });
   };
 
