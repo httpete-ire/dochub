@@ -1,0 +1,22 @@
+@import './theme/_variables.scss';
+
+$link-color: #666;
+
+@import './lib/bootstrap-sass/assets/stylesheets/bootstrap';
+
+@import './module/_header';
+@import './module/_nav';
+@import './module/_doc';
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.active__link {
+  color: $green;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+}

@@ -3,8 +3,6 @@
 /**@ngInject*/
 function PullrequestController($$debounce, pullRequestService, $stateParams, chapter, parser, $timeout) {
 
-  console.log(chapter.pullrequest.set);
-
   var vm = this;
 
   vm.state = {
@@ -15,10 +13,15 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
     submitting: false
   };
 
+  vm.stateParams = $stateParams;
+
   vm.chapter = {
     id: chapter._id,
     markdown: chapter.content.markdown,
-    html: chapter.content.html
+    html: parser.render(chapter.content.markdown),
+    pullrequest: {
+      set: chapter.pullrequest.set
+    }
   };
 
   vm.editorOptions = {
@@ -30,11 +33,12 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
 
   vm.pull = function(pr, form) {
 
+    vm.state.submitted = true;
+
     if(form.$invalid || !vm.chapter.markdown) {
       return false;
     }
 
-    vm.state.submitted = true;
     vm.state.submitting = true;
 
     pullRequestService
@@ -70,6 +74,8 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
     // expose editor to controller
     vm.editor = _editor;
 
+    var previewWindow = document.querySelector('.editor__preview-body');
+
     var compile = $$debounce(function() {
       vm.chapter.markdown = _editor.getValue();
       vm.chapter.html = parser.render(vm.chapter.markdown);
@@ -78,6 +84,10 @@ function PullrequestController($$debounce, pullRequestService, $stateParams, cha
     _editor.setValue(vm.chapter.markdown);
 
     _editor.on('change', compile);
+
+    _editor.on('scroll', function(e) {
+      previewWindow.scrollTop = e.doc.scrollTop;
+    });
 
     vm.togglePreview = function() {
 

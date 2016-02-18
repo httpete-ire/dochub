@@ -76,7 +76,7 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       }
     })
     .state('pull-request', {
-      url: '/documents/:docid/chapters/:chapterid/pullrequest',
+      url: '/documents/:docid/chapters/:chapterid/pullrequest?chapter',
       template: require('./../pullrequest/pullrequest.html'),
       controller: 'PullrequestController',
       controllerAs: 'prCtrl',

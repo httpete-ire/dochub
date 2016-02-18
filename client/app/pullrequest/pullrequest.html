@@ -6,7 +6,7 @@
 
       <div class="editor__input-container">
 
-        <input type="text" name="message" placeholder="Pull request message" class="editor__input input-md" ng-model="prCtrl.chapter.message" required>
+        <input type="text" name="message" placeholder="Pull request message" class="editor__input input-md" ng-model="prCtrl.chapter.message" required ng-disabled="prCtrl.chapter.pullrequest.set">
 
         <div ng-messages="pullRequest.message.$error" ng-if="prCtrl.state.submitted" class="login__error">
           <span class="editor__input-error" ng-message="required">A commit message is required</span>
@@ -16,18 +16,18 @@
 
       <div class="pull-right editor__settings editor__settings--pr" ng-if="prCtrl.state.requestMade && !prCtrl.state.error">
         <span>
-          <strong>Thanks for making a suggestion, it has been sent to the author.
+          <strong>Thanks for making a suggestion, it has been sent to the author. <a href="http://docs.dochub.co:4000/{{prCtrl.stateParams.docid}}/{{prCtrl.stateParams.chapter}}">back to document</a>
           </strong>
         </span>
       </div>
 
-      <div class="pull-right editor__settings editor__settings--pr" ng-if="prCtrl.chapter.pullrequest.set || (prCtrl.state.requestMade && prCtrl.state.error)">
+      <div class="pull-right editor__settings editor__settings--pr" ng-if="prCtrl.chapter.pullrequest.set">
         <span>
-          <strong>This chapter is locked for editing until the author accepts the current changes</strong>
+          <strong>This chapter is locked for editing until the author accepts the current changes. <a href="http://docs.dochub.co:4000/{{prCtrl.stateParams.docid}}/{{prCtrl.stateParams.chapter}}">back to document</a></strong>
         </span>
       </div>
 
-      <div class="pull-right editor__settings" ng-if="!prCtrl.state.requestMade">
+      <div class="pull-right editor__settings" ng-if="!prCtrl.state.requestMade && !prCtrl.chapter.pullrequest.set">
 
         <button type="submit" class="btn btn-success pull-right editor__btn" ng-class="{'btn__loading' : prCtrl.state.submitting}">Make pull request</button>
 

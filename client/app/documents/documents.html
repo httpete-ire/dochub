@@ -75,6 +75,11 @@
                 <li role="menuitem">
                   <a href="#" ng-click="docCtrl.deleteDocument(doc._id)">Delete document</a>
                 </li>
+                <li class="divider" ng-if="doc.published"></li>
+                <li role="menuitem" ng-if="doc.published">
+                  <a href="http://docs.dochub.co:4000/{{doc._id}}" target="_blank">View document</a>
+                </li>
+
               </ul>
 
             </div>

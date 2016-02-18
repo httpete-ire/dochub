@@ -35,10 +35,10 @@ module.exports =  function(router) {
       let links = [];
 
       _.each(doc.chapters, function(chap, index) {
-
         links.push({
           title: chap.title,
-          href: req.hostname +  ':4000/' + docId + '/' + (index + 1)
+          href: req.hostname +  '/' + docId + '/' + (index + 1),
+          active: (index + 1 === +req.params.chapternumber) ? 'active__link' : ''
         });
 
       });
@@ -46,7 +46,8 @@ module.exports =  function(router) {
       return res.render('doc', {
         doc: doc,
         chapter: chapter,
-        links: links
+        links: links,
+        chapterNumber: req.params.chapternumber
       });
 
     })
@@ -59,42 +60,6 @@ module.exports =  function(router) {
   // if requesting the document redirect to include the first chapter
   router.get('/:id', function(req, res, next) {
     return res.redirect('/' + req.params.id +'/1');
-  });
-
-  router.get('/:id', function(req, res, next) {
-
-    let docId = req.params.id;
-
-    let query = Doc.findOne().where({
-      _id: docId,
-      published: true
-    });
-
-    // select certain fields of data
-    if(!_.isEmpty(req.query) && req.query.fields) {
-
-      let fields = req.query.fields.split(',');
-      query.select(fields.join(' '));
-
-      // return all fields of a Doc, populate the owner field
-    }
-
-    query.exec().then(function(doc) {
-
-      if(!doc) {
-        return res.render('404');
-      }
-
-      let chapter = (req.query.chapter) ? req.query.chapter : 0;
-      let links = [];
-
-      return res.render('doc', {
-        docid: doc._id,
-        chapter: doc.chapters[chapter]
-      });
-
-    });
-
   });
 
 };

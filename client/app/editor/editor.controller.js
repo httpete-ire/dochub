@@ -3,7 +3,7 @@
 var defaultSort = 'title';
 
 /*@ngInject*/
-function EditorController($$debounce, chapterService, $stateParams, chapter, dataService, parser) {
+function EditorController($$debounce, chapterService, $stateParams, chapter, dataService, parser, toastr) {
 
   var vm = this;
 
@@ -60,6 +60,7 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
         vm.chapter.id = data.id;
         vm.state.submitted = true;
         vm.state.submitting = false;
+        showSuccess('Created', 'Chapter created successfully');
       })
       .catch(handleErr);
     } else {
@@ -67,12 +68,16 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
       .then(function(data) {
         vm.state.submitted = true;
         vm.state.submitting = false;
+        showSuccess('Saved', 'Chapter saved successfully');
       })
       .catch(handleErr);
     }
 
+    function showSuccess(title, msg) {
+      toastr.success(msg, title);
+    }
+
     function handleErr(err) {
-      console.log(err);
       if(err.response.status === 409) {
         vm.state.titleConflictError = true;
         vm.state.submitting = false;
