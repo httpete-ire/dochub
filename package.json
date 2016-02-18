@@ -1,5 +1,5 @@
 {
-  "name": "docd",
+  "name": "dochub",
   "version": "0.0.1",
   "description": "Documentation platform to generate a website based on markdown",
   "main": "index.js",
