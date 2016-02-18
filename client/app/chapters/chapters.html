@@ -1,0 +1,177 @@
+<div class="container">
+
+  <div class="row">
+    <h1 class="page__title">Chapters</h1>
+
+    <a ui-sref="editor({docid: '{{chapCtrl.docid}}'})" class="btn btn-success pull-right page__btn">New Chapter</a>
+
+    <table class="full-table">
+
+      <thead>
+
+        <tr class="table__header">
+
+          <th class="table__first-row">Title</th>
+          <th>Views</th>
+          <th>Updated</th>
+          <th>Versions</th>
+          <th>Pull request</th>
+          <th class="table__padding--right table__padding--right-chapter">
+            <div ng-if="chapCtrl.chapters.length > 1">
+              <span class="table__sort">Sort</span>
+              <toggle class="pull-right" toggle-model="chapCtrl.state.toggle" change="chapCtrl.toggleSort()"></toggle>
+            </div>
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody as-sortable="chapCtrl.dragControlListeners" ng-model="chapCtrl.chapters" class="table__body" ng-if="chapCtrl.chapters.length > 0">
+
+        <tr class="table__row" ng-repeat="chapter in chapCtrl.chapters" as-sortable-item>
+
+          <td class="table__first-row">
+            <a ui-sref="edit-chapter({docid: '{{chapCtrl.docid}}', chapterid: '{{chapter._id}}'})">{{chapter.title}}</a>
+          </td>
+
+          <td>
+            {{chapter.views}}
+          </td>
+
+          <td>
+            {{chapter.updated | relativeDate}}
+          </td>
+
+          <td>
+
+            <span ng-if="chapter.versions.length === 0">0</span>
+
+            <div class="table-dropdown" uib-dropdown ng-if="chapter.versions.length > 0">
+              <span uib-dropdown-toggle>{{chapter.versions.length}}</span>
+
+              <ul uib-dropdown-menu role="menu">
+
+                <li role="menuitem" ng-repeat="version in chapter.versions.slice().reverse()">
+
+                  <a ui-sref="versions({docid: '{{chapCtrl.docid}}',
+                  chapterid: '{{chapter._id}}',
+                  versionid: '{{version._id}}'})">v.{{version.versionNumber}} <span class="pull-right version__date">{{version.created | relativeDate}}</span></a>
+                </li>
+
+              </ul>
+
+            </div>
+
+          </td>
+
+          <td>
+            <span ng-if="!chapter.pullrequest.set">none</span>
+            <a ng-if="chapter.pullrequest.set" ui-sref="merge({docid: '{{chapCtrl.docid}}', chapterid: '{{chapter._id}}'})">waiting to merge</a>
+          </td>
+
+          <td class="table__padding--right table__last-row" >
+
+            <div ng-if="!chapCtrl.state.toggle" class="table-dropdown" uib-dropdown>
+
+              <span uib-dropdown-toggle>
+
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                	 width="30px" height="15px" viewBox="0 0 30 15" enable-background="new 0 0 30 15" xml:space="preserve">
+                <g>
+                	<circle fill="none" stroke="#414042" stroke-miterlimit="10" cx="5.19" cy="10" r="2.891"/>
+                	<circle fill="none" stroke="#414042" stroke-miterlimit="10" cx="15" cy="10" r="2.891"/>
+                	<circle fill="none" stroke="#414042" stroke-miterlimit="10" cx="24.81" cy="10" r="2.891"/>
+                </g>
+                </svg>
+
+              </span>
+
+              <ul uib-dropdown-menu role="menu">
+
+                <li role="menuitem">
+                  <a ng-click="chapCtrl.delete(chapter._id)">Delete chapter</a>
+                </li>
+
+                <li role="menuitem">
+                  <a ng-href="http://api.dochub.co:4000/docs/{{chapCtrl.docid}}/chapters/{{chapter._id}}/download?token={{chapCtrl.token}}" target="_blank">Download chapter</a>
+                </li>
+
+              </ul>
+
+            </div>
+
+            <!-- <span ng-if="!chapCtrl.state.toggle">delete</span> -->
+            <span ng-if="chapCtrl.state.toggle" as-sortable-item-handle>
+
+              <span ng-show="$index === 0">
+                <!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                	 width="48px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
+                <path fill="#bdc3c7" d="M25.521,33.125c-0.841,0.842-2.201,0.84-3.041,0l-4.563-4.562c-0.613-0.614-0.797-1.54-0.465-2.343
+                	c0.109-0.266,0.27-0.502,0.465-0.698c0.395-0.396,0.941-0.63,1.521-0.63h2.41v-8.495c0.002-1.189,0.963-2.15,2.152-2.15
+                	s2.15,0.961,2.15,2.15v8.495h2.412c0.869,0,1.652,0.524,1.987,1.328c0.333,0.801,0.147,1.729-0.467,2.343L25.521,33.125z"/>
+                </svg>
+
+              </span>
+
+              <span ng-show="$index > 0 && $index < chapCtrl.chapters.length - 1">
+                <?xml version="1.0" encoding="utf-8"?>
+                <!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                	 width="48px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
+                <path fill="#bdc3c7" d="M22.48,1.191c0.841-0.842,2.202-0.84,3.042,0l4.563,4.562c0.613,0.614,0.797,1.54,0.465,2.343
+                	c-0.109,0.266-0.27,0.502-0.465,0.698c-0.395,0.396-0.941,0.63-1.521,0.63h-2.41v8.494c-0.002,1.189-0.963,2.15-2.152,2.15
+                	c-1.189,0-2.15-0.961-2.15-2.15V9.423h-2.412c-0.87,0-1.653-0.524-1.987-1.328c-0.333-0.801-0.147-1.729,0.467-2.343L22.48,1.191z
+                	 M21.851,30.082c0-1.188,0.96-2.15,2.15-2.15c1.189,0.002,2.15,0.963,2.152,2.15v8.494h2.41c0.869,0,1.654,0.525,1.986,1.328
+                	s0.148,1.73-0.465,2.344l-4.563,4.563c-0.84,0.838-2.201,0.842-3.042,0l-4.562-4.563c-0.614-0.613-0.8-1.543-0.467-2.344
+                	c0.111-0.266,0.271-0.5,0.467-0.697c0.395-0.395,0.94-0.629,1.521-0.631h2.412V30.082z"/>
+                <path d="M128.98-12.059c0.84-0.842,2.201-0.84,3.041,0l4.563,4.562c0.613,0.614,0.797,1.54,0.465,2.343
+                	c-0.109,0.266-0.27,0.502-0.465,0.698c-0.395,0.396-0.941,0.63-1.521,0.63h-2.41v8.494c-0.002,1.189-0.963,2.15-2.152,2.15
+                	s-2.149-0.961-2.149-2.15v-8.494h-2.412c-0.87,0-1.653-0.524-1.987-1.328c-0.334-0.801-0.147-1.729,0.467-2.343L128.98-12.059z
+                	 M128.351,16.832c0-1.188,0.96-2.15,2.149-2.15c1.189,0.002,2.15,0.963,2.152,2.15v8.494h2.41c0.869,0,1.654,0.525,1.986,1.328
+                	s0.148,1.73-0.465,2.344l-4.563,4.563c-0.84,0.838-2.201,0.842-3.041,0l-4.563-4.563c-0.614-0.613-0.801-1.543-0.467-2.344
+                	c0.111-0.266,0.271-0.5,0.467-0.697c0.395-0.395,0.939-0.629,1.521-0.631h2.412V16.832z"/>
+                </svg>
+
+              </span>
+
+              <span ng-show="$index === chapCtrl.chapters.length - 1">
+
+                <?xml version="1.0" encoding="utf-8"?>
+                <!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                	 width="48px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
+                <path fill="#bdc3c7" d="M22.481,14.877c0.841-0.842,2.201-0.84,3.041,0l4.563,4.562c0.613,0.614,0.797,1.54,0.465,2.343
+                	c-0.109,0.266-0.27,0.502-0.465,0.698c-0.395,0.396-0.941,0.63-1.521,0.63h-2.41v8.495c-0.002,1.189-0.963,2.15-2.152,2.15
+                	s-2.15-0.961-2.15-2.15v-8.495h-2.412c-0.869,0-1.652-0.524-1.987-1.328c-0.333-0.801-0.147-1.729,0.467-2.343L22.481,14.877z"/>
+                </svg>
+
+
+              </span>
+
+            </span>
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    <div ng-if="chapCtrl.chapters.length === 0" class="empty-state">
+
+      <img src="images/empty-chapter.svg" width="120px">
+
+      <h4 class="empty-state__title">Looks like you dont have any chapters yet</h4>
+
+      <a ui-sref="editor({docid: '{{chapCtrl.docid}}'})" class="btn btn-success">Create Chapter</a>
+
+    </div>
+
+  </div>
+
+</div>

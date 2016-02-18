@@ -1,0 +1,12 @@
+.empty-state {
+  background: $white;
+  border: 2px solid $table-border;
+  border-top: none;
+  text-align: center;
+  padding: 70px 0;
+}
+
+.empty-state__title {
+  margin: 25px 0 20px 0;
+  color: darken($table-border, 20);
+}

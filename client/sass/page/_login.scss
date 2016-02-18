@@ -1,0 +1,39 @@
+.login__wrapper {
+  margin-top: 60px;
+  max-width: 350px;
+}
+
+.login__container {
+  background: $white;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid darken($table-border, 10);
+  text-align: center;
+}
+
+.login__title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login__link {
+  margin-bottom: 10px;
+}
+
+.login__forgot {
+  font-size: 12px;
+  margin: 10px 15px;
+}
+
+.login__redirect {
+  margin: 10px 15px;
+  display: inline-block;
+  color: #666;
+  font-size: 12px;
+}
+
+.login__error {
+  margin: 5px 0 0 10px;
+  font-size: 12px;
+  color: $red;
+}

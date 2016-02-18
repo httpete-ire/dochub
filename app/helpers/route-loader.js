@@ -4,9 +4,9 @@ const fs = require('fs');
 const express = require('express');
 
 let currentFile;
-let router = express.Router();
 
 module.exports =  function loadRoutes(dir, app, cb) {
+  let router = express.Router();
 
   currentFile = dir + '/index.js';
 

@@ -1,0 +1,133 @@
+.editor__header {
+  padding: 0 40px;
+  border-bottom: 1px solid $table-border;
+}
+
+.editor__input-container {
+  display: inline-block;
+  width: 50%;
+  height: 50px;
+  position: relative;
+}
+
+.editor__input {
+  border: none;
+  background: $main-bg;
+  outline: none;
+  width: 100%;
+  height: 50px;
+}
+
+.editor__input-error {
+  position: absolute;
+  color: $red;
+  font-size: 16px;
+  top: 13px;
+  width: 97%;
+  text-align: right;
+  pointer-events: none;
+}
+
+.editor__input-error--header {
+  top: 10px;
+  width: 88%;
+}
+
+.editor__btn {
+  margin-left: 50px;
+}
+
+.editor__settings {
+  position: relative;
+  margin-top: 8px;
+}
+
+.editor__settings--pr {
+  margin-top: 15px;
+}
+
+.editor__toggle {
+  display: inline-block;
+  margin-left: 125px;
+  position: relative;
+}
+
+.editor__link {
+  position: relative;
+  top: -10px;
+}
+
+.editor__toggle-label {
+  position: absolute;
+  left: -90px;
+  top: 7px;
+}
+
+.editor,
+.editor__preview {
+  width: 50%;
+  float: left;
+  transition: width 0.35s ease;
+}
+
+.editor__preview-closed {
+
+  .editor {
+    width: 100%;
+  }
+
+  .editor__preview {
+    width: 0%;
+    opacity: 0;
+  }
+
+}
+
+.editor__preview-body {
+  padding: 0 25px;
+}
+
+.editor__preview-body {
+  overflow-y: scroll;
+  height: $editor-height;
+  background: $white;
+  border-left: 1px solid $toggle-grey;
+}
+
+.editor__preview-header {
+  padding: 10px 25px;
+  border-bottom: 1px solid $table-border;
+  position: relative;
+}
+
+.editor__preview-header--border {
+  border-right: 2px solid $table-border;
+}
+
+.editor__header--pullrequest {
+  padding: 20px 40px;
+}
+
+.pullrequest__message {
+  display: inline-block;
+  width: 50%;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}

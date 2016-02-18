@@ -1,0 +1,29 @@
+.delete-modal__btn {
+  width: 50%;
+  display: inline-block;
+  line-height: 50px;
+  color: $white;
+  cursor: pointer;
+  float: left;
+  text-align: center;
+  font-size: 18px;
+
+  &--confirm {
+    background: #e74c3c;
+  }
+
+  &--cancel {
+    background: #bdc3c7;
+  }
+
+}
+
+.delete-modal__body {
+  padding: 0;
+}
+
+.delete-modal__title {
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 15px;
+}

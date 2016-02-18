@@ -17,7 +17,7 @@ function ConflictError(errors) {
     });
   }
 
-  this.message = errors || '';
+  this.message = errors.message || errors || '';
 }
 
 inherit(ConflictError, Error);

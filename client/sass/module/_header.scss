@@ -1,0 +1,28 @@
+.header__container {
+  background: $midnight-blue;
+  color: $main-bg;
+  padding: 13px 0;
+}
+
+.profile {
+  display: inline-block;
+
+  &__name {
+    cursor: pointer;
+  }
+
+  &__image {
+    border-radius: 50%;
+    margin-right: 25px;
+  }
+
+  &__caret {
+    margin-left: 15px;
+  }
+
+}
+
+
+.header__logo {
+  margin-top: 6px;
+}

@@ -1,0 +1,19 @@
+<div class="editor__header editor__header--pullrequest">
+
+  <div class="editor__title-container clearfix">
+
+    <h3 class="pullrequest__message">{{mergeCtrl.pr.pullrequest.message}}</h3>
+
+    <div class="pull-right editor__settings">
+      <button class="btn btn-default" ng-click="mergeCtrl.closeRequest()">close pull request</button>
+      <button class="btn btn-success" ng-disabled="!mergeCtrl.state.merge" ng-click="mergeCtrl.mergeRequest()">merge pull request</button>
+    </div>
+
+  </div>
+
+</div>
+
+<ui-codemirror
+    merge-view
+    ui-codemirror-opts="mergeCtrl.editorOptions">
+</ui-codemirror>

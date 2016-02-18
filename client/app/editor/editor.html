@@ -1,0 +1,67 @@
+<div class="editor__header">
+
+  <div class="editor__title-container">
+
+    <form name="editorForm" ng-submit="editorCtrl.action(editorCtrl.chapter, this.editorForm)" novalidate>
+
+      <div class="editor__input-container">
+
+        <input type="text" name="title" placeholder="Insert chapter title" class="editor__input input-md" ng-model="editorCtrl.chapter.title" required>
+
+        <div ng-messages="editorForm.title.$error" ng-if="editorCtrl.state.submitted" class="login__error">
+          <span class="editor__input-error" ng-message="required">A title is required</span>
+        </div>
+
+        <span class="editor__input-error" ng-if="editorCtrl.state.titleConflictError && editorForm.title.$pristine">That title is already in use</span>
+
+      </div>
+
+      <div class="pull-right editor__settings">
+
+        <button type="submit" class="btn btn-success pull-right editor__btn" ng-class="{'btn__loading' : editorCtrl.state.submitting}">{{editorCtrl.actionText()}}</button>
+
+        <a ui-sref="chapters({docid: '{{editorCtrl.docid}}'})" class="editor__link">back to chapter list</a>
+
+        <div class="editor__toggle">
+          <span class="editor__toggle-label">Live preview</span>
+          <toggle toggle-model="editorCtrl.state.preview" change="editorCtrl.togglePreview()"></toggle>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="editor__body" ng-class="editorCtrl.state.preview ? 'editor__preview-open' : 'editor__preview-closed'">
+
+  <div class="editor">
+
+    <div class="editor__preview-header editor__preview-header--border">
+
+      <img src="images/md.svg" width="25">
+
+      <span class="editor__input-error editor__input-error--header" ng-if="editorCtrl.state.submitted && !editorCtrl.chapter.markdown">Required</span>
+
+    </div>
+
+    <ui-codemirror ui-codemirror-opts="editorCtrl.editorOptions">
+    </ui-codemirror>
+
+  </div>
+
+  <div class="editor__preview">
+
+    <div class="editor__preview-header">
+      <span>Preview</span>
+    </div>
+
+    <div class="editor__preview-body">
+      <div class="editor__review-panel" ng-bind-html="editorCtrl.chapter.html | html"></div>
+    </div>
+
+  </div>
+
+</div>

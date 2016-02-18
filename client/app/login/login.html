@@ -1,0 +1,51 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="login__wrapper center-block">
+
+      <dochub-alert></dochub-alert>
+
+      <div class="login__container">
+
+        <img src="images/mark.svg" alt="Dochub logo" width="60px;" class="header__logo">
+
+        <h2 class="login__title">Login</h2>
+
+        <form name="login"  ng-submit="vm.login(vm.email, vm.password, this.login)" novalidate>
+
+          <div class="form-group">
+            <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="Email" required>
+
+            <div ng-messages="login.email.$error" ng-if="vm.submitted" class="login__error">
+              <span ng-message="required">An email is required</span>
+              <span ng-message="email">Must be a valid email</span>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <input type="password" name="password" ng-model="vm.password" class="form-control" placeholder="Password" required>
+
+            <div ng-messages="login.password.$error" ng-if="vm.submitted" class="login__error">
+              <span ng-message="required">A password is required</span>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block" ng-class="{'btn__loading' : vm.submitting}">{{vm.loginText}}</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <span class="login__redirect">register an account <a ui-sref="register">here</a></span>
+      <a ui-sref="password" class="pull-right login__forgot">forgot password?</a>
+
+    </div>
+
+  </div>
+
+</div>

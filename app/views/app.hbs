@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="docd">
 <head>
   <meta charset="UTF-8" />
   <title>Document</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/app.css">
+
 </head>
 <body>
-  <h1>App file</h1>
+  <!-- header -->
+  <div ng-include="'templates/header.html'"></div>
+
+  <div ng-if="stateIsLoading" class="loader">Loading...</div>
+  <div ng-if="!stateIsLoading" ui-view></div>
+
+  <!-- app dependencies  -->
+  <script src="js/lib/angular.min.js"></script>
+  <script src="js/lib/router.min.js"></script>
+  <script src="js/lib/ui-bootstrap.min.js"></script>
+  <script src="js/lib/codemirror.js"></script>
+  <script src="js/lib/ui-codemirror.min.js"></script>
+  <script src="js/lib/parser.min.js"></script>
+  <script src="js/lib/ng-sortable.min.js"></script>
+  <script src="js/lib/diff_match_patch.js"></script>
+  <script src="js/lib/merge.js"></script>
+  <script src="js/lib/angular-relative-date.min.js"></script>
+  <!-- /app dependencies  -->
+
+  <!-- util -->
+  <script src="js/app/app.js"></script>
+  <script src="js/app/util/data.service.js"></script>
+  <script src="js/app/util/parser.service.js"></script>
+  <script src="js/app/util/html.filter.js"></script>
+
+  <!-- directives -->
+  <script src="js/app/directives/modal.directive.js"></script>
+  <script src="js/app/directives/toggle.directive.js"></script>
+
+  <script src="js/app/header/header.controller.js"></script>
+
+  <!-- docs -->
+  <script src="js/app/documents/documents.controller.js"></script>
+  <script src="js/app/documents/document.modal.controller.js"></script>
+  <script src="js/app/documents/documents.service.js"></script>
+
+  <!--  chapters -->
+  <script src="js/app/chapters/chapters.controller.js"></script>
+  <script src="js/app/chapters/chapters.service.js"></script>
+
+  <!--  pullrequest -->
+  <script src="js/app/pull-request/pullrequest.controller.js"></script>
+  <script src="js/app/pull-request/pullrequest.service.js"></script>
+  <!--  merge -->
+  <script src="js/app/merge/merge.controller.js"></script>
+
+  <!-- editor -->
+  <script src="js/app/editor/editor.controller.js"></script>
+
+  <!--  version -->
+  <script src="js/app/versions/versions.controller.js"></script>
+  <script src="js/app/versions/versions.service.js"></script>
+
+  <!-- auth -->
+  <script src="js/app/auth/auth.factory.js"></script>
+  <script src="js/app/auth/auth.service.js"></script>
+  <script src="js/app/auth/token.factory.js"></script>
+  <script src="js/app/auth/login.controller.js"></script>
+  <script src="js/app/auth/token.interceptor.js"></script>
+  <script src="js/app/auth/register.controller.js"></script>
 
 </body>
 </html>

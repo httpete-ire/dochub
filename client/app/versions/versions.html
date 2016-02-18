@@ -1,0 +1,33 @@
+<div class="editor__preview-header editor__preview-header--border">
+
+  <div class="clearfix">
+
+    <div class="pull-right">
+      <a ui-sref="chapters({docid: '{{versionCtrl.docid}}'})" class="version__link">back to chapter list</a>
+
+      <span class="btn btn-success" ng-class="{'btn__loading' : versionCtrl.state.submitted}" ng-disabled="!versionCtrl.state.changes" ng-click="versionCtrl.updateChapter()">Revert changes</span>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="headers">
+
+  <div class="version__header version__header--current">
+    <span><strong>Current version</strong></span>
+    <span class="pull-right version__date">Updated: {{versionCtrl.data.chapter.updated | relativeDate}}</span>
+  </div>
+
+  <div class="version__header version__header--old">
+    <span><strong>Version {{versionCtrl.data.version.versionNumber}}</strong></span>
+    <span class="pull-right version__date">Updated: {{versionCtrl.data.version.created | relativeDate}}</span>
+  </div>
+
+</div>
+
+<ui-codemirror
+    merge-view
+    ui-codemirror-opts="versionCtrl.editorOptions"
+    class="version__editor">
+</ui-codemirror>

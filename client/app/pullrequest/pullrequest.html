@@ -1,0 +1,76 @@
+<div class="editor__header">
+
+  <div class="editor__title-container">
+
+    <form name="pullRequest" ng-submit="prCtrl.pull(prCtrl.chapter, this.pullRequest)" novalidate>
+
+      <div class="editor__input-container">
+
+        <input type="text" name="message" placeholder="Pull request message" class="editor__input input-md" ng-model="prCtrl.chapter.message" required ng-disabled="prCtrl.chapter.pullrequest.set">
+
+        <div ng-messages="pullRequest.message.$error" ng-if="prCtrl.state.submitted" class="login__error">
+          <span class="editor__input-error" ng-message="required">A commit message is required</span>
+        </div>
+
+      </div>
+
+      <div class="pull-right editor__settings editor__settings--pr" ng-if="prCtrl.state.requestMade && !prCtrl.state.error">
+        <span>
+          <strong>Thanks for making a suggestion, it has been sent to the author. <a href="http://docs.dochub.co:4000/{{prCtrl.stateParams.docid}}/{{prCtrl.stateParams.chapter}}">back to document</a>
+          </strong>
+        </span>
+      </div>
+
+      <div class="pull-right editor__settings editor__settings--pr" ng-if="prCtrl.chapter.pullrequest.set">
+        <span>
+          <strong>This chapter is locked for editing until the author accepts the current changes. <a href="http://docs.dochub.co:4000/{{prCtrl.stateParams.docid}}/{{prCtrl.stateParams.chapter}}">back to document</a></strong>
+        </span>
+      </div>
+
+      <div class="pull-right editor__settings" ng-if="!prCtrl.state.requestMade && !prCtrl.chapter.pullrequest.set">
+
+        <button type="submit" class="btn btn-success pull-right editor__btn" ng-class="{'btn__loading' : prCtrl.state.submitting}">Make pull request</button>
+
+        <div class="editor__toggle">
+          <span class="editor__toggle-label">Live preview</span>
+          <toggle toggle-model="prCtrl.state.preview" change="prCtrl.togglePreview()"></toggle>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="editor__body" ng-class="prCtrl.state.preview ? 'editor__preview-open' : 'editor__preview-closed'">
+
+  <div class="editor">
+
+    <div class="editor__preview-header editor__preview-header--border">
+
+      <img src="images/md.svg" width="25">
+
+      <span class="editor__input-error editor__input-error--header" ng-if="prCtrl.state.submitted && !prCtrl.chapter.markdown">Required</span>
+
+    </div>
+
+    <ui-codemirror ui-codemirror-opts="prCtrl.editorOptions">
+    </ui-codemirror>
+
+  </div>
+
+  <div class="editor__preview">
+
+    <div class="editor__preview-header">
+      <span>Preview</span>
+    </div>
+
+    <div class="editor__preview-body">
+      <div class="editor__review-panel" ng-bind-html="prCtrl.chapter.html | html"></div>
+    </div>
+
+  </div>
+
+</div>

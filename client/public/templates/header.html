@@ -1,0 +1,40 @@
+<div class="header__container" ng-controller="HeaderController as header">
+
+  <div class="container">
+    <div class="row">
+
+      <a ui-sref="documents">
+        <img src="images/logo.svg" alt="Dochub logo" width="130px;" class="header__logo">
+      </a>
+
+      <div class="nav__login pull-right"  ng-if="!loggedIn">
+
+        <a ui-sref="login" class="btn btn__login">Login</a>
+        <a ui-sref="register" class="btn btn__login">Register</a>
+
+      </div>
+
+      <div ng-if="loggedIn" class="pull-right header__profile">
+
+        <nav class="nav">
+          <a ui-sref="documents">Documents</a>
+        </nav>
+
+        <div class="profile" uib-dropdown>
+
+          <span class="sort-btn profile__btn" uib-dropdown-toggle>
+            {{header.user.name}} <span class="caret"></span>
+          </span>
+
+          <ul uib-dropdown-menu role="menu" class="pull-right">
+            <li role="menuitem"><a href="#" ng-click="header.logout()">Log out</a></li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

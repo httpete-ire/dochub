@@ -1,0 +1,71 @@
+// name space with dochub
+.dochub {
+
+  &__document--container {
+    display: flex;
+    background: $white;
+    border: 1px solid #ceced7;
+    border-radius: 5px;
+  }
+
+  &__document--nav {
+    flex: 1;
+    align-items: stretch;
+    border-right: 1px solid $table-border;
+    padding: 5px 15px 15px 15px;
+  }
+
+  &__document--content {
+    flex: 5;
+    align-items: stretch;
+    padding: 15px;
+
+    p {
+      margin: 0 0 20px 0;
+    }
+  }
+
+
+  &__document-header--title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid $table-border;
+  }
+
+  &__nav-link {
+    padding: 10px 0;
+    display: block;
+  }
+
+  &__document-header {
+    border-bottom: 1px solid $table-border;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  &__document-nav--title {
+    color: lighten(#333, 60);
+  }
+
+
+}
+
+.container__push {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+.chapter__title {
+  margin-bottom: 20px;
+}
+
+pre {
+  padding: 0 !important;
+}

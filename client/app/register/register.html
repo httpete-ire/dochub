@@ -1,0 +1,53 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="login__wrapper center-block">
+
+      <dochub-alert></dochub-alert>
+
+      <div class="login__container">
+
+        <img src="images/mark.svg" alt="Dochub logo" width="60px;" class="header__logo">
+
+        <h2 class="login__title">Register</h2>
+
+        <form name="register"  ng-submit="regCtrl.register(regCtrl.user, this.register)" novalidate>
+
+          <div class="form-group">
+            <input type="text" name="name" ng-model="regCtrl.user.name" class="form-control" placeholder="Username" required>
+            <div ng-messages="register.name.$error" ng-if="regCtrl.submitted" class="login__error">
+              <span ng-message="required">A username is required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="email" name="email" ng-model="regCtrl.user.email" class="form-control" placeholder="Email" required >
+            <div ng-messages="register.email.$error" ng-if="regCtrl.submitted" class="login__error">
+              <span ng-message="required">An email is required</span>
+              <span ng-message="email">Must be a valid email</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" name="password" ng-model="regCtrl.user.password" class="form-control" placeholder="Password" required>
+            <div ng-messages="register.password.$error" ng-if="regCtrl.submitted" class="login__error">
+              <span ng-message="required">A password is required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block" ng-class="{'btn__loading' : regCtrl.submitted}" >{{regCtrl.btnText}}</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <span class="login__redirect">have an account? login <a ui-sref="login">here</a></span>
+
+    </div>
+
+  </div>
+
+</div>

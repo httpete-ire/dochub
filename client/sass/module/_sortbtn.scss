@@ -1,0 +1,63 @@
+.sort-btn {
+  border: 2px solid $table-border;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 30px;
+  cursor: pointer;
+
+  .caret {
+    color: darken($table-border, 20);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-left: 4px solid rgba(0, 0, 0, 0);
+  }
+}
+
+.page__btn {
+  margin-top: 21px;
+}
+
+.profile__btn {
+  border: 2px solid darken($white, 60);
+}
+
+.as-sortable-item,
+.as-sortable-placeholder {
+    display: table-row !important;
+}
+
+
+.as-sortable-item {
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+.as-sortable-item-handle {
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.as-sortable-drag {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    border: 3px solid $table-border;
+}
+
+.as-sortable-drag  td:not(:first-child) {
+  width: inherit !important;
+  display: none !important;
+}
+
+.as-sortable-hidden {
+    display: block !important;
+}
+
+.as-sortable-un-selectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

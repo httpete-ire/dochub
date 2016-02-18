@@ -1,9 +1,11 @@
 'use strict';
 
+const shortid = require('shortid');
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
+const Q = require('q');
 
 const SALT_FACTOR = 10;
 
@@ -32,11 +34,22 @@ var UserSchema = new Schema({
   },
 
   resetPasswordToken: {
-    type: String
+    type: String,
+    default: null
   },
 
   resetPasswordExpires: {
-    type: Date
+    type: Date,
+    default: null
+  },
+
+  settings: {
+
+    notifications: {
+      type: Boolean,
+      default: true
+    }
+
   }
 
 });
@@ -48,7 +61,7 @@ UserSchema.pre('save', function(next) {
 
   // if password hasnt changed skip the hashing method
   if (!user.isModified('password')) {
-    return next();  
+    return next();
   }
 
   bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
@@ -69,15 +82,18 @@ UserSchema.pre('save', function(next) {
   });
 });
 
-// compare hash values
-UserSchema.methods.comparePasswords = function comparePasswords(password, cb) {
+UserSchema.methods.comparePasswords = function(password) {
+  let deferred = Q.defer();
+
   bcrypt.compare(password, this.password, function(err, match) {
     if (err) {
-      return cb(err);
+      deferred.reject(err);
+    } else {
+      deferred.resolve(match);
     }
-
-    cb(null, match);
   });
+
+  return deferred.promise;
 };
 
 UserSchema.plugin(uniqueValidator);
