@@ -1,9 +1,12 @@
-<div class="container">
+<div class="container app__container">
 
-  <div class="row">
+  <div class="row clearfix">
     <h1 class="page__title">Chapters</h1>
 
-    <a ui-sref="editor({docid: '{{chapCtrl.docid}}'})" class="btn btn-success pull-right page__btn">New Chapter</a>
+    <span class="pull-right">
+      <a ui-sref="documents" class="editor__link document__link">back to document list</a>
+      <a ui-sref="editor({docid: '{{chapCtrl.docid}}'})" class="btn btn-success page__btn">New Chapter</a>
+    </span>
 
     <table class="full-table">
 

@@ -5,8 +5,6 @@ function HeaderController(AuthFactory, TokenFactory, $state, $rootScope) {
   var vm = this;
   var user = AuthFactory.getUser();
 
-  console.log('working');
-
   vm.user = {
     name: user,
   };
@@ -21,8 +19,6 @@ function HeaderController(AuthFactory, TokenFactory, $state, $rootScope) {
     TokenFactory.setToken();
     $state.go('login');
     vm.user.name = '';
-
-
     $rootScope.loggedIn = false;
   };
 

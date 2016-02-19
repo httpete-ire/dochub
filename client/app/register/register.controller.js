@@ -7,14 +7,20 @@ function RegisterController(AuthService, $state, alertService) {
   vm.user = {};
 
   vm.btnText = 'Register';
-  vm.submitted = false;
+
+  vm.state = {
+    submitted: false,
+    submitting: false
+  };
 
   vm.register = function(obj, form) {
-    vm.submitted = true;
+    vm.state.submitted = true;
 
     if(form.$invalid) {
       return false;
     }
+
+    vm.state.submitting = true;
 
     AuthService.register(obj)
     .then(function() {
@@ -35,9 +41,11 @@ function RegisterController(AuthService, $state, alertService) {
       });
 
       vm.user = {};
-      vm.submitted = false;
+      vm.state.submitted = false;
+      vm.state.submitting = false;
       vm.btnText = 'Register';
       form.$setPristine();
+
 
 
     });
