@@ -1,21 +1,8 @@
-var angular = require('angular');
-
-
-// ui bootstrap
-// modal
-// dropdown
-// alert
-// debounce
-
-// dependencies
 require('expose?diff_match_patch!diff-match-patch');
 require('expose?CodeMirror!codemirror');
 require('codemirror/addon/merge/merge.js');
 require('angular-relative-date');
 require('angular-ui-codemirror');
-require('angular-ui-router');
-require('angular-ui-bootstrap');
-require('angular-messages');
 require('ng-sortable');
 require('angular-toastr');
 
@@ -24,10 +11,7 @@ window.DIFF_DELETE = -1;
 window.DIFF_INSERT = 1;
 window.DIFF_EQUAL = 0;
 
-// require('angular-ui-bootstrap/src/modal/modal');
-// require('angular-ui-bootstrap/src/stackedMap/stackedMap');
-
-var app = angular.module('dochub', [
+var app = window.angular.module('dochub', [
   'ui.router',
   'ui.codemirror',
   'relativeDate',
@@ -35,6 +19,10 @@ var app = angular.module('dochub', [
   'as.sortable',
   'toastr',
   require('angular-ui-bootstrap')
+
+  // when ui-bootstrap 1.2 is released remove the full library
+  // and comment out the module below
+
   // require('angular-ui-bootstrap/src/modal'),
   // require('angular-ui-bootstrap/src/debounce'),
   // require('angular-ui-bootstrap/src/alert'),
@@ -58,3 +46,4 @@ require('./directives')(app);
 require('./pullrequest')(app);
 require('./alert')(app);
 require('./password')(app);
+require('./reset')(app);

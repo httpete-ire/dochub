@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="login__wrapper center-block">
+
+      <dochub-alert></dochub-alert>
+
+      <div class="login__container">
+
+        <img src="images/mark.svg" alt="Dochub logo" width="60px;" class="header__logo">
+
+        <h2 class="login__title">Password reset</h2>
+
+        <form name="reset" ng-submit="resetCtrl.reset(resetCtrl.password, this.reset)" novalidate>
+
+          <div class="form-group">
+            <input type="password" name="password" ng-model="resetCtrl.password" class="form-control" placeholder="Enter new password" required>
+            <div ng-messages="reset.password.$error" ng-if="resetCtrl.state.submitted" class="login__error">
+              <span ng-message="required">A password is required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block" ng-class="{'btn__loading' : resetCtrl.state.submitting}">Reset password</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <span class="login__redirect">login <a ui-sref="login">here</a></span>
+      <span class="login__redirect pull-right">register an account <a ui-sref="register">here</a></span>
+
+    </div>
+
+  </div>
+
+</div>

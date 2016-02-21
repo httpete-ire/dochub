@@ -57,10 +57,17 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       auth: false
     })
     .state('password', {
-      url: '/reset-password',
+      url: '/reset-password?email',
       template: require('./../password/password.html'),
       controller: 'PasswordController',
       controllerAs: 'passwordCtrl',
+      auth: false
+    })
+    .state('reset', {
+      url: '/reset?token',
+      template: require('./../reset/reset.html'),
+      controller: 'ResetController',
+      controllerAs: 'resetCtrl',
       auth: false
     })
     .state('merge', {
@@ -88,7 +95,7 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       }
     })
     .state('chapters', {
-      url: '/documents/:docid',
+      url: '/documents/:docid?documentname',
       template: require('./../chapters/chapters.html'),
       controller: 'ChaptersController',
       controllerAs: 'chapCtrl',

@@ -41,7 +41,7 @@
 
     <div class="editor__preview-header editor__preview-header--border">
 
-      <img src="images/md.svg" width="25">
+      <img src="images/md.svg" width="25" class="editor__md" ng-click="editorCtrl.showHints()">
 
       <span class="editor__input-error editor__input-error--header" ng-if="editorCtrl.state.submitted && !editorCtrl.chapter.markdown">Required</span>
 

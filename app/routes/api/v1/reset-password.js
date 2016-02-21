@@ -1,32 +1,12 @@
 'use strict';
 
-const User = require(__base + '/models/user.js');
+const User = require(__base + 'models/user.js');
 
-const ValidationError = require(__base + '/helpers/errors/validation-error');
+const ValidationError = require(__base + 'helpers/errors/validation-error');
 const NotFoundError = require(__base + 'helpers/errors/not-found');
 
 // '/' render the marketing website
 module.exports =  function(router) {
-
-  router.get('/reset/:token', function(req, res, next) {
-
-    User.findOne({
-      resetPasswordToken: req.params.token,
-      resetPasswordExpires: {
-        $gt: Date.now()
-      }
-    }).then(function(user) {
-
-      if (!user) {
-        return res.render('forgot', {
-          error: 'Invalid token'
-        });
-      }
-
-      return res.render('reset');
-    });
-
-  });
 
   router.post('/reset/:token', function(req, res, next) {
 
@@ -58,7 +38,7 @@ module.exports =  function(router) {
       return user.save();
     })
     .then(function(user) {
-      return res.redirect('/app');
+      return res.sendStatus(200);
     })
     .catch(function(err) {
       return next(err);

@@ -6,6 +6,7 @@ function ChaptersController(chapters, $stateParams, chapterService, TokenFactory
 
   vm.docid = $stateParams.docid;
   vm.token = TokenFactory.getToken();
+  vm.documentname = $stateParams.documentname;
 
   vm.state = {
     toggle: false,
