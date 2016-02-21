@@ -3,7 +3,7 @@
 var defaultSort = 'title';
 
 /*@ngInject*/
-function EditorController($$debounce, chapterService, $stateParams, chapter, dataService, parser, toastr) {
+function EditorController($$debounce, chapterService, $stateParams, chapter, dataService, parser, toastr, $uibModal) {
 
   var vm = this;
 
@@ -38,6 +38,22 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
     };
 
   }
+
+  vm.showHints = function() {
+
+    $uibModal.open({
+      template: require('./markdown-hints.html'),
+      controller: function($uibModalInstance) {
+        this.close = function() {
+          $uibModalInstance.close(false);
+        };
+      },
+      controllerAs: 'modalCtrl',
+      size: 'md'
+    });
+
+  };
+
 
   vm.action = function(obj, form) {
     obj.docid = $stateParams.docid;
