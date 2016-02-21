@@ -5740,6 +5740,11 @@ button.toast-close-button {
   position: relative;
   top: -10px; }
 
+.document__link {
+  position: relative;
+  top: 10px;
+  right: 20px; }
+
 .editor__toggle-label {
   position: absolute;
   left: -90px;
@@ -5799,6 +5804,12 @@ button.toast-close-button {
   text-align: left;
   vertical-align: middle; }
 
+.editor__md {
+  cursor: pointer; }
+
+.markdown__hints {
+  margin: 0; }
+
 .login__wrapper {
   margin-top: 60px;
   max-width: 350px; }
@@ -5830,7 +5841,8 @@ button.toast-close-button {
 .login__error {
   margin: 5px 0 0 10px;
   font-size: 12px;
-  color: #c0392b; }
+  color: #c0392b;
+  text-align: left; }
 
 .version__header {
   display: inline-block;
@@ -5858,3 +5870,6 @@ body {
 .btn-success,
 .btn-success:hover {
   color: #ffffff; }
+
+.app__container {
+  padding-bottom: 50px; }

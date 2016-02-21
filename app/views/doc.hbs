@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{chapter.title}}</title>
+
+  <link rel="stylesheet" href="//dochub.co:4000/css/docs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/monokai-sublime.min.css">
+
+</head>
+<body>
+
+  <div class="header__container">
+
+    <div class="container">
+      <div class="row">
+
+        <a href="https://dochub.co">
+          <img src="https://app.dochub.co/images/logo.svg" alt="Dochub logo" width="130px;" class="header__logo">
+        </a>
+
+        <div class="nav__login pull-right">
+
+          <a href="https://app.dochub.co/#/login" class="btn btn__login">Login</a>
+          <a href="https://app.dochub.co/#/register" class="btn btn__login">Register</a>
+
+        </div>
+
+    </div>
+  </div>
+
+  </div>
+
+  <div class="container container__push">
+    <div class="row">
+
+      <h1 class="chapter__title">{{doc.title}}</h1>
+
+      <div class="dochub__document--container clearfix">
+
+        <div class="dochub__document--nav">
+
+          <h6 class="dochub__document-nav--title">Chapters</h6>
+
+          <ul class="dochub__nav-list">
+
+              {{#each links}}
+                <li class="dochub__nav--list-item">
+                  <a href="//{{this.href}}" class="dochub__nav-link {{this.active}}">{{this.title}}</a>
+                </li>
+              {{/each}}
+
+          </ul>
+
+        </div>
+
+        <div class="dochub__document--content">
+
+          <div class="dochub__document-header clearfix">
+            <h2 class="pull-left dochub__document-header--title">{{chapter.title}}</h2>
+
+            {{#unless chapter.pullrequest.set}}
+              <a href="https://app.dochub.co/#/documents/{{doc._id}}/chapters/{{chapter._id}}/pullrequest?chapter={{chapterNumber}}" class="btn btn-default pull-right">Suggest an edit</a>
+            {{/unless}}
+
+          </div>
+
+          {{{chapter.content.html}}}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <script>
+
+    $(function() {
+
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

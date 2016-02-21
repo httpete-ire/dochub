@@ -37,7 +37,7 @@ module.exports =  function(router) {
       _.each(doc.chapters, function(chap, index) {
         links.push({
           title: chap.title,
-          href: req.hostname +  '/' + docId + '/' + (index + 1),
+          href: req.hostname +  ':4000/' + docId + '/' + (index + 1),
           active: (index + 1 === +req.params.chapternumber) ? 'active__link' : ''
         });
 
