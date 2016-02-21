@@ -57,6 +57,12 @@
   top: -10px;
 }
 
+.document__link {
+  position: relative;
+  top: 10px;
+  right: 20px;
+}
+
 .editor__toggle-label {
   position: absolute;
   left: -90px;
@@ -130,4 +136,12 @@
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+}
+
+.editor__md {
+  cursor: pointer;
+}
+
+.markdown__hints {
+  margin: 0;
 }

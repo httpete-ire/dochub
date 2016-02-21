@@ -20,3 +20,26 @@ a.active__link {
   }
 
 }
+
+.missing__container {
+  background-color: #fff;
+  border: 1px solid #eaeaee;
+  padding: 50px 20px;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.missing__title {
+  margin-bottom: 20px;
+}
+
+body {
+  background-color: #f6f8f8;
+}
+
+.btn-success, .btn-success:hover {
+    color: #FFF;
+}
