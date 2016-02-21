@@ -58,3 +58,4 @@ require('./directives')(app);
 require('./pullrequest')(app);
 require('./alert')(app);
 require('./password')(app);
+require('./reset')(app);

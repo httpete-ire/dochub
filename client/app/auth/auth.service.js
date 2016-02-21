@@ -6,10 +6,11 @@ function AuthService(dataService, API_PATH) {
   return {
     login : login,
     register: register,
-    resetPassword: resetPassword
+    resetPassword: resetPassword,
+    requestNewPassword: requestNewPassword
   };
 
-  function resetPassword(email) {
+  function requestNewPassword(email) {
     return dataService.post(API_PATH + 'forgot', {
       email: email
     });
@@ -21,6 +22,12 @@ function AuthService(dataService, API_PATH) {
 
   function register(user) {
     return dataService.post(API_PATH + 'register', user);
+  }
+
+  function resetPassword(token, password) {
+    return dataService.post(API_PATH + 'reset/' + token, {
+      password: password
+    });
   }
 
 }

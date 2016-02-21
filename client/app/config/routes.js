@@ -63,6 +63,13 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       controllerAs: 'passwordCtrl',
       auth: false
     })
+    .state('reset', {
+      url: '/reset?token',
+      template: require('./../reset/reset.html'),
+      controller: 'ResetController',
+      controllerAs: 'resetCtrl',
+      auth: false
+    })
     .state('merge', {
       url: '/documents/:docid/chapters/:chapterid/merge',
       template: require('./../merge/merge.html'),

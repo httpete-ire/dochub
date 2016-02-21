@@ -19,7 +19,7 @@ function PasswordController(AuthService, alertService) {
     vm.btnText = 'Resetting password';
 
     AuthService
-    .resetPassword(email)
+    .requestNewPassword(email)
     .then(function() {
       alertService.setAlert({
         message: 'Please check your email for a reset link',
