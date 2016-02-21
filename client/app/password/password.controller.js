@@ -2,11 +2,13 @@
 'use strict';
 
 /*@ngInject*/
-function PasswordController(AuthService, alertService) {
+function PasswordController(AuthService, alertService, $stateParams) {
   var vm = this;
   vm.submitted = false;
   vm.submitting = false;
   vm.btnText = 'Reset password';
+
+  vm.email = ($stateParams.email) ? $stateParams.email : '';
 
   vm.resetPassword = function(email, form) {
     vm.submitted = true;
@@ -26,6 +28,8 @@ function PasswordController(AuthService, alertService) {
         type: 'success'
       });
       vm.email = '';
+      vm.submitted = false;
+      vm.submitting = false;
     })
     .catch(function(err) {
 

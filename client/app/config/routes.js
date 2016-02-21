@@ -57,7 +57,7 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       auth: false
     })
     .state('password', {
-      url: '/reset-password',
+      url: '/reset-password?email',
       template: require('./../password/password.html'),
       controller: 'PasswordController',
       controllerAs: 'passwordCtrl',
