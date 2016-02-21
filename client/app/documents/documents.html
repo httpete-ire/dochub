@@ -47,7 +47,7 @@
 
         <tr class="table__row" ng-repeat="doc in docCtrl.docs | orderBy: docCtrl.sort">
           <td class="table__first-row">
-            <a ui-sref="chapters({docid: '{{doc._id}}'})">{{doc.title}}</a>
+            <a ui-sref="chapters({docid: '{{doc._id}}', documentname: '{{doc.title}}'})">{{doc.title}}</a>
           </td>
           <td>
             <toggle toggle-model="doc.published" change="docCtrl.publish(doc)"></toggle>

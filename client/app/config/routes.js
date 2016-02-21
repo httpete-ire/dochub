@@ -95,7 +95,7 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       }
     })
     .state('chapters', {
-      url: '/documents/:docid',
+      url: '/documents/:docid?documentname',
       template: require('./../chapters/chapters.html'),
       controller: 'ChaptersController',
       controllerAs: 'chapCtrl',
