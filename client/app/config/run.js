@@ -14,6 +14,8 @@ function appRun($rootScope, TokenFactory, $state) {
       $rootScope.loggedIn = false;
       $rootScope.stateIsLoading = false;
       $state.go('login');
+    } else if(TokenFactory.isSet() && (toState.name === 'login' || toState.name === 'register' || toState.name === 'password' || toState.name === 'reset')) {
+      $state.go('documents');
     }
 
   });
