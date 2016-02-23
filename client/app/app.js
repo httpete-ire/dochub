@@ -1,7 +1,6 @@
 require('expose?diff_match_patch!diff-match-patch');
 require('expose?CodeMirror!codemirror');
 require('codemirror/addon/merge/merge.js');
-require('angular-relative-date');
 require('angular-ui-codemirror');
 require('ng-sortable');
 require('angular-toastr');
@@ -14,7 +13,6 @@ window.DIFF_EQUAL = 0;
 var app = window.angular.module('dochub', [
   'ui.router',
   'ui.codemirror',
-  'relativeDate',
   'ngMessages',
   'as.sortable',
   'toastr',
