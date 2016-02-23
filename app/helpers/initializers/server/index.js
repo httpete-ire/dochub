@@ -20,6 +20,16 @@ const loadEmailTemplates = require(__base + 'mailer/templates').loadTemplates;
 // error handling
 const errorMiddleware = require(__base + 'helpers/middleware/error');
 
+// set custom handler on hbs
+hbs.registerHelper('hasChapters', function(chapters, options) {
+
+  if(chapters.length > 1) {
+    return options.fn(this);
+  }
+
+  return options.inverse(this);
+});
+
 let app = null;
 let logger = null;
 

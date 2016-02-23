@@ -38,21 +38,26 @@
 
       <div class="dochub__document--container clearfix">
 
-        <div class="dochub__document--nav">
 
-          <h6 class="dochub__document-nav--title">Chapters</h6>
+        {{#hasChapters links}}
 
-          <ul class="dochub__nav-list">
+          <div class="dochub__document--nav">
 
-              {{#each links}}
-                <li class="dochub__nav--list-item">
-                  <a href="//{{this.href}}" class="dochub__nav-link {{this.active}}">{{this.title}}</a>
-                </li>
-              {{/each}}
+            <h6 class="dochub__document-nav--title">Chapters</h6>
 
-          </ul>
+            <ul class="dochub__nav-list">
 
-        </div>
+                {{#each links}}
+                  <li class="dochub__nav--list-item">
+                    <a href="//{{this.href}}" class="dochub__nav-link {{this.active}}">{{this.title}}</a>
+                  </li>
+                {{/each}}
+
+            </ul>
+
+          </div>
+
+        {{/hasChapters}}
 
         <div class="dochub__document--content">
 
