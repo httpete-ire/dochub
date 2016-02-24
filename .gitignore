@@ -7,3 +7,5 @@ node_modules/
 default
 
 client/public/js/app.js
+
+client/public/css/app.css

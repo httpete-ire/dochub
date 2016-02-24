@@ -101,7 +101,7 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       controllerAs: 'chapCtrl',
       auth: true,
       resolve: {
-        chapters: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
+        chapterData: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
           return chapterService.getChapters($stateParams.docid);
         }]
       }

@@ -91,32 +91,7 @@ function DocumentsController(docs, documentService, $uibModal, toastr, $window) 
     modal.result.then(handleResponse);
   };
 
-
-  this.publish = function(doc) {
-
-    if(doc.chapters.length < 1) {
-      doc.published = false;
-      toastr.warning('A document must contain at least one chapter before you can publish it', 'Warning');
-      return false;
-    }
-
-    documentService.editDocument(doc).then(function() {
-
-      if(doc.published) {
-
-          var link = 'https://docs.dochub.co/' + doc._id;
-
-
-          toastr.success('click to open', 'Published: ' + link, {
-            onTap: function() {
-              $window.open('https://docs.dochub.co/' + doc._id);
-            }
-          });
-
-      }
-
-    });
-  };
+  this.publish = documentService.publishDocument;
 
   function handleResponse(update) {
     if(update) {

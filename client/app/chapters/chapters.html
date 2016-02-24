@@ -1,11 +1,18 @@
 <div class="container app__container">
 
   <div class="row clearfix">
-    <h1 class="page__title">{{chapCtrl.documentname}} chapters</h1>
+    <h1 class="page__title">{{chapCtrl.doc.title}} chapters</h1>
 
-    <span class="pull-right">
-      <a ui-sref="documents" class="editor__link document__link">back to document list</a>
-      <a ui-sref="editor({docid: '{{chapCtrl.docid}}'})" class="btn btn-success page__btn">New Chapter</a>
+    <span class="pull-right chapter__togle-container">
+      <a ui-sref="documents" class="editor__link">back to document list</a>
+
+      <div class="editor__toggle chapter__toggle">
+        <span class="editor__toggle-label chapter__toggle--label chapter__toggle--unpublished-label" ng-if="!chapCtrl.doc.published">publish</span>
+        <a href="http://docs.dochub.co:4000/{{chapCtrl.doc._id}}" class="editor__toggle-label chapter__toggle--label" ng-if="chapCtrl.doc.published" target="_blank">published</a>
+        <toggle toggle-model="chapCtrl.doc.published" change="chapCtrl.publish(chapCtrl.doc)"></toggle>
+      </div>
+
+      <a ui-sref="editor({docid: '{{chapCtrl.docid}}'})" class="btn btn-success chapter__btn">New Chapter</a>
     </span>
 
     <table class="full-table">
@@ -30,7 +37,7 @@
 
       </thead>
 
-      <tbody as-sortable="chapCtrl.dragControlListeners" ng-model="chapCtrl.chapters" class="table__body" ng-if="chapCtrl.chapters.length > 0">
+      <tbody as-sortable="chapCtrl.dragControlListeners" ng-model="chapCtrl.doc.chapters" class="table__body" ng-if="chapCtrl.chapters.length > 0">
 
         <tr class="table__row" ng-repeat="chapter in chapCtrl.chapters" as-sortable-item>
 

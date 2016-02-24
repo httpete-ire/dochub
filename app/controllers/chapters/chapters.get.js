@@ -7,7 +7,7 @@ function getChapters(req, res, next) {
 
   // let select = '-chapters.pullrequest.content -chapters.content';
 
-  let select = 'chapters._id chapters.title chapters.views chapters.updated chapters.versions._id chapters.versions.created chapters.versions.versionNumber chapters.pullrequest.set';
+  let select = 'published title chapters._id chapters.title chapters.views chapters.updated chapters.versions._id chapters.versions.created chapters.versions.versionNumber chapters.pullrequest.set';
 
   if(req.query.pullrequest){
     select = '';
@@ -24,7 +24,13 @@ function getChapters(req, res, next) {
       throw new NotFoundError('no document resource found');
     }
 
-    return res.send(doc.chapters);
+    return res.send({
+      _id: doc._id,
+      title: doc.title,
+      published: doc.published,
+      chapters: doc.chapters
+    });
+
   })
   .catch(function(err) {
     return next(err);
