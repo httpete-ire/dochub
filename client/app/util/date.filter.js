@@ -20,6 +20,9 @@ function dateFilter() {
 
   return function(date) {
 
+
+    console.log('date is : ' + date);
+
     // convert date and capture current time
     date = new Date(date);
     var now = new Date();

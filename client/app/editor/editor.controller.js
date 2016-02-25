@@ -43,11 +43,11 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
 
     $uibModal.open({
       template: require('./markdown-hints.html'),
-      controller: function($uibModalInstance) {
+      controller: ['$uibModalInstance', function($uibModalInstance) {
         this.close = function() {
           $uibModalInstance.close(false);
         };
-      },
+      }],
       controllerAs: 'modalCtrl',
       size: 'md'
     });
@@ -94,7 +94,7 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
     }
 
     function handleErr(err) {
-      if(err.response.status === 409) {
+      if(err === 'Conflict') {
         vm.state.titleConflictError = true;
         vm.state.submitting = false;
       }
@@ -110,7 +110,14 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
     lineWrapping : true,
     lineNumbers: true,
     allowDropFileTypes: ['text/markdown'],
-    onLoad: codemirrorLoaded
+    showTrailingSpace: true,
+    onLoad: codemirrorLoaded,
+    tabSize: 2,
+    extraKeys: {
+      Tab: function(cm) {
+        cm.replaceSelection('  ', 'end');
+      }
+    }
   };
 
   //

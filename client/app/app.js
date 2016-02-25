@@ -1,6 +1,7 @@
 require('expose?diff_match_patch!diff-match-patch');
 require('expose?CodeMirror!codemirror');
 require('codemirror/addon/merge/merge.js');
+require('codemirror/addon/edit/trailingspace.js');
 require('angular-ui-codemirror');
 require('ng-sortable');
 require('angular-toastr');

@@ -21,8 +21,8 @@
 
         <div class="nav__login pull-right">
 
-          <a href="https://app.dochub.co/#/login" class="btn btn__login">Login</a>
-          <a href="https://app.dochub.co/#/register" class="btn btn__login">Register</a>
+          <a href="http://localhost:8080/client/public/#/login" class="btn btn__login">Login</a>
+          <a href="http://localhost:8080/client/public/#/register" class="btn btn__login">Register</a>
 
         </div>
 
@@ -65,7 +65,7 @@
             <h2 class="pull-left dochub__document-header--title">{{chapter.title}}</h2>
 
             {{#unless chapter.pullrequest.set}}
-              <a href="https://app.dochub.co/#/documents/{{doc._id}}/chapters/{{chapter._id}}/pullrequest?chapter={{chapterNumber}}" class="btn btn-default pull-right">Suggest an edit</a>
+              <a href="http://localhost:8080/client/public/#/documents/{{doc._id}}/chapters/{{chapter._id}}/pullrequest?chapter={{chapterNumber}}" class="btn btn-default pull-right">Suggest an edit</a>
             {{/unless}}
 
           </div>

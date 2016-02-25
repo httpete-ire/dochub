@@ -22,7 +22,6 @@
         <tr class="table__header">
 
           <th class="table__first-row">Title</th>
-          <th>Views</th>
           <th>Updated</th>
           <th>Versions</th>
           <th>Pull request</th>
@@ -43,10 +42,6 @@
 
           <td class="table__first-row">
             <a ui-sref="edit-chapter({docid: '{{chapCtrl.docid}}', chapterid: '{{chapter._id}}'})">{{chapter.title}}</a>
-          </td>
-
-          <td>
-            {{chapter.views}}
           </td>
 
           <td>

@@ -23,7 +23,8 @@ var ChapterSchema = new Schema({
   },
 
   updated: {
-    type: Date
+    type: Date,
+    default: Date.now
   },
 
   views: {

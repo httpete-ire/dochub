@@ -1,11 +1,8 @@
 node_modules/
 .env
 
-./client/public/css/app.css
-./client/public/js/app.js
-
 default
 
 client/public/js/app.js
-
 client/public/css/app.css
+client/public/css/docs.css
