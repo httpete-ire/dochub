@@ -8,7 +8,6 @@
   margin-left: 110px;
 }
 
-
 .chapter__toggle--label {
   top: 8px;
   left: -75px;
@@ -20,4 +19,9 @@
 
 .chapter__togle-container {
   margin-top: 20px;
+}
+
+.chapter__version-toggle {
+  cursor: pointer;
+  color: $green;
 }
