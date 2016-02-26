@@ -5,6 +5,10 @@
   border-radius: 30px;
   cursor: pointer;
 
+  &__filter {
+    font-size: 12px;
+  }
+
   .caret {
     color: darken($table-border, 20);
     border-right: 4px solid rgba(0, 0, 0, 0);

@@ -1,19 +1,20 @@
 'use strict';
 
 /*@ngInject*/
-function ChaptersController(chapters, $stateParams, chapterService, TokenFactory, $uibModal) {
+function ChaptersController(chapterData, $stateParams, chapterService, TokenFactory, $uibModal, documentService) {
   var vm = this;
 
   vm.docid = $stateParams.docid;
   vm.token = TokenFactory.getToken();
-  vm.documentname = $stateParams.documentname;
+
+  vm.doc = chapterData;
 
   vm.state = {
     toggle: false,
     sorted: false
   };
 
-  vm.chapters = chapters;
+  vm.chapters = chapterData.chapters;
 
   vm.toggleSort = function() {
 
@@ -67,8 +68,10 @@ function ChaptersController(chapters, $stateParams, chapterService, TokenFactory
       chapterService
       .getChapters(vm.docid)
       .then(function(data) {
-        vm.chapters = data;
+        vm.chapters = data.chapters;
       });
+    }).catch(function(){
+      console.log('working');
     });
 
   };
@@ -77,6 +80,12 @@ function ChaptersController(chapters, $stateParams, chapterService, TokenFactory
     orderChanged: function() {
       vm.state.sorted = true;
     }
+  };
+
+  console.log(documentService);
+
+  vm.publish = function(doc) {
+    documentService.publishDocument(doc);
   };
 
 }

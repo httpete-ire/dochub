@@ -15,6 +15,7 @@ function appRun($rootScope, TokenFactory, $state) {
       $rootScope.stateIsLoading = false;
       $state.go('login');
     } else if(TokenFactory.isSet() && (toState.name === 'login' || toState.name === 'register' || toState.name === 'password' || toState.name === 'reset')) {
+      e.preventDefault();
       $state.go('documents');
     }
 
@@ -25,8 +26,14 @@ function appRun($rootScope, TokenFactory, $state) {
     logged();
   });
 
-  $rootScope.$on('$stateChangeError', function (event, nextRoute, currentRoute){
-    console.log('error');
+  $rootScope.$on('$stateChangeError', function (event, nextRoute, currentRoute, fromState, fromParams, error){
+
+    console.log(error.response);
+
+    if(error.response.status === 404) {
+      $state.go('404');
+    }
+
   });
 
   function logged() {

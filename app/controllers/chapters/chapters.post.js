@@ -27,8 +27,6 @@ function updateChapters(req, res, next) {
   chapter.content.markdown = req.body.markdown;
   chapter.content.html = req.body.html;
 
-  console.log(chapter);
-
   let docId = req.params.docid;
 
   let query = Doc.update({

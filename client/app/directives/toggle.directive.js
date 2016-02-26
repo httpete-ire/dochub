@@ -12,7 +12,7 @@ function toggle() {
     template: [
       '<div class="toggle__container">',
         '<div class="toggle">',
-          '<input type="checkbox" class="toggle__checkbox" ng-model="toggleModel" ng-click="change()">',
+          '<input type="checkbox" class="toggle__checkbox" ng-model="toggleModel" ng-click="change()" tabindex="-1">',
           '<b class="toggle__switch"></b>',
           '<b class="toggle__track"></b>',
         '</div>',

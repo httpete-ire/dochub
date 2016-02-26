@@ -21,8 +21,8 @@
 
         <div class="nav__login pull-right">
 
-          <a href="https://app.dochub.co/#/login" class="btn btn__login">Login</a>
-          <a href="https://app.dochub.co/#/register" class="btn btn__login">Register</a>
+          <a href="http://localhost:8080/client/public/#/login" class="btn btn__login">Login</a>
+          <a href="http://localhost:8080/client/public/#/register" class="btn btn__login">Register</a>
 
         </div>
 
@@ -38,21 +38,26 @@
 
       <div class="dochub__document--container clearfix">
 
-        <div class="dochub__document--nav">
 
-          <h6 class="dochub__document-nav--title">Chapters</h6>
+        {{#hasChapters links}}
 
-          <ul class="dochub__nav-list">
+          <div class="dochub__document--nav">
 
-              {{#each links}}
-                <li class="dochub__nav--list-item">
-                  <a href="//{{this.href}}" class="dochub__nav-link {{this.active}}">{{this.title}}</a>
-                </li>
-              {{/each}}
+            <h6 class="dochub__document-nav--title">Chapters</h6>
 
-          </ul>
+            <ul class="dochub__nav-list">
 
-        </div>
+                {{#each links}}
+                  <li class="dochub__nav--list-item">
+                    <a href="//{{this.href}}" class="dochub__nav-link {{this.active}}">{{this.title}}</a>
+                  </li>
+                {{/each}}
+
+            </ul>
+
+          </div>
+
+        {{/hasChapters}}
 
         <div class="dochub__document--content">
 
@@ -60,7 +65,7 @@
             <h2 class="pull-left dochub__document-header--title">{{chapter.title}}</h2>
 
             {{#unless chapter.pullrequest.set}}
-              <a href="https://app.dochub.co/#/documents/{{doc._id}}/chapters/{{chapter._id}}/pullrequest?chapter={{chapterNumber}}" class="btn btn-default pull-right">Suggest an edit</a>
+              <a href="http://localhost:8080/client/public/#/documents/{{doc._id}}/chapters/{{chapter._id}}/pullrequest?chapter={{chapterNumber}}" class="btn btn-default pull-right">Suggest an edit</a>
             {{/unless}}
 
           </div>

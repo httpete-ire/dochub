@@ -1,0 +1,27 @@
+.chapter__btn {
+  position: relative;
+  top: -13px;
+  margin-left: 15px;
+}
+
+.chapter__toggle {
+  margin-left: 110px;
+}
+
+.chapter__toggle--label {
+  top: 8px;
+  left: -75px;
+}
+
+.chapter__toggle--unpublished-label {
+  color: #666;
+}
+
+.chapter__togle-container {
+  margin-top: 20px;
+}
+
+.chapter__version-toggle {
+  cursor: pointer;
+  color: $green;
+}

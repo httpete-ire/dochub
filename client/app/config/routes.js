@@ -101,7 +101,7 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
       controllerAs: 'chapCtrl',
       auth: true,
       resolve: {
-        chapters: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
+        chapterData: ['chapterService', '$stateParams', function(chapterService, $stateParams) {
           return chapterService.getChapters($stateParams.docid);
         }]
       }
@@ -117,6 +117,10 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
         }]
       },
       auth: true
+    })
+    .state('404', {
+      url: '/404',
+      template: require('./../util/404.html')
     });
 
   $httpProvider.interceptors.push('TokenInterceptor');

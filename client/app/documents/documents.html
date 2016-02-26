@@ -19,7 +19,7 @@
 
             <div class="sort-container pull-right" uib-dropdown>
 
-              <span class="sort-btn" uib-dropdown-toggle>
+              <span class="sort-btn sort-btn__filter" uib-dropdown-toggle>
                 {{docCtrl.sortDisplay}} <span class="caret"></span>
               </span>
 
@@ -28,7 +28,7 @@
                   <a href="#" ng-click="docCtrl.setSort('title', 'Title')">Title</a>
                 </li>
                 <li role="menuitem">
-                  <a href="#" ng-click="docCtrl.setSort('status', 'Status')">Status</a>
+                  <a href="#" ng-click="docCtrl.setSort('-published', 'Published')">Published</a>
                 </li>
                 <li role="menuitem">
                   <a href="#" ng-click="docCtrl.setSort('-updated', 'Updated')">Updated</a>
