@@ -117,6 +117,10 @@ function routeConfig($urlRouterProvider, $stateProvider, $httpProvider) {
         }]
       },
       auth: true
+    })
+    .state('404', {
+      url: '/404',
+      template: require('./../util/404.html')
     });
 
   $httpProvider.interceptors.push('TokenInterceptor');

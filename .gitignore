@@ -6,3 +6,5 @@ default
 client/public/js/app.js
 client/public/css/app.css
 client/public/css/docs.css
+
+app/public/css/docs.css

@@ -7,6 +7,7 @@ $link-color: #666;
 @import './module/_header';
 @import './module/_nav';
 @import './module/_doc';
+@import './module/_404';
 
 a:hover {
   text-decoration: underline;
@@ -19,21 +20,6 @@ a.active__link {
     text-decoration: none;
   }
 
-}
-
-.missing__container {
-  background-color: #fff;
-  border: 1px solid #eaeaee;
-  padding: 50px 20px;
-  border-radius: 5px;
-  max-width: 400px;
-  margin: 0 auto;
-  margin-top: 50px;
-  text-align: center;
-}
-
-.missing__title {
-  margin-bottom: 20px;
 }
 
 body {
