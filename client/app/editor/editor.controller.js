@@ -70,37 +70,14 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
     form.$setPristine();
 
     if(vm.state.new) {
-      chapterService.newChapter(obj)
-      .then(function(data) {
-        vm.state.new = false;
-        vm.chapter.id = data.id;
-        vm.state.submitted = true;
-        vm.state.submitting = false;
-        showSuccess('Created', 'Chapter created successfully');
-      })
-      .catch(handleErr);
+      newChapter(obj);
     } else {
-      chapterService.updateChapter(obj)
-      .then(function(data) {
-        vm.state.submitted = true;
-        vm.state.submitting = false;
-        showSuccess('Saved', 'Chapter saved successfully');
-      })
-      .catch(handleErr);
-    }
-
-    function showSuccess(title, msg) {
-      toastr.success(msg, title);
-    }
-
-    function handleErr(err) {
-      if(err === 'Conflict') {
-        vm.state.titleConflictError = true;
-        vm.state.submitting = false;
-      }
+      updateChapter(obj);
     }
 
   };
+
+  vm.updateChapter = updateChapter;
 
   vm.actionText = function() {
     return (vm.state.new) ? 'Create chapter' : 'Save chapter';
@@ -119,6 +96,40 @@ function EditorController($$debounce, chapterService, $stateParams, chapter, dat
       }
     }
   };
+
+  function newChapter(obj) {
+    chapterService.newChapter(obj)
+    .then(function(data) {
+      vm.state.new = false;
+      vm.chapter.id = data.id;
+      vm.state.submitted = true;
+      vm.state.submitting = false;
+      showSuccess('Created', 'Chapter created successfully');
+    })
+    .catch(handleErr);
+  }
+
+  function updateChapter(obj) {
+    obj.docid = $stateParams.docid;
+    chapterService.updateChapter(obj)
+    .then(function(data) {
+      vm.state.submitted = true;
+      vm.state.submitting = false;
+      showSuccess('Saved', 'Chapter saved successfully');
+    })
+    .catch(handleErr);
+  }
+
+  function showSuccess(title, msg) {
+    toastr.success(msg, title);
+  }
+
+  function handleErr(err) {
+    if(err === 'Conflict') {
+      vm.state.titleConflictError = true;
+      vm.state.submitting = false;
+    }
+  }
 
   //
   // EDITOR SETUP
