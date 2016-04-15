@@ -16,15 +16,10 @@ var app = window.angular.module('dochub', [
   'ngMessages',
   'as.sortable',
   'toastr',
-  require('angular-ui-bootstrap')
-
-  // when ui-bootstrap 1.2 is released remove the full library
-  // and comment out the module below
-
-  // require('angular-ui-bootstrap/src/modal'),
-  // require('angular-ui-bootstrap/src/debounce'),
-  // require('angular-ui-bootstrap/src/alert'),
-  // require('angular-ui-bootstrap/src/dropdown')
+  require('angular-ui-bootstrap/src/modal'),
+  require('angular-ui-bootstrap/src/debounce'),
+  require('angular-ui-bootstrap/src/alert'),
+  require('angular-ui-bootstrap/src/dropdown')
 ])
 .config(require('./config/routes'))
 .run(require('./config/run'));

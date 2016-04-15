@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass  ./client/sass/ -o ./client/public/css/",
+    "sass": "node-sass  ./client/sass/ -o ./client/public/css/ ",
     "watch-sass": "node-sass  -w ./client/sass/ -o ./client/public/css/",
     "watch-sass-docs": "node-sass  -w ./client/sass/ -o ./app/public/css/docs.css/"
   },
@@ -19,7 +19,7 @@
     "angular-messages": "^1.4.9",
     "angular-relative-date": "^2.0.0",
     "angular-toastr": "^1.7.0",
-    "angular-ui-bootstrap": "^1.1.2",
+    "angular-ui-bootstrap": "^1.2.0",
     "angular-ui-codemirror": "^0.3.0",
     "angular-ui-router": "^0.2.17",
     "async": "^1.5.0",
